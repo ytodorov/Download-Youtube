@@ -59,14 +59,16 @@ namespace DownloadYoutubeWeb.Controllers
             return result;
         }
 
-
         private static IEnumerable<VideoViewModel> GetVideos()
         {
+            return new List<VideoViewModel>();
             var link = "https://www.youtube.com/watch?v=P5IstTo5bZw";
             var youTube = YouTube.Default; // starting point for YouTube actions
             var videosToShow = youTube.GetAllVideos(link).ToList(); // gets a Video object with info about the video
 
             List<VideoViewModel> videos = new List<VideoViewModel>();
+            
+
 
             foreach (var v in videosToShow)
             {
@@ -100,6 +102,32 @@ namespace DownloadYoutubeWeb.Controllers
             }
 
             return videos;
+        }
+
+        public ActionResult _AudioPartial(string uri)
+        {
+            uri = HttpUtility.UrlDecode(uri);
+
+            var link = uri;
+            var youTube = YouTube.Default; // starting point for YouTube actions
+            var videos = youTube.GetAllVideos(link).ToList(); // gets a Video object with info about the video
+
+            var youTubeGuid = string.Empty;
+            var arr = uri.Split(new string[] { "v=" }, StringSplitOptions.RemoveEmptyEntries);
+            if (arr.Length == 2)
+            {
+                youTubeGuid = arr[1];
+            }
+
+            //var videos = MemoryCacheManager.Get("videos") as List<YouTubeVideo>;
+            var video = videos.FirstOrDefault(v => v.AdaptiveKind == AdaptiveKind.Audio);
+            VideoViewModel videoVM = new VideoViewModel();
+            videoVM.PosterUrl = $"http://img.youtube.com/vi/{youTubeGuid}/1.jpg";
+            videoVM.AudioBitrate = video.AudioBitrate;
+            videoVM.AudioFormat = video.AudioFormat.ToString();
+
+
+            return PartialView(videoVM);
         }
     }
 }
