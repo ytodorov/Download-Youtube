@@ -1,7 +1,21 @@
 ﻿@model VideoViewModel
 
+@*Broken by Telerik when multiple on page https://github.com/telerik/kendo-ui-core/issues/2305*@
+@*@(Html.Kendo().MediaPlayer()
+            .Navigatable(true)
+            .Media(m => m
+                .Title(Model.title)
+                .Source(Model.source)
+            )
+
+            .Name("mediaPlayer" + Guid.NewGuid().ToString())
+            .HtmlAttributes(new { style = "height:360px; width:640px" })
+            .Deferred()
+)*@
+
 <img src="@Model.PosterUrl" alt="@Model.title" />
 <span>AdaptiveKind: @Model.AdaptiveKind</span> - 
 <span>AudioBitrate: @Model.AudioBitrate</span> -
 <span>AudioFormat: @Model.AudioFormat</span> - 
 <a href="/home/downloadaudio?uri=@Model.AudioUrl">Download</a>
+
