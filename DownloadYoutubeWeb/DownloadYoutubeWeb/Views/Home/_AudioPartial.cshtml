@@ -1,6 +1,7 @@
 ﻿@model VideoViewModel
 
 <img src="@Model.PosterUrl" alt="@Model.title" />
-<span>AdaptiveKind: @Model.AdaptiveKind</span>
-<span>AudioBitrate: @Model.AudioBitrate</span>
-<span>AudioFormat: @Model.AudioFormat</span>
+<span>AdaptiveKind: @Model.AdaptiveKind</span> - 
+<span>AudioBitrate: @Model.AudioBitrate</span> -
+<span>AudioFormat: @Model.AudioFormat</span> - 
+<a href="/home/downloadaudio?uri=@Model.AudioUrl">Download</a>

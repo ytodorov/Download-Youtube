@@ -35,25 +35,23 @@ namespace DownloadYoutubeWeb.Controllers
             return File(bytes, contentType, video.FullName);
         }
 
-        public ActionResult DownloadAudio(string urls)
+        public ActionResult DownloadAudio(string uri)
         {
-            var lines = urls.Split('\n');
-            foreach (var link in lines)
-            {
-                var youTube = YouTube.Default; // starting point for YouTube actions
-                var videosToShow = youTube.GetAllVideos(link).ToList(); // gets a Video object with info about the video
-                var video = videosToShow.Where(v => v.AdaptiveKind == AdaptiveKind.Audio).First();
+            uri = HttpUtility.UrlDecode(uri);
 
-                var bytes = video.GetBytes();
-                string contentType = MimeMapping.GetMimeMapping(video.FullName);
-                var result = File(bytes, contentType, video.FullName);
-                MemoryCacheManager.Set("lastAudioFiles", result);
-                return result;
-            }
 
-            return null;
+            var youTube = YouTube.Default; // starting point for YouTube actions
+            var videosToShow = youTube.GetAllVideos(uri).ToList(); // gets a Video object with info about the video
+            var video = videosToShow.Where(v => v.AdaptiveKind == AdaptiveKind.Audio).First();
+
+            var bytes = video.GetBytes();
+            string contentType = MimeMapping.GetMimeMapping(video.FullName);
+            var result = File(bytes, contentType, video.FullName);
+            return result;
+
+
         }
-        public ActionResult DownloadAudioFiles()
+        public ActionResult DownloadAudioFiles(string uri)
         {
             var result = MemoryCacheManager.Get("lastAudioFiles") as FileContentResult;
             return result;
@@ -67,7 +65,7 @@ namespace DownloadYoutubeWeb.Controllers
             var videosToShow = youTube.GetAllVideos(link).ToList(); // gets a Video object with info about the video
 
             List<VideoViewModel> videos = new List<VideoViewModel>();
-            
+
 
 
             foreach (var v in videosToShow)
@@ -82,7 +80,7 @@ namespace DownloadYoutubeWeb.Controllers
                 vm.Is3D = v.Is3D;
                 vm.IsAdaptive = v.IsAdaptive;
                 vm.IsEncrypted = v.IsEncrypted;
-                vm.Resolution = v.Resolution;                
+                vm.Resolution = v.Resolution;
                 vm.PosterUrl = "http://img.youtube.com/vi/P5IstTo5bZw/1.jpg";
                 vm.source = v.Uri;
                 vm.UriEncoded = HttpUtility.UrlEncode(v.Uri);
@@ -125,7 +123,7 @@ namespace DownloadYoutubeWeb.Controllers
             videoVM.PosterUrl = $"http://img.youtube.com/vi/{youTubeGuid}/1.jpg";
             videoVM.AudioBitrate = video.AudioBitrate;
             videoVM.AudioFormat = video.AudioFormat.ToString();
-
+            videoVM.AudioUrl = HttpUtility.UrlEncode(uri);
 
             return PartialView(videoVM);
         }

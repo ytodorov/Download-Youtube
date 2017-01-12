@@ -22,5 +22,6 @@ namespace DownloadYoutubeWeb.Models
         public string WebSite { get; set; }
         public string PosterUrl { get; set; }
 
+        public string AudioUrl { get; set; }
     }
 }
