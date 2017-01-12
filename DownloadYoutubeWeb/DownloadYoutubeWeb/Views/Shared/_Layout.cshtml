@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!--[if IE 9]>
+<html class="ie9" lang="en">    <![endif]-->
+<!--[if IE 8]>
+<html class="ie8" lang="en">    <![endif]-->
+<head>
+
+    <title>Download YouTube audio & video</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Fast and free download of YouTube audio & video files. Download in multiple formats without registration.">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="download, youtube, audio, video, converter, mp3, HD">
+    <link rel=icon href=favicon.ico sizes="16x16" type="image/png">
+    <style>
+        #preloader {
+            position: fixed;
+            /*position: absolute;*/
+            left: 0;
+            top: 0;
+            z-index: 99999;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            background-color: #252b33;
+            /*background: #202020 url("../images/preloader.gif") no-repeat center center;*/
+        }
+
+        .sk-folding-cube {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 60px;
+            right: 0;
+            margin: auto;
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+        }
+
+            .sk-folding-cube .sk-cube {
+                float: left;
+                width: 50%;
+                height: 50%;
+                position: relative;
+                -webkit-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+
+                .sk-folding-cube .sk-cube:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #fff;
+                    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+                    animation: sk-foldCubeAngle 2.4s infinite linear both;
+                    -webkit-transform-origin: 100% 100%;
+                    -ms-transform-origin: 100% 100%;
+                    transform-origin: 100% 100%;
+                }
+
+            .sk-folding-cube .sk-cube2 {
+                -webkit-transform: scale(1.1) rotateZ(90deg);
+                transform: scale(1.1) rotateZ(90deg);
+            }
+
+            .sk-folding-cube .sk-cube3 {
+                -webkit-transform: scale(1.1) rotateZ(180deg);
+                transform: scale(1.1) rotateZ(180deg);
+            }
+
+            .sk-folding-cube .sk-cube4 {
+                -webkit-transform: scale(1.1) rotateZ(270deg);
+                transform: scale(1.1) rotateZ(270deg);
+            }
+
+            .sk-folding-cube .sk-cube2:before {
+                -webkit-animation-delay: 0.3s;
+                animation-delay: 0.3s;
+            }
+
+            .sk-folding-cube .sk-cube3:before {
+                -webkit-animation-delay: 0.6s;
+                animation-delay: 0.6s;
+            }
+
+            .sk-folding-cube .sk-cube4:before {
+                -webkit-animation-delay: 0.9s;
+                animation-delay: 0.9s;
+            }
+
+        @@-webkit-keyframes sk-foldCubeAngle {
+            0%, 10% {
+                -webkit-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+
+            25%, 75% {
+                -webkit-transform: perspective(140px) rotateX(0deg);
+                transform: perspective(140px) rotateX(0deg);
+                opacity: 1;
+            }
+
+            90%, 100% {
+                -webkit-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @@keyframes sk-foldCubeAngle {
+            0%, 10% {
+                -webkit-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+
+            25%, 75% {
+                -webkit-transform: perspective(140px) rotateX(0deg);
+                transform: perspective(140px) rotateX(0deg);
+                opacity: 1;
+            }
+
+            90%, 100% {
+                -webkit-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-nova.min.css" />
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.nova.min.css" />
+
+</head>
+<body class="">
+
+    <!--Pre-Loader-->
+    <div id="preloader">
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+
+    <!-- Off-canvas menu -->
+    <div class="menu-wrap mobmenu-john">
+        <div class="dividewhite4"></div>
+        <nav class="menu">
+            <ul class="icon-list">
+                @*<li>
+                        <div class="m-usermenu">
+                            <div>
+                                <div class="article-author-name">
+                                    <h4 class="font-accident-one-bold"><a href="#!">Jessica Fletcher</a></h4>
+                                    <p class="nopadding">
+                                        <span class="fontcolor-invert">Model</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dividewhite2"></div>
+                    </li>*@
+                <li class="menu-item"><a href="#header-wrapper-mp"><i class="fa fa-fw fa-star-o"></i><span>Home</span></a></li>
+                <li class="menu-item"><a href="#audio"><i class="fa fa-fw fa-bell-o"></i><span>Audio</span></a></li>
+                <li class="menu-item"><a href="#video"><i class="fa fa-fw fa-bell-o"></i><span>Video</span></a></li>
+                @*<li class="menu-item"><a href="#portfolio"><i class="fa fa-fw fa-comment-o"></i><span>Portfolio</span></a></li>
+                    <li class="menu-item"><a href="#progress"><i class="fa fa-fw fa-bar-chart-o"></i><span>Skills</span></a></li>
+                    <li class="menu-item"><a href="#timeline-vertical"><i class="fa fa-fw fa-shopping-cart"></i><span>Timeline</span></a></li>
+                    <li class="menu-item"><a href="#photocard"><i class="fa fa-fw fa-recycle"></i><span>Featured</span></a></li>
+                    <li class="menu-item"><a href="#testmonials"><i class="fa fa-fw fa-bell-o"></i><span>Testmonials</span></a></li>
+                    <li class="menu-item"><a href="#feedback"><i class="fa fa-fw fa-bell-o"></i><span>Feedback</span></a></li>
+                    <li class="menu-item"><a href="https://wrapbootstrap.com/theme/fletcher-personal-landing-page-html-WB029022K?ref=neuethemes" target="_blank"><i class="fa fa-fw fa-bell-o"></i><span>Buy the Template</span></a></li>
+                    <li class="socials">
+                        <ul>
+                            <li><a href="#!"><i class="flaticon-facebook44"></i></a></li>
+                            <li><a href="#!"><i class="flaticon-google110"></i></a></li>
+                            <li><a href="#!"><i class="flaticon-pinterest27"></i></a></li>
+                            <li><a href="#!"><i class="flaticon-instagram13"></i></a></li>
+                            <li><a href="#!"><i class="flaticon-linkedin21"></i></a></li>
+                            <li><a href="#!"><i class="flaticon-twitter37"></i></a></li>
+                        </ul>
+                    </li>*@
+            </ul>
+
+
+        </nav>
+        <div class="close-button nav-icon2" id="close-button">
+            <div></div>
+        </div>
+    </div>
+    <!-- / Off-canvas menu -->
+
+    <div class="content-wrap">
+
+        <!-- main-top -->
+        <!-- Top Navigation -->
+        @*<header id="header-wrapper-mp" class="head-overlay sticky-menu-light pt-section" data-name="Home">*@
+        <header id="header-wrapper-mp" class="head-overlay pt-section" data-name="Home">
+            @*<div class="sticky-header header-light sticky-overlay nobg" role="navigation">*@
+            <div class="header-light sticky-overlay nobg" role="navigation">
+                <div class="container mp-nav">
+
+                    <!-- Logo -->
+                    <div id="site-title"><a href="/"><h1 class="font-accident-one-bold">Download YouTube</h1></a></div>
+
+                    <!-- Main menu -->
+                    <nav id="main-menu" class="nav site-navigation primary-navigation">
+                        <ul class="sf-menu clearfix" id="example">
+                            <li class="m-desktop menu-item active"><a href="#header-wrapper-mp">Home</a></li>
+                            <li class="m-desktop menu-item"><a href="#audio">Audio</a></li>
+                            <li class="m-desktop menu-item"><a href="#video">Video</a></li>
+                            @*<li class="m-desktop menu-item"><a href="#timeline-vertical">Timeline</a></li>
+                                <li class="m-desktop menu-item"><a href="https://wrapbootstrap.com/theme/fletcher-personal-landing-page-html-WB029022K?ref=neuethemes" target="_blank">Buy</a></li>*@
+                            <li class="mob-button">
+                                <div class="menu-button nav-icon" id="open-button">
+                                    <div></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </header>
+        <!-- /Top Navigation -->
+        @*Yordan*@
+        @RenderBody()
+
+
+
+        <div id="content">
+            <!-- Details Block -->
+            <section id="video" class="e-block light bg-color00 pt-section" data-name="Video">
+                @*<div class="container dark">
+
+                        <div class="container text-center">
+                            <span class="flaticon-girl details-big-icon"></span>
+                            <div class="dividewhite1"></div>
+                            <h2 class="font-accident-one-bold">Fashion Model</h2>
+                            <div class="dividewhite2"></div>
+                            <h5 class="font-regular-bold uppercase hovercolor">Fletcher – The Universal One-page HTML Template</h5>
+                            <div class="dividewhite3"></div>
+                            <p class="">
+                                Perfect as corporate, product and app landing page, creative Portfolio or personal Curriculum Vitae / Resume website.
+                                <br>Fletcher Template is suitable for photographers, designers, artist, painters, illustrators
+                                <br>and other creative persons for showing their skills, works, experience and services.
+                            </p>
+                        </div>
+
+                        <div class="dividewhite8"></div>
+
+                        <div class="row">
+                            <div class="col-md-3 infoblock">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-2 text-right"><i class="flaticon-satellite"></i><div class="dividewhite1"></div></div>
+                                    <div class="col-lg-9 col-md-8 col-sm-10">
+                                        <h4 class="font-accident-one-bold">Creative</h4>
+                                        <div class="dividewhite1"></div>
+                                        <p class="fontcolor-medium">
+                                            Fletcher is fully Responsive, mobile-friendly and Retina-ready. It’s design & premium graphics look awesome on any device your client uses.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 infoblock">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-2 text-right"><i class="flaticon-rocket"></i><div class="dividewhite1"></div></div>
+                                    <div class="col-lg-9 col-md-8 col-sm-10">
+                                        <h4 class="font-accident-one-bold">Self-motivated</h4>
+                                        <div class="dividewhite1"></div>
+                                        <p class="fontcolor-medium">
+                                            Fletcher Theme is suitable for photographers, designers, artist, painters, illustrators and other creative persons for showing their skills
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 infoblock">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-2 text-right"><i class="flaticon-saturn"></i><div class="dividewhite1"></div></div>
+                                    <div class="col-lg-9 col-md-8 col-sm-10">
+                                        <h4 class="font-accident-one-bold">Punctual</h4>
+                                        <div class="dividewhite1"></div>
+                                        <p class="fontcolor-medium">
+                                            Design & premium graphics look awesome on any device your employer/client uses: iPhone, iPad, Android, Mac, BlackBerry, Windows & Linux.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 infoblock">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-2 text-right"><i class="flaticon-target-3"></i><div class="dividewhite1"></div></div>
+                                    <div class="col-lg-9 col-md-8 col-sm-10">
+                                        <h4 class="font-accident-one-bold">Multitask</h4>
+                                        <div class="dividewhite1"></div>
+                                        <p class="fontcolor-medium">
+                                            Fletcher is fully Responsive, mobile-friendly and Retina-ready. It’s design & premium graphics look awesome on any device your client uses.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+            </section>
+
+
+
+            <footer>
+                <div id="footer-wrapper" class="bg-color01 light">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <!-- About Widget -->
+                                <h4>Download YouTube</h4>
+                                <div class="dividewhite2"></div>
+                                <p>Download YouTube audio & video</p>
+                                <!-- / About Widget -->
+                                <div class="dividewhite4"></div>
+                            </div>
+                            <div class="col-sm-3">
+                                <!-- Contacts Widget -->
+                                <h4>Contacts</h4>
+                                <div class="dividewhite2"></div>
+                                <div class="contact">
+                                    <div class="footer-addr">
+                                        @*<div class="footer-icon"><i class="fa fa-home"></i></div>
+                                        <div class="addr-text">12345, Direct Drive - 110, Daytona Beach, Florida, USA</div>*@
+                                    </div>
+                                    <div class="footer-addr">
+                                        @*<div class="footer-icon"><i class="fa fa-phone"></i></div>
+                                        <div class="addr-text">1 234 567 67 45</div>*@
+                                    </div>
+                                </div>
+                                <!-- / Contacts Widget -->
+                                <div class="dividewhite4"></div>
+                            </div>
+                            <div class="col-sm-3">
+                                <!-- Flickr feed Widget -->
+                                <h4>Media</h4>
+                                <div class="dividewhite2"></div>
+                                <ul id="basicuse" class="thumbs">
+                                    <!-- To make it working Flickr feed: uncomment the Flickr feed section
+                                    in script.js, set up the Flickr ID and delete all the li's with content below -->
+                                    @*<li><a href="http://www.flickr.com/photos/55166285@N00/1274107940/" ="the sunken garden by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1245/1274107940_ede5aa897d_s.jpg" class="img-rounded" alt="the sunken garden"></a></li>
+                                    <li><a href="http://www.flickr.com/photos/55166285@N00/1274119018/" ="tree rings by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1015/1274119018_1422d64d17_t.jpg" class="img-rounded" alt="tree rings"></a></li>
+                                    <li><a href="http://www.flickr.com/photos/55166285@N00/1274114292/" ="study of flowers by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1012/1274114292_f847986865_t.jpg" class="img-rounded" alt="study of flowers"></a></li>
+                                    <li><a href="http://www.flickr.com/photos/25251822@N07/23506251141/" ="study of flowers by perfectweb, on Flickr"><img src="https://c1.staticflickr.com/1/731/23506251141_0c177771be_t.jpg" class="img-rounded" alt="study of flowers"></a></li>
+                                    <li><a href="http://www.flickr.com/photos/55166285@N00/1274119018/" ="tree rings by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1015/1274119018_1422d64d17_t.jpg" class="img-rounded" alt="tree rings"></a></li>*@
+                                </ul>
+                                <!-- / Flickr feed Widget -->
+                                <div class="dividewhite4"></div>
+                            </div>
+                            <div class="col-sm-3">
+                                <!-- Follow us Widget -->
+                                <h4>Follow me</h4>
+                                <div class="dividewhite2"></div>
+                                @*<div class="follow dark">
+                                    <div class="inline-block">
+                                        <a href="">
+                                            <i class="fa fa-facebook" title="Facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="inline-block">
+                                        <a href="">
+                                            <i class="fa fa-google-plus" title="GooglePlus" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="inline-block">
+                                        <a href="">
+                                            <i class="fa fa-pinterest" title="Pinterest" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="inline-block">
+                                        <a href="">
+                                            <i class="fa fa-instagram" title="Instagram" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="inline-block">
+                                        <a href="">
+                                            <i class="fa fa-twitter" title="Twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>*@
+                                <!-- / Follow us Widget -->
+                                <div class="dividewhite4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="copyrights-wrapper" class="e-block light bg-color01">
+                    <div class="container text-center copy-container">
+                        <div class="copyright">
+                            © @DateTime.Now.Year <a href="/" target="_blank">Download YouTube</a>. All rights reserved &nbsp;&nbsp;&nbsp;<a href="/" target="_blank">Legal Notice</a>&nbsp;&nbsp;&nbsp;<a href="/" target="_blank">Terms &amp; Conditions</a><br>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- /footer -->
+            <!-- Back to Top -->
+            <div id="back-top"><a href="#top"></a></div>
+            <!-- /Back to Top -->
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.all.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
+    @Html.Kendo().DeferredScripts()
+
+    <div id="image-cache" class="hidden"></div>
+
+    <!-- CSS -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/vendor/fontawesome/css/font-awesome.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/vendor/flaticon/flaticon.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+
+    <link href="assets/vendor/rs-plugin/css/settings.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/vendor/rs-plugin/css/layers.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/vendor/rs-plugin/css/navigation.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+
+    <link href="assets/vendor/mfp/css/magnific-popup.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/vendor/progresstracker/css/jquery.progresstracker.min.css" property='stylesheet' rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="assets/custom/css/style.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+
+
+
+    <!-- JS -->
+    <script type="text/javascript" src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/sticky/js/jquery.sticky.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/horiz-timeline/js/hortimeline.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/rs-plugin/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+    <script type="text/javascript" src="assets/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+
+    <script type="text/javascript" src="assets/vendor/jarallax/js/jarallax.js"></script>
+    <script type="text/javascript" src="assets/vendor/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/isotope/js/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/mfp/js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/anicounter/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/circle-progress/circle-progress.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/waypoints/waypoints.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/offcanvas-menu/js/classie.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/progresstracker/js/jquery.progresstracker.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/flickr/js/jflickrfeed.min.js"></script>
+
+    <!-- Custom JS -->
+    <script type="text/javascript" src="assets/custom/js/script.js"></script>
+</body>
+</html>

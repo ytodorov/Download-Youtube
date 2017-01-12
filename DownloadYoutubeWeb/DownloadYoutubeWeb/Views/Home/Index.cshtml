@@ -1,0 +1,156 @@
+﻿<section id="audio" class="e-block light bg-color00 pt-section" data-name="Audio">
+    <div class="container dark">
+
+        <div class="container text-center">
+
+            <p><textarea class="k-textbox" id="tbUrls" style="width:100%" placeholder="Paste as many youtube urls here as you like."></textarea></p>
+
+            <p>@Html.Kendo().Button().Content("Load Urls").Events(e => e.Click("btnLoadUrls_Click")).Name("btnLoadUrls").Deferred()</p>
+
+            <p><a href="/home/downloadaudiofiles">Download audio files</a></p>
+
+
+            <h5 class="font-regular-bold uppercase hovercolor">HD Starcraft 2 WhiteRa v SantaSam PvZ - YouTube</h5>
+
+            <div class="demo-section k-content wide" style="width: 925px;">
+                @(Html.Kendo().MediaPlayer()
+
+        .Name("mediaPlayer")
+        .AutoPlay(false)
+        .Navigatable(true)
+
+
+        .HtmlAttributes(new { style = "height:360px; width:640px" })
+        .Deferred()
+                )
+
+                <div class="k-list-container playlist">
+                    @(Html.Kendo().ListView<VideoViewModel>()
+            .Name("listView")
+            .TagName("ul")
+            .ClientTemplateId("template")
+
+            .DataSource(dataSource => dataSource
+                    .ServerOperation(false)
+                    .Read(r => r.Action("Videos_Read", "Home"))
+                )
+            .Selectable()
+            .Events(e => e
+                .Change("onChange")
+                .DataBound("onDataBound")
+                )
+
+                .Deferred()
+                    )
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+@*<section id="video" class="e-block light bg-color00 pt-section" data-name="Video">
+    <div class="container dark">
+
+        <div class="container text-center">
+        </div>
+    </div>
+</section>*@
+
+
+<script>
+    function btnLoadUrls_Click(e) {
+        var urls = $("#tbUrls").val();
+        debugger;
+        $.ajax({
+            url: '/Home/DownloadAudio',
+            traditional: true,
+            data: { urls: urls },
+            success: function (result) {
+
+            }
+        });
+    }
+
+    function onChange() {
+
+        var index = this.select().index();
+        var dataItem = this.dataSource.view()[index];
+        $("#mediaPlayer").data("kendoMediaPlayer").media(dataItem);
+    }
+
+    function onDataBound() {
+        this.select(this.element.children().first());
+    }
+</script>
+
+<script type="text/x-kendo-template" id="template">
+    <li class="k-item k-state-default" onmouseover="$(this).addClass('k-state-hover')"
+        onmouseout="$(this).removeClass('k-state-hover')">
+
+        <p>AdaptiveKind: #:AdaptiveKind#</p>
+        <p>AudioBitrate: #:AudioBitrate#</p>
+        <p>AudioFormat: #:AudioFormat#</p>
+        <p>Format: #:Format#</p>
+        <p>Resolution: #:Resolution#</p>
+        <p><a href="/home/download?uri=#:UriEncoded#">download</a></p>
+    </li>
+</script>
+
+<style>
+    .k-mediaplayer {
+        float: left;
+    }
+
+    .playlist {
+        float: left;
+        width: 280px;
+        height: 360px;
+        overflow: auto;
+    }
+
+        .playlist ul, .playlist li {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .playlist .k-item {
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            padding: 14px 15px;
+        }
+
+            .playlist .k-item:last-child {
+                border-bottom-width: 0;
+            }
+
+        .playlist span {
+            cursor: pointer;
+            display: block;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+            .playlist span img {
+                border: 0 none;
+                display: block;
+                height: 56px;
+                object-fit: cover;
+                width: 100px;
+                float: left;
+            }
+
+        .playlist h5 {
+            display: block;
+            font-weight: normal;
+            margin: 0;
+            overflow: hidden;
+            padding-left: 10px;
+            text-align: left;
+        }
+</style>
