@@ -35,7 +35,7 @@ namespace DownloadYoutubeWeb.Controllers
             return File(bytes, contentType, video.FullName);
         }
 
-        public ActionResult DownloadAudio(string uri)
+        public ActionResult DownloadAudio(string uri, string type)
         {
             uri = HttpUtility.UrlDecode(uri).DecodeBase64();
 
@@ -43,7 +43,15 @@ namespace DownloadYoutubeWeb.Controllers
             var youTube = YouTube.Default; // starting point for YouTube actions
             var videosToShow = youTube.GetAllVideos(uri).ToList(); // gets a Video object with info about the video
             var videos = videosToShow.Where(v => v.AdaptiveKind == AdaptiveKind.Audio);
-            var video = videos.FirstOrDefault();
+            YouTubeVideo video = null;
+            if (type?.IsCaseInsensitiveEqual("Mp4") == true)
+            {
+                video = videos.FirstOrDefault(v => v.Format == VideoFormat.Mp4);
+            }
+            else
+            {
+                video = videos.FirstOrDefault(v => v.Format != VideoFormat.Mp4);
+            }
             var bytes = video.GetBytes();
             string contentType = MimeMapping.GetMimeMapping(video.FullName);
             var result = File(bytes, contentType, video.FullName);
@@ -123,9 +131,10 @@ namespace DownloadYoutubeWeb.Controllers
             videoVM.PosterUrl = $"http://img.youtube.com/vi/{youTubeGuid}/1.jpg";
             videoVM.AudioBitrate = video.AudioBitrate;
             videoVM.AudioFormat = video.AudioFormat.ToString();
+            videoVM.FileExtension = video.FileExtension;
             videoVM.title = video.Title;
             videoVM.source = video.Uri;
-            videoVM.AudioUrl = HttpUtility.UrlEncode(uri.EncodeBase64());
+            videoVM.AudioUrlMp4 = HttpUtility.UrlEncode(uri.EncodeBase64());
 
             return PartialView(videoVM);
         }

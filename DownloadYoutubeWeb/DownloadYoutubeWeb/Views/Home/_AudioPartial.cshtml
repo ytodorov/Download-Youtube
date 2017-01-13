@@ -14,8 +14,10 @@
 )*@
 
 <img src="@Model.PosterUrl" alt="@Model.title" />
-<span>AdaptiveKind: @Model.AdaptiveKind</span> - 
+<span>FileExtension: @Model.FileExtension</span> -
+<span>Format: @Model.Format</span> - 
 <span>AudioBitrate: @Model.AudioBitrate</span> -
 <span>AudioFormat: @Model.AudioFormat</span> - 
-<a href="/home/downloadaudio?uri=@Model.AudioUrl">Download</a>
+<a href="/home/downloadaudio?type=mp4&uri=@Model.AudioUrlMp4">Download mp4</a>
+<a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">Download Vorbis</a>
 

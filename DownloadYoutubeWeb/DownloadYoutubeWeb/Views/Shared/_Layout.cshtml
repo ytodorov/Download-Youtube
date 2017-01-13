@@ -6,7 +6,7 @@
 <html class="ie8" lang="en">    <![endif]-->
 <head>
 
-    <title>Download YouTube audio & video</title>
+    <title>Download YouTube</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1">
@@ -15,130 +15,45 @@
     <meta name="keywords" content="download, youtube, audio, video, converter, mp3, HD">
     <link rel=icon href=favicon.ico sizes="16x16" type="image/png">
     <style>
-        #preloader {
-            position: fixed;
-            /*position: absolute;*/
-            left: 0;
-            top: 0;
-            z-index: 99999;
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-            background-color: #252b33;
-            /*background: #202020 url("../images/preloader.gif") no-repeat center center;*/
-        }
+        #preloader { position: fixed; /*position: absolute;*/ left: 0; top: 0; z-index: 99999; width: 100%; height: 100%; overflow: visible; background-color: #252b33; /*background: #202020 url("../images/preloader.gif") no-repeat center center;*/ }
 
-        .sk-folding-cube {
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 60px;
-            right: 0;
-            margin: auto;
-            -webkit-transform: rotateZ(45deg);
-            transform: rotateZ(45deg);
-        }
+        .sk-folding-cube { width: 40px; height: 40px; position: absolute; top: 0; left: 0; bottom: 60px; right: 0; margin: auto; -webkit-transform: rotateZ(45deg); transform: rotateZ(45deg); }
 
-            .sk-folding-cube .sk-cube {
-                float: left;
-                width: 50%;
-                height: 50%;
-                position: relative;
-                -webkit-transform: scale(1.1);
-                -ms-transform: scale(1.1);
-                transform: scale(1.1);
-            }
+        .sk-folding-cube .sk-cube { float: left; width: 50%; height: 50%; position: relative; -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
 
-                .sk-folding-cube .sk-cube:before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: #fff;
-                    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
-                    animation: sk-foldCubeAngle 2.4s infinite linear both;
-                    -webkit-transform-origin: 100% 100%;
-                    -ms-transform-origin: 100% 100%;
-                    transform-origin: 100% 100%;
-                }
+        .sk-folding-cube .sk-cube:before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #fff; -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both; animation: sk-foldCubeAngle 2.4s infinite linear both; -webkit-transform-origin: 100% 100%; -ms-transform-origin: 100% 100%; transform-origin: 100% 100%; }
 
-            .sk-folding-cube .sk-cube2 {
-                -webkit-transform: scale(1.1) rotateZ(90deg);
-                transform: scale(1.1) rotateZ(90deg);
-            }
+        .sk-folding-cube .sk-cube2 { -webkit-transform: scale(1.1) rotateZ(90deg); transform: scale(1.1) rotateZ(90deg); }
 
-            .sk-folding-cube .sk-cube3 {
-                -webkit-transform: scale(1.1) rotateZ(180deg);
-                transform: scale(1.1) rotateZ(180deg);
-            }
+        .sk-folding-cube .sk-cube3 { -webkit-transform: scale(1.1) rotateZ(180deg); transform: scale(1.1) rotateZ(180deg); }
 
-            .sk-folding-cube .sk-cube4 {
-                -webkit-transform: scale(1.1) rotateZ(270deg);
-                transform: scale(1.1) rotateZ(270deg);
-            }
+        .sk-folding-cube .sk-cube4 { -webkit-transform: scale(1.1) rotateZ(270deg); transform: scale(1.1) rotateZ(270deg); }
 
-            .sk-folding-cube .sk-cube2:before {
-                -webkit-animation-delay: 0.3s;
-                animation-delay: 0.3s;
-            }
+        .sk-folding-cube .sk-cube2:before { -webkit-animation-delay: 0.3s; animation-delay: 0.3s; }
 
-            .sk-folding-cube .sk-cube3:before {
-                -webkit-animation-delay: 0.6s;
-                animation-delay: 0.6s;
-            }
+        .sk-folding-cube .sk-cube3:before { -webkit-animation-delay: 0.6s; animation-delay: 0.6s; }
 
-            .sk-folding-cube .sk-cube4:before {
-                -webkit-animation-delay: 0.9s;
-                animation-delay: 0.9s;
-            }
+        .sk-folding-cube .sk-cube4:before { -webkit-animation-delay: 0.9s; animation-delay: 0.9s; }
 
         @@-webkit-keyframes sk-foldCubeAngle {
-            0%, 10% {
-                -webkit-transform: perspective(140px) rotateX(-180deg);
-                transform: perspective(140px) rotateX(-180deg);
-                opacity: 0;
-            }
+            0%, 10% { -webkit-transform: perspective(140px) rotateX(-180deg); transform: perspective(140px) rotateX(-180deg); opacity: 0; }
 
-            25%, 75% {
-                -webkit-transform: perspective(140px) rotateX(0deg);
-                transform: perspective(140px) rotateX(0deg);
-                opacity: 1;
-            }
+            25%, 75% { -webkit-transform: perspective(140px) rotateX(0deg); transform: perspective(140px) rotateX(0deg); opacity: 1; }
 
-            90%, 100% {
-                -webkit-transform: perspective(140px) rotateY(180deg);
-                transform: perspective(140px) rotateY(180deg);
-                opacity: 0;
-            }
+            90%, 100% { -webkit-transform: perspective(140px) rotateY(180deg); transform: perspective(140px) rotateY(180deg); opacity: 0; }
         }
 
         @@keyframes sk-foldCubeAngle {
-            0%, 10% {
-                -webkit-transform: perspective(140px) rotateX(-180deg);
-                transform: perspective(140px) rotateX(-180deg);
-                opacity: 0;
-            }
+            0%, 10% { -webkit-transform: perspective(140px) rotateX(-180deg); transform: perspective(140px) rotateX(-180deg); opacity: 0; }
 
-            25%, 75% {
-                -webkit-transform: perspective(140px) rotateX(0deg);
-                transform: perspective(140px) rotateX(0deg);
-                opacity: 1;
-            }
+            25%, 75% { -webkit-transform: perspective(140px) rotateX(0deg); transform: perspective(140px) rotateX(0deg); opacity: 1; }
 
-            90%, 100% {
-                -webkit-transform: perspective(140px) rotateY(180deg);
-                transform: perspective(140px) rotateY(180deg);
-                opacity: 0;
-            }
+            90%, 100% { -webkit-transform: perspective(140px) rotateY(180deg); transform: perspective(140px) rotateY(180deg); opacity: 0; }
         }
     </style>
     @*<link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />*@
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-nova.min.css" />
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.nova.min.css" />
+    @*<link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-nova.min.css" />
+        <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.nova.min.css" />*@
 
 </head>
 <body class="">
@@ -154,7 +69,7 @@
     </div>
 
     <!-- Off-canvas menu -->
-    <div class="menu-wrap mobmenu-john">
+    <div class="menu-wrap mobmenu-john" style="display:non">
         <div class="dividewhite4"></div>
         <nav class="menu">
             <ul class="icon-list">
@@ -206,8 +121,8 @@
         <!-- main-top -->
         <!-- Top Navigation -->
         @*<header id="header-wrapper-mp" class="head-overlay sticky-menu-light pt-section" data-name="Home">*@
-        <header id="header-wrapper-mp" class="head-overlay pt-section" data-name="Home">
-            @*<div class="sticky-header header-light sticky-overlay nobg" role="navigation">*@
+        @*<header id="header-wrapper-mp" class="head-overlay pt-section" data-name="Home" style="display:none">
+            @*<div class="sticky-header header-light sticky-overlay nobg" role="navigation">
             <div class="header-light sticky-overlay nobg" role="navigation">
                 <div class="container mp-nav">
 
@@ -220,8 +135,7 @@
                             <li class="m-desktop menu-item active"><a href="#header-wrapper-mp">Home</a></li>
                             <li class="m-desktop menu-item"><a href="#audio">Audio</a></li>
                             <li class="m-desktop menu-item"><a href="#video">Video</a></li>
-                            @*<li class="m-desktop menu-item"><a href="#timeline-vertical">Timeline</a></li>
-                                <li class="m-desktop menu-item"><a href="https://wrapbootstrap.com/theme/fletcher-personal-landing-page-html-WB029022K?ref=neuethemes" target="_blank">Buy</a></li>*@
+                         
                             <li class="mob-button">
                                 <div class="menu-button nav-icon" id="open-button">
                                     <div></div>
@@ -234,8 +148,20 @@
 
             </div>
 
-        </header>
+        </header>*@
         <!-- /Top Navigation -->
+
+        <section id="Home" class="pt-section" data-name="Home">
+            <div class="container">
+                <div class="text-center">
+                    <h1 class="font-accident-one-bold">Download YouTube</h1>
+                </div>
+            </div>
+        </section>
+        <div class="menu-button nav-icon" id="open-button">
+            <div></div>
+        </div>
+
         @*Yordan*@
         @RenderBody()
 
@@ -336,11 +262,11 @@
                                 <div class="contact">
                                     <div class="footer-addr">
                                         @*<div class="footer-icon"><i class="fa fa-home"></i></div>
-                                        <div class="addr-text">12345, Direct Drive - 110, Daytona Beach, Florida, USA</div>*@
+                                            <div class="addr-text">12345, Direct Drive - 110, Daytona Beach, Florida, USA</div>*@
                                     </div>
                                     <div class="footer-addr">
                                         @*<div class="footer-icon"><i class="fa fa-phone"></i></div>
-                                        <div class="addr-text">1 234 567 67 45</div>*@
+                                            <div class="addr-text">1 234 567 67 45</div>*@
                                     </div>
                                 </div>
                                 <!-- / Contacts Widget -->
@@ -354,10 +280,10 @@
                                     <!-- To make it working Flickr feed: uncomment the Flickr feed section
                                     in script.js, set up the Flickr ID and delete all the li's with content below -->
                                     @*<li><a href="http://www.flickr.com/photos/55166285@N00/1274107940/" ="the sunken garden by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1245/1274107940_ede5aa897d_s.jpg" class="img-rounded" alt="the sunken garden"></a></li>
-                                    <li><a href="http://www.flickr.com/photos/55166285@N00/1274119018/" ="tree rings by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1015/1274119018_1422d64d17_t.jpg" class="img-rounded" alt="tree rings"></a></li>
-                                    <li><a href="http://www.flickr.com/photos/55166285@N00/1274114292/" ="study of flowers by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1012/1274114292_f847986865_t.jpg" class="img-rounded" alt="study of flowers"></a></li>
-                                    <li><a href="http://www.flickr.com/photos/25251822@N07/23506251141/" ="study of flowers by perfectweb, on Flickr"><img src="https://c1.staticflickr.com/1/731/23506251141_0c177771be_t.jpg" class="img-rounded" alt="study of flowers"></a></li>
-                                    <li><a href="http://www.flickr.com/photos/55166285@N00/1274119018/" ="tree rings by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1015/1274119018_1422d64d17_t.jpg" class="img-rounded" alt="tree rings"></a></li>*@
+                                        <li><a href="http://www.flickr.com/photos/55166285@N00/1274119018/" ="tree rings by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1015/1274119018_1422d64d17_t.jpg" class="img-rounded" alt="tree rings"></a></li>
+                                        <li><a href="http://www.flickr.com/photos/55166285@N00/1274114292/" ="study of flowers by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1012/1274114292_f847986865_t.jpg" class="img-rounded" alt="study of flowers"></a></li>
+                                        <li><a href="http://www.flickr.com/photos/25251822@N07/23506251141/" ="study of flowers by perfectweb, on Flickr"><img src="https://c1.staticflickr.com/1/731/23506251141_0c177771be_t.jpg" class="img-rounded" alt="study of flowers"></a></li>
+                                        <li><a href="http://www.flickr.com/photos/55166285@N00/1274119018/" ="tree rings by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1015/1274119018_1422d64d17_t.jpg" class="img-rounded" alt="tree rings"></a></li>*@
                                 </ul>
                                 <!-- / Flickr feed Widget -->
                                 <div class="dividewhite4"></div>
@@ -367,32 +293,32 @@
                                 <h4>Follow me</h4>
                                 <div class="dividewhite2"></div>
                                 @*<div class="follow dark">
-                                    <div class="inline-block">
-                                        <a href="">
-                                            <i class="fa fa-facebook" title="Facebook" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <div class="inline-block">
-                                        <a href="">
-                                            <i class="fa fa-google-plus" title="GooglePlus" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <div class="inline-block">
-                                        <a href="">
-                                            <i class="fa fa-pinterest" title="Pinterest" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <div class="inline-block">
-                                        <a href="">
-                                            <i class="fa fa-instagram" title="Instagram" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <div class="inline-block">
-                                        <a href="">
-                                            <i class="fa fa-twitter" title="Twitter" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>*@
+                                        <div class="inline-block">
+                                            <a href="">
+                                                <i class="fa fa-facebook" title="Facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="inline-block">
+                                            <a href="">
+                                                <i class="fa fa-google-plus" title="GooglePlus" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="inline-block">
+                                            <a href="">
+                                                <i class="fa fa-pinterest" title="Pinterest" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="inline-block">
+                                            <a href="">
+                                                <i class="fa fa-instagram" title="Instagram" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="inline-block">
+                                            <a href="">
+                                                <i class="fa fa-twitter" title="Twitter" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>*@
                                 <!-- / Follow us Widget -->
                                 <div class="dividewhite4"></div>
                             </div>
@@ -417,8 +343,8 @@
     @RenderSection("scripts", false)
 
     @*<script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.all.min.js"></script>
-    <script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
-    @Html.Kendo().DeferredScripts()*@
+        <script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
+        @Html.Kendo().DeferredScripts()*@
 
     <div id="image-cache" class="hidden"></div>
 
