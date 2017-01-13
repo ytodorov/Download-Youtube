@@ -2,6 +2,7 @@ $(document).ready(function r() {
     $("#btnLoadUrls").click(function btnLoadUrls_Click(e) {
         var urls = $("#tbUrls").val();
         var urlsArray = urls.replace(/\n/g, " ").split(" ");
+        var counter = 0;
         $.each(urlsArray, function f(indexInArray, valueOfElement) {
             if (valueOfElement.indexOf('youtube.com/watch?v=') > 0) {
                 $.ajax({
@@ -9,7 +10,12 @@ $(document).ready(function r() {
                     traditional: true,
                     data: { uri: valueOfElement },
                     success: function (result) {
-                        $("#audioFiles").append(result);
+                        var all = $(".audioFiles");
+                        all.last().append(result);
+                        counter = counter + 1;
+                        if (counter % 4 == 0) {
+                            $("#outerDivAudioFiles").append('<div class="row audioFiles"></div>');
+                        }
                     }
                 });
             }
