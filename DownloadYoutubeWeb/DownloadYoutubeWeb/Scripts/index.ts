@@ -1,35 +1,34 @@
-﻿function btnLoadUrls_Click(e) {
-    var urls = $("#tbUrls").val();
+﻿$(document).ready(function r() {
+    $("#btnLoadUrls").click( 
+        function btnLoadUrls_Click(e) {
+            var urls = $("#tbUrls").val();
 
-    var urlsArray = urls.replace(/\n/g, " ").split(" ");
-    $.each(urlsArray, function f(indexInArray, valueOfElement: string) {
-        if (valueOfElement.indexOf('youtube.com/watch?v=') > 0) {
+            var urlsArray = urls.replace(/\n/g, " ").split(" ");
+            $.each(urlsArray, function f(indexInArray, valueOfElement: string) {
+                if (valueOfElement.indexOf('youtube.com/watch?v=') > 0) {
 
-            $.ajax({
-                url: '/Home/_AudioPartial',
-                traditional: true,
-                data: { uri: valueOfElement },
-                success: function (result) {
-                    $("#audioFiles").append(result)
+                    $.ajax({
+                        url: '/Home/_AudioPartial',
+                        traditional: true,
+                        data: { uri: valueOfElement },
+                        success: function (result) {
+                            $("#audioFiles").append(result)
+                        }
+                    });
                 }
-            });
-        }
-    }
-    );
+            }
+            );
 
-    //$.ajax({
-    //    url: '/Home/DownloadAudio',
-    //    traditional: true,
-    //    data: { urls: urls },
-    //    success: function (result) {
+            //$.ajax({
+            //    url: '/Home/DownloadAudio',
+            //    traditional: true,
+            //    data: { urls: urls },
+            //    success: function (result) {
 
-    //    }
-    //});
-
-
-
-
-}
+            //    }
+            //});
+        });
+        });
 
 function onChange() {
 

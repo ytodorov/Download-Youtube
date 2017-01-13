@@ -136,7 +136,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />*@
     <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-nova.min.css" />
     <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.nova.min.css" />
 
@@ -414,9 +414,11 @@
         </div>
     </div>
     <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
-    <script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.all.min.js"></script>
+    @RenderSection("scripts", false)
+
+    @*<script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.all.min.js"></script>
     <script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
-    @Html.Kendo().DeferredScripts()
+    @Html.Kendo().DeferredScripts()*@
 
     <div id="image-cache" class="hidden"></div>
 

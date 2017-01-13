@@ -3916,4 +3916,7 @@ Vertical Timeline
     #details .text-right {
       text-align: center; } }
 
+
+textarea { resize:vertical ; }
+
 /*# sourceMappingURL=style.css.map */
