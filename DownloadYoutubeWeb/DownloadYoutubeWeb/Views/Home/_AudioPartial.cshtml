@@ -13,11 +13,26 @@
             .Deferred()
 )*@
 
-<img src="@Model.PosterUrl" alt="@Model.title" />
+@*<img src="@Model.PosterUrl" alt="@Model.title" />
 <span>FileExtension: @Model.FileExtension</span> -
 <span>Format: @Model.Format</span> - 
 <span>AudioBitrate: @Model.AudioBitrate</span> -
 <span>AudioFormat: @Model.AudioFormat</span> - 
 <a href="/home/downloadaudio?type=mp4&uri=@Model.AudioUrlMp4">Download mp4</a>
-<a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">Download Vorbis</a>
+<a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">Download Vorbis</a>*@
+
+<div class="col-md-3 col-xs-6 text-center">
+    <div class="">
+        <a href="/home/downloadaudio?type=mp4&uri=@Model.AudioUrlMp4">
+            <img src="@Model.PosterUrl" alt="@Model.title" class="img-responsive author-userpic center-block"><p></p>
+        </a>
+            <h5 class="team-member-title">@Model.title</h5>
+            @*<a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">Download Vorbis</a>*@
+</div>
+</div>
+
+<p></p>
+
+
+
 
