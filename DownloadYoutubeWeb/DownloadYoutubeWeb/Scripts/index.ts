@@ -38,6 +38,12 @@ https://www.youtube.com/watch?v=KPJqwzlvuVw
                             firstSpinner.html(result);
                             //var last = $(".audioFiles").last();
                             //last.append(result);
+
+                            debugger;
+                            var dummy : any = $;
+                            if (dummy.active == 1) {
+                                $("#btnDownloadAudioZip").show();
+                            }
                         }
                     });
                 }

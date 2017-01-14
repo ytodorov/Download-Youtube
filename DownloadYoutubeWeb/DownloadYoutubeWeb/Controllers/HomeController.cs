@@ -4,10 +4,12 @@ using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using Telerik.Windows.Zip;
 using VideoLibrary;
 
 namespace DownloadYoutubeWeb.Controllers
@@ -16,24 +18,55 @@ namespace DownloadYoutubeWeb.Controllers
     {
 
         
-        [OutputCache(Duration = 1)]
+        [OutputCache(Duration = 1, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Download([DataSourceRequest] DataSourceRequest request, string uri)
+        public ActionResult DownloadAll(string[] uris, string type)
         {
-            uri = HttpUtility.UrlDecode(uri);
-            var videos = MemoryCacheManager.Get("videos") as List<YouTubeVideo>;
+            uris = new string[] { "https://www.youtube.com/watch?v=MAqrLgRYxiU", "https://www.youtube.com/watch?v=tAbbE1oMXJQ" };            
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (ZipArchive archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true, null))
+                {
+                    foreach (var uri in uris)
+                    {
+                        YouTubeVideo video = GetVideo(HttpUtility.UrlEncode(uri.EncodeBase64()), type);
 
-            var video = videos.FirstOrDefault(v => v?.Uri?.StartsWith(uri, StringComparison.InvariantCultureIgnoreCase) == true);
-            var bytes = video.GetBytes();
-            string contentType = MimeMapping.GetMimeMapping(video.FullName);
-            return File(bytes, contentType, video.FullName);
+                        if (archive.Entries.Any(e => e.Name.Equals(video?.FullName, StringComparison.InvariantCultureIgnoreCase)))
+                        {
+                            continue;
+                        }
+                        using (ZipArchiveEntry entry = archive.CreateEntry(video?.FullName))
+                        {
+                            var renderedBytes = video.GetBytes();
+                            BinaryWriter writer = new BinaryWriter(entry.Open());
+                            writer.Write(renderedBytes);
+                            writer.Flush();
+                        }
+                    }
+                   
+                }
+                var arr = memoryStream.ToArray();
+                    string contentType = MimeMapping.GetMimeMapping("AllFiles.zip");
+                    return File(arr, "application/zip", "AllFiles.zip");
+                    //return File(arr, contentType, "AllFiles.zip");
+            }
+           
         }
 
         public ActionResult DownloadAudio(string uri, string type)
+        {
+            YouTubeVideo video = GetVideo(uri, type);
+            var bytes = video.GetBytes();
+            string contentType = MimeMapping.GetMimeMapping(video.FullName);
+            var result = File(bytes, contentType, video.FullName);
+            return result;
+        }   
+
+        private YouTubeVideo GetVideo(string uri, string type)
         {
             uri = HttpUtility.UrlDecode(uri).DecodeBase64();
 
@@ -50,13 +83,13 @@ namespace DownloadYoutubeWeb.Controllers
             {
                 video = videos.FirstOrDefault(v => v.Format != VideoFormat.Mp4);
             }
-            var bytes = video.GetBytes();
-            string contentType = MimeMapping.GetMimeMapping(video.FullName);
-            var result = File(bytes, contentType, video.FullName);
-            return result;
+            return video;
+        }
+
+        
+            
 
 
-        }   
       
 
         public ActionResult _AudioPartial(string uri)
