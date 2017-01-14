@@ -24,132 +24,132 @@
 
         // Slider0 for John
 
-        $("#slider0").revolution({
-            sliderType: "standard",
-            sliderLayout: "fullscreen",
-            autoHeight: "on",
-            delay: 9000,
-            navigation: {
-                keyboardNavigation: "on",
-                keyboard_direction: "horizontal",
-                mouseScrollNavigation: "off",
-                onHoverStop: "on",
-                touch: {
-                    touchenabled: "on",
-                    swipe_treshold: 75,
-                    swipe_min_touches: 1,
-                    drag_block_vertical: false,
-                    swipe_direction: "horizontal"
-                },
-                arrows: {
-                    style: "hades",
-                    enable: true,
-                    hide_onmobile: true,
-                    hide_onleave: true,
-                    tmp: '',
-                    left: {
-                        h_align: "left",
-                        v_align: "center",
-                        h_offset: 10,
-                        v_offset: 0
-                    },
-                    right: {
-                        h_align: "right",
-                        v_align: "center",
-                        h_offset: 10,
-                        v_offset: 0
-                    }
-                },
-                bullets: {
-                    style: "",
-                    enable: true,
-                    hide_onmobile: false,
-                    hide_onleave: true,
-                    hide_delay: 200,
-                    hide_delay_mobile: 1200,
-                    hide_under: 0,
-                    hide_over: 9999,
-                    direction: "horizontal",
-                    h_align: "center",
-                    v_align: "bottom",
-                    space: 7,
-                    h_offset: 0,
-                    v_offset: 40,
-                    tmp: '<span class="tp-bullet-image"></span><span class="tp-bullet-title"></span>'
-                }
-            },
+        //$("#slider0").revolution({
+        //    sliderType: "standard",
+        //    sliderLayout: "fullscreen",
+        //    autoHeight: "on",
+        //    delay: 9000,
+        //    navigation: {
+        //        keyboardNavigation: "on",
+        //        keyboard_direction: "horizontal",
+        //        mouseScrollNavigation: "off",
+        //        onHoverStop: "on",
+        //        touch: {
+        //            touchenabled: "on",
+        //            swipe_treshold: 75,
+        //            swipe_min_touches: 1,
+        //            drag_block_vertical: false,
+        //            swipe_direction: "horizontal"
+        //        },
+        //        arrows: {
+        //            style: "hades",
+        //            enable: true,
+        //            hide_onmobile: true,
+        //            hide_onleave: true,
+        //            tmp: '',
+        //            left: {
+        //                h_align: "left",
+        //                v_align: "center",
+        //                h_offset: 10,
+        //                v_offset: 0
+        //            },
+        //            right: {
+        //                h_align: "right",
+        //                v_align: "center",
+        //                h_offset: 10,
+        //                v_offset: 0
+        //            }
+        //        },
+        //        bullets: {
+        //            style: "",
+        //            enable: true,
+        //            hide_onmobile: false,
+        //            hide_onleave: true,
+        //            hide_delay: 200,
+        //            hide_delay_mobile: 1200,
+        //            hide_under: 0,
+        //            hide_over: 9999,
+        //            direction: "horizontal",
+        //            h_align: "center",
+        //            v_align: "bottom",
+        //            space: 7,
+        //            h_offset: 0,
+        //            v_offset: 40,
+        //            tmp: '<span class="tp-bullet-image"></span><span class="tp-bullet-title"></span>'
+        //        }
+        //    },
 
-            lazyType: "smart",
-            disableProgressBar: "off",
-            responsiveLevels: [4000, 1200, 992, 768, 320],
-            gridwidth: [1130, 910, 580, 300],
-            gridheight: [600, 800, 1024, 568]
-        });
+        //    lazyType: "smart",
+        //    disableProgressBar: "off",
+        //    responsiveLevels: [4000, 1200, 992, 768, 320],
+        //    gridwidth: [1130, 910, 580, 300],
+        //    gridheight: [600, 800, 1024, 568]
+        //});
 
 
-        // Slider1 for Jessica and Samantha
+        //// Slider1 for Jessica and Samantha
 
-        $("#slider1").revolution({
-            sliderType: "standard",
-            sliderLayout: "auto",
-            autoHeight: "on",
-            delay: 9000,
-            navigation: {
-                keyboardNavigation: "on",
-                keyboard_direction: "horizontal",
-                mouseScrollNavigation: "off",
-                onHoverStop: "on",
-                touch: {
-                    touchenabled: "on",
-                    swipe_treshold: 75,
-                    swipe_min_touches: 1,
-                    drag_block_vertical: false,
-                    swipe_direction: "horizontal"
-                },
-                arrows: {
-                    style: "hades",
-                    enable: true,
-                    hide_onmobile: true,
-                    hide_onleave: true,
-                    tmp: '',
-                    left: {
-                        h_align: "left",
-                        v_align: "center",
-                        h_offset: 10,
-                        v_offset: 0
-                    },
-                    right: {
-                        h_align: "right",
-                        v_align: "center",
-                        h_offset: 10,
-                        v_offset: 0
-                    }
-                },
-                bullets: {
-                    style: "",
-                    enable: true,
-                    hide_onmobile: false,
-                    hide_onleave: true,
-                    hide_delay: 200,
-                    hide_delay_mobile: 1200,
-                    hide_under: 0,
-                    hide_over: 9999,
-                    direction: "horizontal",
-                    h_align: "center",
-                    v_align: "bottom",
-                    space: 7,
-                    h_offset: 0,
-                    v_offset: 40,
-                    tmp: '<span class="tp-bullet-image"></span><span class="tp-bullet-title"></span>'
-                }
-            },
+        //$("#slider1").revolution({
+        //    sliderType: "standard",
+        //    sliderLayout: "auto",
+        //    autoHeight: "on",
+        //    delay: 9000,
+        //    navigation: {
+        //        keyboardNavigation: "on",
+        //        keyboard_direction: "horizontal",
+        //        mouseScrollNavigation: "off",
+        //        onHoverStop: "on",
+        //        touch: {
+        //            touchenabled: "on",
+        //            swipe_treshold: 75,
+        //            swipe_min_touches: 1,
+        //            drag_block_vertical: false,
+        //            swipe_direction: "horizontal"
+        //        },
+        //        arrows: {
+        //            style: "hades",
+        //            enable: true,
+        //            hide_onmobile: true,
+        //            hide_onleave: true,
+        //            tmp: '',
+        //            left: {
+        //                h_align: "left",
+        //                v_align: "center",
+        //                h_offset: 10,
+        //                v_offset: 0
+        //            },
+        //            right: {
+        //                h_align: "right",
+        //                v_align: "center",
+        //                h_offset: 10,
+        //                v_offset: 0
+        //            }
+        //        },
+        //        bullets: {
+        //            style: "",
+        //            enable: true,
+        //            hide_onmobile: false,
+        //            hide_onleave: true,
+        //            hide_delay: 200,
+        //            hide_delay_mobile: 1200,
+        //            hide_under: 0,
+        //            hide_over: 9999,
+        //            direction: "horizontal",
+        //            h_align: "center",
+        //            v_align: "bottom",
+        //            space: 7,
+        //            h_offset: 0,
+        //            v_offset: 40,
+        //            tmp: '<span class="tp-bullet-image"></span><span class="tp-bullet-title"></span>'
+        //        }
+        //    },
 
-            lazyType: "smart",
-            disableProgressBar: "off",
-            responsiveLevels: [4000, 1200, 992, 768, 320],
-            gridwidth: [1130, 910, 580, 300],
-            gridheight: [600, 800, 1024, 568]
-        });
+        //    lazyType: "smart",
+        //    disableProgressBar: "off",
+        //    responsiveLevels: [4000, 1200, 992, 768, 320],
+        //    gridwidth: [1130, 910, 580, 300],
+        //    gridheight: [600, 800, 1024, 568]
+        //});
 
         /* Preloader */
         $('#preloader').fadeOut('slow', function () {
@@ -157,23 +157,23 @@
         });
 
         /* Jarallax */
-        jarallax(document.querySelectorAll('.jarallax'), {
-            speed: 0.7
-        });
+        //jarallax(document.querySelectorAll('.jarallax'), {
+        //    speed: 0.7
+        //});
 
         /* Animated Counter */
-        $('.count-container span').counterUp({
-            delay: 10, // the delay time in ms
-            time: 1000 // the speed time in ms
-        });
+        //$('.count-container span').counterUp({
+        //    delay: 10, // the delay time in ms
+        //    time: 1000 // the speed time in ms
+        //});
 
         /* Magnific Popup */
-        $('.gallery-item').magnificPopup({
-            type: 'image',
-            gallery: {
-                enabled: true
-            }
-        });
+        //$('.gallery-item').magnificPopup({
+        //    type: 'image',
+        //    gallery: {
+        //        enabled: true
+        //    }
+        //});
 
         /* Progress Tracker */
         (function () {
@@ -227,64 +227,64 @@
         })();
 
         /* Off-Canvas Menu */
-        (function () {
+        //(function () {
 
-            var bodyEl = document.body,
-                content = document.querySelector('.content-wrap'),
-                openbtn = document.getElementById('open-button'),
-                closebtn = document.getElementById('close-button');
+        //    var bodyEl = document.body,
+        //        content = document.querySelector('.content-wrap'),
+        //        openbtn = document.getElementById('open-button'),
+        //        closebtn = document.getElementById('close-button');
 
-            function init() {
-                initEvents();
-            }
+        //    function init() {
+        //        initEvents();
+        //    }
 
-            function initEvents() {
-                openbtn.addEventListener('click', toggleMenu);
-                if (closebtn) {
-                    closebtn.addEventListener('click', toggleMenu);
-                }
+        //    function initEvents() {
+        //        openbtn.addEventListener('click', toggleMenu);
+        //        if (closebtn) {
+        //            closebtn.addEventListener('click', toggleMenu);
+        //        }
 
-                // close the menu element if the target it´s not the menu element or one of its descendants..
-                content.addEventListener('click', function (ev) {
-                    var target = ev.target;
-                    if (classie.hasClass(bodyEl, 'show-menu') && target !== openbtn) {
-                        toggleMenu();
-                    }
-                });
-            }
+        //        // close the menu element if the target it´s not the menu element or one of its descendants..
+        //        content.addEventListener('click', function (ev) {
+        //            var target = ev.target;
+        //            if (classie.hasClass(bodyEl, 'show-menu') && target !== openbtn) {
+        //                toggleMenu();
+        //            }
+        //        });
+        //    }
 
-            function toggleMenu() {
-                $( bodyEl ).toggleClass( 'show-menu' );
-            }
+        //    function toggleMenu() {
+        //        $( bodyEl ).toggleClass( 'show-menu' );
+        //    }
 
-            init();
+        //    init();
 
-        })();
+        //})();
 
         /* Isotope Portfolio */
-        (function () {
-            var grid = $('.grid').isotope({
-                itemSelector: '.grid-item',
-                percentPosition: true,
-                masonry: {
-                    // use outer width of grid-sizer for columnWidth
-                    columnWidth: '.grid-sizer'
-                }
-            });
+        //(function () {
+        //    var grid = $('.grid').isotope({
+        //        itemSelector: '.grid-item',
+        //        percentPosition: true,
+        //        masonry: {
+        //            // use outer width of grid-sizer for columnWidth
+        //            columnWidth: '.grid-sizer'
+        //        }
+        //    });
 
-            grid.imagesLoaded(function () {
-                grid.isotope();
-            });
+        //    grid.imagesLoaded(function () {
+        //        grid.isotope();
+        //    });
 
-            grid.isotope({filter: '*'});
+        //    grid.isotope({filter: '*'});
 
-            // filter items on button click
-            $('#isotope-filters').on('click', 'a', function () {
-                var filterValue = $(this).attr('data-filter');
-                grid.isotope({filter: filterValue});
-            });
+        //    // filter items on button click
+        //    $('#isotope-filters').on('click', 'a', function () {
+        //        var filterValue = $(this).attr('data-filter');
+        //        grid.isotope({filter: filterValue});
+        //    });
 
-        })();
+        //})();
 
         /* Back to top */
         (function () {
