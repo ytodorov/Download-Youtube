@@ -2,44 +2,23 @@ $(document).ready(function r() {
     $("#btnLoadUrls").click(function btnLoadUrls_Click(e) {
         var urls = $("#tbUrls").val();
         var urlsArray = urls.replace(/\n/g, " ").split(" ");
-        var counter = 0;
         $.each(urlsArray, function f(indexInArray, valueOfElement) {
             if (valueOfElement.indexOf('youtube.com/watch?v=') > 0) {
+                var last = $(".audioFiles").last();
+                last.append('<div class="col-sm-6 col-md-4 fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span></div>');
                 $.ajax({
                     url: '/Home/_AudioPartial',
                     traditional: true,
                     data: { uri: valueOfElement },
                     success: function (result) {
-                        var all = $(".audioFiles");
-                        all.last().append(result);
-                        counter = counter + 1;
-                        //if (counter % 3 == 0) {
-                        //    $("#outerDivAudioFiles").append('<div class="row audioFiles"></div>');
-                        //}
+                        var firstSpinner = $('.fa-spinner-toRemove').first();
+                        firstSpinner.remove();
+                        var last = $(".audioFiles").last();
+                        last.append(result);
                     }
                 });
             }
         });
-        //$.ajax({
-        //    url: '/Home/DownloadAudio',
-        //    traditional: true,
-        //    data: { urls: urls },
-        //    success: function (result) {
-        //    }
-        //});
     });
 });
-function onChange() {
-    var index = this.select().index();
-    var dataItem = this.dataSource.view()[index];
-    //$("#mediaPlayer").data("kendoMediaPlayer").media(dataItem);
-    var kendoMediaPlayer = $("#mediaPlayer").data("kendoMediaPlayer");
-    var options = kendoMediaPlayer.options;
-    options.media = dataItem;
-    kendoMediaPlayer.setOptions(options);
-    //$("#mediaPlayer").data("kendoMediaPlayer").options.media = dataItem;
-}
-function onDataBound() {
-    this.select(this.element.children().first());
-}
 //# sourceMappingURL=index.js.map
