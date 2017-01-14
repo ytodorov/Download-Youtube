@@ -1,0 +1,10 @@
+[
+  {
+    "outputFileName": "Scripts/bundle.js",
+    "inputFiles": [
+      "assets/vendor/sticky/js/jquery.sticky.js",
+      "assets/vendor/progresstracker/js/jquery.progresstracker.min.js",
+      "assets/custom/js/script.js"
+    ]
+  }
+]

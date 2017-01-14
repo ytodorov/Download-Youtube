@@ -458,6 +458,10 @@
     <Content Include="Libs\tr-TR\Kendo.Mvc.resources.dll" />
     <Content Include="Libs\uk-UA\Kendo.Mvc.resources.dll" />
     <Content Include="Libs\zh-CN\Kendo.Mvc.resources.dll" />
+    <Content Include="Scripts\bundle.js" />
+    <Content Include="Scripts\bundle.min.js">
+      <DependentUpon>bundle.js</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -514,6 +518,7 @@
     <Content Include="assets\vendor\rs-plugin\fonts\revicons\revicons.woff" />
     <Content Include="assets\vendor\rs-plugin\info.cfg" />
     <Content Include="Views\Home\_AudioPartial.cshtml" />
+    <None Include="bundleconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
