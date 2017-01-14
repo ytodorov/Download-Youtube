@@ -122,40 +122,40 @@
         <!-- Top Navigation -->
         @*<header id="header-wrapper-mp" class="head-overlay sticky-menu-light pt-section" data-name="Home">*@
         @*<header id="header-wrapper-mp" class="head-overlay pt-section" data-name="Home" style="display:none">
-            @*<div class="sticky-header header-light sticky-overlay nobg" role="navigation">
-            <div class="header-light sticky-overlay nobg" role="navigation">
-                <div class="container mp-nav">
+                @*<div class="sticky-header header-light sticky-overlay nobg" role="navigation">
+                <div class="header-light sticky-overlay nobg" role="navigation">
+                    <div class="container mp-nav">
 
-                    <!-- Logo -->
-                    <div id="site-title"><a href="/"><h1 class="font-accident-one-bold">Download YouTube</h1></a></div>
+                        <!-- Logo -->
+                        <div id="site-title"><a href="/"><h1 class="font-accident-one-bold">Download YouTube</h1></a></div>
 
-                    <!-- Main menu -->
-                    <nav id="main-menu" class="nav site-navigation primary-navigation">
-                        <ul class="sf-menu clearfix" id="example">
-                            <li class="m-desktop menu-item active"><a href="#header-wrapper-mp">Home</a></li>
-                            <li class="m-desktop menu-item"><a href="#audio">Audio</a></li>
-                            <li class="m-desktop menu-item"><a href="#video">Video</a></li>
-                         
-                            <li class="mob-button">
-                                <div class="menu-button nav-icon" id="open-button">
-                                    <div></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
+                        <!-- Main menu -->
+                        <nav id="main-menu" class="nav site-navigation primary-navigation">
+                            <ul class="sf-menu clearfix" id="example">
+                                <li class="m-desktop menu-item active"><a href="#header-wrapper-mp">Home</a></li>
+                                <li class="m-desktop menu-item"><a href="#audio">Audio</a></li>
+                                <li class="m-desktop menu-item"><a href="#video">Video</a></li>
+
+                                <li class="mob-button">
+                                    <div class="menu-button nav-icon" id="open-button">
+                                        <div></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    </div>
 
                 </div>
 
-            </div>
-
-        </header>*@
+            </header>*@
         <!-- /Top Navigation -->
 
         <section id="Home" class="pt-section" data-name="Home">
             <div class="container">
-                <div class="text-center">
-                    <h1 class="font-accident-one-bold"><a href="/" target="_blank">Download YouTube</a></h1>
-                </div>
+                <div class="text-center color--youtube">
+                    <h1 class="font-regular-bold hovercolo"><a href="/" target="_self">Download YouTube</a></h1>                    
+                </div>               
             </div>
         </section>
         <div class="menu-button nav-icon" id="open-button">
@@ -350,7 +350,8 @@
     <div id="image-cache" class="hidden"></div>
 
     <!-- CSS -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+    @*<link href="assets/vendor/bootstrap/css/bootstrap.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />*@
+    <link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />
     <link href="assets/vendor/fontawesome/css/font-awesome.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
     <link href="assets/vendor/flaticon/flaticon.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
 
@@ -361,6 +362,8 @@
     <link href="assets/vendor/mfp/css/magnific-popup.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
     <link href="assets/vendor/progresstracker/css/jquery.progresstracker.min.css" property='stylesheet' rel="stylesheet">
 
+    <link href="~/assets/vendor/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="~/assets/vendor/pe-icon-7-stroke/css/helper.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="assets/custom/css/style.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
 
@@ -368,30 +371,28 @@
 
     <!-- JS -->
     @*<script type="text/javascript" src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>*@
-   
-    @*<script type="text/javascript" src="assets/vendor/horiz-timeline/js/hortimeline.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/rs-plugin/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
-    <script type="text/javascript" src="assets/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
-    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
 
-    <script type="text/javascript" src="assets/vendor/jarallax/js/jarallax.js"></script>
-    <script type="text/javascript" src="assets/vendor/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/isotope/js/isotope.pkgd.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/mfp/js/jquery.magnific-popup.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/anicounter/jquery.counterup.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/circle-progress/circle-progress.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/waypoints/waypoints.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/offcanvas-menu/js/classie.min.js"></script>*@
-   
-   @*<script type="text/javascript" src="assets/vendor/flickr/js/jflickrfeed.min.js"></script>*@
+    @*<script type="text/javascript" src="assets/vendor/horiz-timeline/js/hortimeline.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/rs-plugin/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+        <script type="text/javascript" src="assets/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+
+        <script type="text/javascript" src="assets/vendor/jarallax/js/jarallax.js"></script>
+        <script type="text/javascript" src="assets/vendor/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/isotope/js/isotope.pkgd.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/mfp/js/jquery.magnific-popup.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/anicounter/jquery.counterup.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/circle-progress/circle-progress.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/waypoints/waypoints.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/offcanvas-menu/js/classie.min.js"></script>*@
+
+    @*<script type="text/javascript" src="assets/vendor/flickr/js/jflickrfeed.min.js"></script>*@
     <script type="text/javascript" src="assets/vendor/sticky/js/jquery.sticky.min.js"></script>
-    
     <script type="text/javascript" src="assets/vendor/progresstracker/js/jquery.progresstracker.min.js"></script>
-     Custom JS 
     <script type="text/javascript" src="assets/custom/js/script.js"></script>
     @*<script src="~/Scripts/bundle.js"></script>*@
 </body>

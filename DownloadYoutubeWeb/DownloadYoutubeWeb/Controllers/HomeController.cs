@@ -89,7 +89,7 @@ namespace DownloadYoutubeWeb.Controllers
                     videoVM.title = video.Title.Replace(" - YouTube", string.Empty);
                     videoVM.source = video.Uri;
                     videoVM.AudioUrlMp4 = HttpUtility.UrlEncode(uri.EncodeBase64());
-
+                    videoVM.AudioUrlToPlay = video.Uri;
                     return PartialView(videoVM);
                 }
                 catch (Exception)

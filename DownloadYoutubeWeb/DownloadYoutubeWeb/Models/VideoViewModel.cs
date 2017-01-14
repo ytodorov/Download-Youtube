@@ -25,6 +25,8 @@ namespace DownloadYoutubeWeb.Models
 
         public string AudioUrlMp4 { get; set; }
 
+        public string AudioUrlToPlay { get; set; }
+
         public string AudioUrlVorbis { get; set; }
     }
 }

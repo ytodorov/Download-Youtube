@@ -323,6 +323,9 @@
     <Content Include="assets\vendor\offcanvas-menu\js\classie.min.js" />
     <Content Include="assets\vendor\offcanvas-menu\js\main.js" />
     <Content Include="assets\vendor\offcanvas-menu\js\snap.svg-min.js" />
+    <Content Include="assets\vendor\pe-icon-7-stroke\css\helper.css" />
+    <Content Include="assets\vendor\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
+    <Content Include="assets\vendor\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="assets\vendor\progresstracker\css\demo.css" />
     <Content Include="assets\vendor\progresstracker\css\jquery.progresstracker.css" />
     <Content Include="assets\vendor\progresstracker\css\jquery.progresstracker.min.css" />
@@ -518,6 +521,9 @@
     <Content Include="assets\vendor\rs-plugin\fonts\revicons\revicons.woff" />
     <Content Include="assets\vendor\rs-plugin\info.cfg" />
     <Content Include="Views\Home\_AudioPartial.cshtml" />
+    <Content Include="assets\vendor\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="assets\vendor\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="assets\vendor\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
     <None Include="bundleconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

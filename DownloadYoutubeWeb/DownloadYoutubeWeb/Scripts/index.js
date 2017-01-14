@@ -13,7 +13,7 @@ $(document).ready(function r() {
                         var all = $(".audioFiles");
                         all.last().append(result);
                         counter = counter + 1;
-                        if (counter % 4 == 0) {
+                        if (counter % 3 == 0) {
                             $("#outerDivAudioFiles").append('<div class="row audioFiles"></div>');
                         }
                     }
