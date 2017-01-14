@@ -16,9 +16,11 @@
                         data: { uri: valueOfElement },
                         success: function (result) {
                             var firstSpinner = $('.fa-spinner-toRemove').first();
-                            firstSpinner.remove();
-                            var last = $(".audioFiles").last();
-                            last.append(result);
+                            
+                            firstSpinner.removeClass("fa-spinner-toRemove");
+                            firstSpinner.html(result);
+                            //var last = $(".audioFiles").last();
+                            //last.append(result);
                         }
                     });
                 }
