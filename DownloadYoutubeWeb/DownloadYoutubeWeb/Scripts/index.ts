@@ -42,7 +42,7 @@ https://www.youtube.com/watch?v=KPJqwzlvuVw
                             debugger;
                             var dummy : any = $;
                             if (dummy.active == 1) {
-                                $("#btnDownloadAudioZip").show();
+                                $(".audioCompleted").show();
                             }
                         }
                     });

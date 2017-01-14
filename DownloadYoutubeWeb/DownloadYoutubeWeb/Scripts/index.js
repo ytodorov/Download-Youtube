@@ -23,7 +23,7 @@ $(document).ready(function r() {
                         debugger;
                         var dummy = $;
                         if (dummy.active == 1) {
-                            $("#btnDownloadAudioZip").show();
+                            $(".audioCompleted").show();
                         }
                     }
                 });
