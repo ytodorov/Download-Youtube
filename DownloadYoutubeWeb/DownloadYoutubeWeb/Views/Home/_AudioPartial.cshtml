@@ -1,21 +1,15 @@
 ﻿@model VideoViewModel
-<div class="col-md-4 col-xs-6 text-center">
-    <div class="">
-        <h5 class="team-member-title">@Model.title</h5>
-        @Model.FileExtension + @Model.AudioFormat
-        <a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">
-            <img src="@Model.PosterUrl" alt="@Model.title" class="img-responsive author-userpic center-block"><p></p>
-        </a>
-        <audio controls preload="none" title="@Model.title"> 
-            <source src="@Model.AudioUrlToPlay" type="audio/mp4">
-            Your browser does not support the audio element.
-        </audio>
-        @*<video controls>
-            <source src="@Model.AudioUrlToPlay" type="audio/mp4">
-            Your browser does not support the audio element.
-        </video>*@
-        @*<a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">Download Vorbis</a>*@
-    </div>
+<div class="col-md-4 col-sm-6 text-center center-block">
+    <h5 class="team-member-title">@Model.title</h5>
+    <a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">
+        <img src="@Model.PosterUrl" alt="@Model.title" class="img-responsive author-userpic center-block"><p></p>
+    </a>
+    <audio controls preload="none" title="@Model.title">
+        <source src="@Model.AudioUrlToPlay" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+
+
 </div>
 
 
