@@ -422,6 +422,7 @@
     <Content Include="assets\vendor\sticky\js\jquery.sticky.js" />
     <Content Include="assets\vendor\sticky\js\jquery.sticky.min.js" />
     <Content Include="assets\vendor\waypoints\waypoints.min.js" />
+    <Content Include="demo.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="libmp3lame.32.dll">

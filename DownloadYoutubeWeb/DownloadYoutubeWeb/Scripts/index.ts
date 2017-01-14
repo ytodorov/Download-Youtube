@@ -21,9 +21,9 @@
                             all.last().append(result);
 
                             counter = counter + 1;
-                            if (counter % 3 == 0) {
-                                $("#outerDivAudioFiles").append('<div class="row audioFiles"></div>');
-                            }
+                            //if (counter % 3 == 0) {
+                            //    $("#outerDivAudioFiles").append('<div class="row audioFiles"></div>');
+                            //}
                         }
                     });
                 }
