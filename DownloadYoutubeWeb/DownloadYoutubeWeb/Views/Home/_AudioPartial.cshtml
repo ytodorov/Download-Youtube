@@ -4,11 +4,15 @@
     <a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">
         <img src="@Model.PosterUrl" alt="@Model.title" class="img-responsive author-userpic center-block"><p></p>
     </a>
-    <audio controls preload="none" title="@Model.title">
-        <source src="@Model.AudioUrlToPlay" type="audio/mp4">        
+@{
+    var guid = Guid.NewGuid().ToString();
+}
+    <audio controls preload="none" id="@guid" title="@Model.title">
+        <source src="@Model.AudioUrlToPlay">      
+        <source src="/BlueDucks_FourFlossFiveSix.mp3">          
         Your browser does not support the audio element.
     </audio>
-
+<script>$(function () { $('#@guid').audioPlayer(); });</script>
 
 
 

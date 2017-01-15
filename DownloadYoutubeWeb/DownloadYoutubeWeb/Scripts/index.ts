@@ -39,7 +39,6 @@ https://www.youtube.com/watch?v=KPJqwzlvuVw
                             //var last = $(".audioFiles").last();
                             //last.append(result);
 
-                            debugger;
                             var dummy : any = $;
                             if (dummy.active == 1) {
                                 $(".audioCompleted").show();

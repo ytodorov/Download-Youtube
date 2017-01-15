@@ -20,7 +20,6 @@ $(document).ready(function r() {
                         firstSpinner.html(result);
                         //var last = $(".audioFiles").last();
                         //last.append(result);
-                        debugger;
                         var dummy = $;
                         if (dummy.active == 1) {
                             $(".audioCompleted").show();
