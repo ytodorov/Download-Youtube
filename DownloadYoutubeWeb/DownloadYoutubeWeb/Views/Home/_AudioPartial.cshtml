@@ -8,11 +8,11 @@
     var guid = Guid.NewGuid().ToString();
 }
     <audio controls preload="none" id="@guid" title="@Model.title">
-        <source src="@Model.AudioUrlToPlay">      
-        <source src="/sdfasfasf.mp3">          
+        <source src="@Model.AudioUrlToPlay">           
         Your browser does not support the audio element.
     </audio>
-<script>$(function () { $('#@guid').audioPlayer(); });</script>
+
+@*<script>$(function () { $('#@guid').audioPlayer(); });</script>*@
 
 
 
