@@ -13,6 +13,7 @@
         //https://www.youtube.com/watch?v=r78xl5NaQeM&#13;&#10;
         //https://www.youtube.com/watch?v=KPJqwzlvuVw&#13;&#10;
 
+        $("#tbUrls").text(urlsForExample1);
         $("#tbUrls").val(urlsForExample1);
     });
 
