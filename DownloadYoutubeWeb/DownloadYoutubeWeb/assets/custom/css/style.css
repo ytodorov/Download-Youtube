@@ -1572,6 +1572,6 @@ Vertical Timeline
 }
 
 
-textarea { resize: vertical; white-space: nowrap; overflow: auto; }
+textarea { resize: vertical; overflow: auto; }
 audio { display: table; margin: 0 auto; }
 /*# sourceMappingURL=style.css.map */

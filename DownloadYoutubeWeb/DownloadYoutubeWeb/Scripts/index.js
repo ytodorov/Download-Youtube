@@ -1,6 +1,16 @@
 $(document).ready(function r() {
     $("#btnLoadExample1").click(function example1() {
-        var urlsForExample1 = "https://www.youtube.com/watch?v=StlMdNcvCJo\nhttps://www.youtube.com/watch?v=DtoM41TH7HM\nhttps://www.youtube.com/watch?v=2bVtPqZCniA\nhttps://www.youtube.com/watch?v=Q3OEbzaHOh8\nhttps://www.youtube.com/watch?v=BplsGX5eLLo\nhttps://www.youtube.com/watch?v=z3yC4q0JUQg\nhttps://www.youtube.com/watch?v=7bmO8JW193Q\nhttps://www.youtube.com/watch?v=tAbbE1oMXJQ\nhttps://www.youtube.com/watch?v=H6uFHp_P3o8\nhttps://www.youtube.com/watch?v=-q1kk4OwnTQ\nhttps://www.youtube.com/watch?v=r78xl5NaQeM\nhttps://www.youtube.com/watch?v=KPJqwzlvuVw\n";
+        var urlsForExample1 = 'https://www.youtube.com/watch?v=StlMdNcvCJo\nhttps://www.youtube.com/watch?v=DtoM41TH7HM';
+        //https://www.youtube.com/watch?v=2bVtPqZCniA&#13;&#10;
+        //https://www.youtube.com/watch?v=Q3OEbzaHOh8&#13;&#10;
+        //https://www.youtube.com/watch?v=BplsGX5eLLo&#13;&#10;
+        //https://www.youtube.com/watch?v=z3yC4q0JUQg&#13;&#10;
+        //https://www.youtube.com/watch?v=7bmO8JW193Q&#13;&#10;
+        //https://www.youtube.com/watch?v=tAbbE1oMXJQ&#13;&#10;
+        //https://www.youtube.com/watch?v=H6uFHp_P3o8&#13;&#10;
+        //https://www.youtube.com/watch?v=-q1kk4OwnTQ&#13;&#10;
+        //https://www.youtube.com/watch?v=r78xl5NaQeM&#13;&#10;
+        //https://www.youtube.com/watch?v=KPJqwzlvuVw&#13;&#10;
         $("#tbUrls").val(urlsForExample1);
     });
     $("#btnLoadUrls").click(function btnLoadUrls_Click(e) {
