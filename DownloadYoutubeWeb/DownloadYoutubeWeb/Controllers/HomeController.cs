@@ -16,8 +16,8 @@ namespace DownloadYoutubeWeb.Controllers
 {
     public class HomeController : Controller
     {
-               
-        
+
+
         [OutputCache(Duration = 1, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
@@ -26,7 +26,7 @@ namespace DownloadYoutubeWeb.Controllers
 
         public ActionResult DownloadAll(string[] uris, string type)
         {
-            uris = new string[] { "https://www.youtube.com/watch?v=MAqrLgRYxiU", "https://www.youtube.com/watch?v=tAbbE1oMXJQ" };            
+            uris = new string[] { "https://www.youtube.com/watch?v=MAqrLgRYxiU", "https://www.youtube.com/watch?v=tAbbE1oMXJQ" };
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 using (ZipArchive archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true, null))
@@ -47,14 +47,14 @@ namespace DownloadYoutubeWeb.Controllers
                             writer.Flush();
                         }
                     }
-                   
+
                 }
                 var arr = memoryStream.ToArray();
-                    string contentType = MimeMapping.GetMimeMapping("AllFiles.zip");
-                    return File(arr, "application/zip", "AllFiles.zip");
-                    //return File(arr, contentType, "AllFiles.zip");
+                string contentType = MimeMapping.GetMimeMapping("AllFiles.zip");
+                return File(arr, "application/zip", "AllFiles.zip");
+                //return File(arr, contentType, "AllFiles.zip");
             }
-           
+
         }
 
         public ActionResult DownloadAudio(string uri, string type)
@@ -64,7 +64,7 @@ namespace DownloadYoutubeWeb.Controllers
             string contentType = MimeMapping.GetMimeMapping(video.FullName);
             var result = File(bytes, contentType, video.FullName);
             return result;
-        }   
+        }
 
         private YouTubeVideo GetVideo(string uri, string type)
         {
@@ -86,17 +86,32 @@ namespace DownloadYoutubeWeb.Controllers
             return video;
         }
 
-        
-            
 
 
-      
+        public ActionResult GetVideoUrlsFromPlaylistId(string uri)
+        {
+            if (uri.ToLowerInvariant().Contains("list=".ToLowerInvariant()))
+            {
+                Uri myUri = new Uri(uri);
+                string listId = HttpUtility.ParseQueryString(myUri.Query).Get("list");
+                if (!string.IsNullOrEmpty(listId))
+                {
+                    var result = YoutubeManager.GetVideoUrlsFromPlaylistId(listId);
+                    return Json(result);
+                }
+            }
+            return Json(new List<string>());
 
+        }
         public ActionResult _AudioPartial(string uri)
         {
+
+
             int maxTryAttempts = 5;
             for (int i = 0; i < maxTryAttempts; i++)
             {
+
+
                 try
                 {
                     uri = HttpUtility.UrlDecode(uri);
