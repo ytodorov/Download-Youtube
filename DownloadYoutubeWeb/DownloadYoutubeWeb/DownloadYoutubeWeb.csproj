@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="5A564154852DFB8369325FF368886623.txt" />
+    <Content Include="assets\custom\css\preloader.css" />
     <Content Include="assets\custom\css\style.css" />
     <Content Include="assets\custom\images\01-jessica\backgrounds\01.png" />
     <Content Include="assets\custom\images\01-jessica\backgrounds\02.png" />
