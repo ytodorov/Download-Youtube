@@ -107,11 +107,7 @@
     });
 
 
-});
-
-$(window).ready(function r() {
-
-    setTimeout(function alignGoogle() {
+    var timeout = setTimeout(function alignGoogle() {
 
         var g = $("div[id*='plusone']");
 
@@ -120,5 +116,13 @@ $(window).ready(function r() {
         g.hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
 
         g.css("vertical-align", "bottom");
-    }, 1000);
+
+        if (g.length > 0) {
+            clearInterval(timeout);
+        }
+
+    }, 2000);
+
+
 });
+

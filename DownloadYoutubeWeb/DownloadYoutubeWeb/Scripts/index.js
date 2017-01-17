@@ -76,14 +76,15 @@ $(document).ready(function r() {
         $(".audioCompleted").hide();
         ;
     });
-});
-$(window).ready(function r() {
-    setTimeout(function alignGoogle() {
+    var timeout = setTimeout(function alignGoogle() {
         var g = $("div[id*='plusone']");
         g.mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.css("vertical-align", "bottom");
-    }, 1000);
+        if (g.length > 0) {
+            clearInterval(timeout);
+        }
+    }, 2000);
 });
 //# sourceMappingURL=index.js.map
