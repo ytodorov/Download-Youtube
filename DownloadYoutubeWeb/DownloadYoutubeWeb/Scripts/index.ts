@@ -105,4 +105,20 @@
         $(".audioFiles").html("");
         $(".audioCompleted").hide();;
     });
+
+
+});
+
+$(window).ready(function r() {
+
+    setTimeout(function alignGoogle() {
+
+        var g = $("div[id*='plusone']");
+
+        g.mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
+        g.mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
+        g.hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
+
+        g.css("vertical-align", "bottom");
+    }, 1000);
 });
