@@ -8,14 +8,17 @@
                 @*<div class="alert alert-info" role="alert">
               Paste as many youtube urls here as you like. One per line or leave some empty space between each other.
             </div>*@
-            <p><a href="javascript:void(0)" class="btn btn-lgr-str" id="btnLoadExample1">Click for Example</a></p>
-                <textarea class="k-textbox" id="tbUrls" style="width:95%;height:200px" placeholder="Paste youtube urls here."></textarea>
+            <p><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="btnLoadExample1">Click for Example</a></p>
+                <textarea class="k-textbox bg-color00" id="tbUrls" style="width:95%;height:200px" placeholder="Paste youtube urls here."></textarea>
     
             <br />
-            <p><a href="javascript:void(0)" class="btn btn-lgr-str" id="btnLoadUrls">Load Urls</a></p>    
+            <p><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="btnLoadUrls">Extract</a></p>    
       
         </div>
+        <p class="small text-center center-block  audioCompleted" style="display:none"><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="clearAudioFiles">Clear</a></p>
+        <div class="row audioFiles">
 
+        </div>
         <div class="row audioCompleted" style="display:none">
             <div class="col-md-6 infoblock">
                 <h4 class="font-accident-one-bold text-center"><a href="/Home/DownloadAll?type=mp4">Download all in MP4</a></h4>
@@ -23,7 +26,7 @@
                 <p class="small text-justify">
                     MPEG-4 Part 14 or MP4 is a digital multimedia container format most commonly used to store video and audio, but can also be used to store other data such as subtitles and still images. Like most modern container formats, it allows streaming over the Internet.
                 </p>
-                <p class="small text-center center-block"><a href="/Home/DownloadAll?type=mp4" class="btn btn-lgr-str">Download</a></p>    
+                <p class="small text-center center-block"><a href="/Home/DownloadAll?type=mp4" class="btn btn-lgr-str bg-color00">Download</a></p>    
             </div>
             <div class="col-md-6 infoblock">
                 <h4 class="font-accident-one-bold text-center"><a href="/Home/DownloadAll?type=vorbis">Download all in Vorbis</a></h4>
@@ -31,14 +34,10 @@
                 <p class="small text-justify">
                     Vorbis is a free and open-source software project headed by the Xiph.Org Foundation (formerly Xiphophorus company). The project produces an audio coding format and software reference encoder/decoder (codec) for lossy audio compression. Vorbis is most commonly used in conjunction with the Ogg container format and it is therefore often referred to as Ogg Vorbis.
                 </p>
-                <p class="small text-center center-block"><a href="/Home/DownloadAll?type=vorbis" class="btn btn-lgr-str">Download</a></p>    
+                <p class="small text-center center-block"><a href="/Home/DownloadAll?type=vorbis" class="btn btn-lgr-str bg-color00">Download</a></p>    
             </div>            
         </div>
-        <p class="small text-center center-block  audioCompleted" style="display:none"><a href="javascript:void(0)" class="btn btn-lgr-str" id="clearAudioFiles">Clear</a></p>  
-        <div class="row audioFiles">
-
-
-        </div>
+      
     </div>
 </section>
 @section scripts {
