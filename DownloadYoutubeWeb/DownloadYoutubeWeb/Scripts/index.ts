@@ -3,6 +3,7 @@
 
     $("#btnLoadUrls").click(
         function btnLoadUrls_Click(e) {
+            debugger;
             var urls = $("#tbUrls").val();
 
             var urlsArray = urls.replace(/\n/g, " ").split(" ");
@@ -13,7 +14,7 @@
                     if (valueOfElement.lastIndexOf('list=') > 0) {
 
                         $.ajax({
-                            url: '/Home/GetVideoUrlsFromPlaylistId',
+                            url: '/home/getvideourlsfromplaylistid',
                             type: 'POST',
                             data: { uri: valueOfElement },
                             success: function (resultArray: string[]) {
@@ -24,7 +25,7 @@
                                     last.append('<div class="col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
 
                                     $.ajax({
-                                        url: '/Home/_AudioPartial',
+                                        url: '/home/_audiopartial',
                                         type: 'POST',
                                         data: { uri: uri },
                                         success: function (result) {
@@ -51,9 +52,9 @@
 
 
 
-
+                        debugger;
                         $.ajax({
-                            url: '/Home/_AudioPartial',
+                            url: '/home/_audiopartial',
                             type: 'POST',
                             data: { uri: valueOfElement },
                             success: function (result) {
@@ -78,7 +79,7 @@
 
 
     $("#btnLoadExample1").click(function example1() {
-        var urlsForExample1 = 'https://www.youtube.com/watch?v=StlMdNcvCJo';
+        var urlsForExample1 = 'https://www.youtube.com/watch?v=-4kTei0XrCs&list=PL04831A1BBA13F830';
 
         //https://www.youtube.com/watch?v=DtoM41TH7HM
         //https://www.youtube.com/watch?v=2bVtPqZCniA&#13;&#10;
