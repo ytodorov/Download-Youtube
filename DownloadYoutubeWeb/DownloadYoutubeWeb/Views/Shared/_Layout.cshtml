@@ -58,13 +58,10 @@
             90%, 100% { -webkit-transform: perspective(140px) rotateY(180deg); transform: perspective(140px) rotateY(180deg); opacity: 0; }
         }
     </style>
-    @*<link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />*@
-    @*<link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-nova.min.css" />
-        <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1028/styles/kendo.nova.min.css" />*@
+  
     <script>
 
-        //VIEWPORT BUG FIX
-        //iOS viewport scaling bug fix,
+
 
         (function (doc) { var addEvent = 'addEventListener', type = 'gesturestart', qsa = 'querySelectorAll', scales = [1, 1], meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : []; function fix() { meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1]; doc.removeEventListener(type, fix, true); } if ((meta = meta[meta.length - 1]) && addEvent in doc) { fix(); scales = [.25, 1.6]; doc[addEvent](type, fix, true); } } (document));
     </script>
@@ -89,7 +86,6 @@
             return t;
         } (document, "script", "twitter-wjs"));</script>
 
-    <!-- Load Facebook SDK for JavaScript -->
     <div id="fb-root"></div>
     <script>
         (function (d, s, id) {
@@ -100,7 +96,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         } (document, 'script', 'facebook-jssdk'));</script>
 
-    <!--Pre-Loader-->
     <div id="preloader">
         <div class="sk-folding-cube">
             <div class="sk-cube1 sk-cube"></div>
@@ -110,44 +105,15 @@
         </div>
     </div>
 
-    <!-- Off-canvas menu -->
     <div class="menu-wrap mobmenu-john" style="display:none">
         <div class="dividewhite4"></div>
         <nav class="menu">
             <ul class="icon-list">
-                @*<li>
-                        <div class="m-usermenu">
-                            <div>
-                                <div class="article-author-name">
-                                    <h4 class="font-accident-one-bold"><a href="#!">Jessica Fletcher</a></h4>
-                                    <p class="nopadding">
-                                        <span class="fontcolor-invert">Model</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dividewhite2"></div>
-                    </li>*@
+
                 <li class="menu-item"><a href="#header-wrapper-mp"><i class="fa fa-fw fa-star-o"></i><span>Home</span></a></li>
                 <li class="menu-item"><a href="#audio"><i class="fa fa-fw fa-bell-o"></i><span>Audio</span></a></li>
                 <li class="menu-item"><a href="#video"><i class="fa fa-fw fa-bell-o"></i><span>Video</span></a></li>
-                @*<li class="menu-item"><a href="#portfolio"><i class="fa fa-fw fa-comment-o"></i><span>Portfolio</span></a></li>
-                    <li class="menu-item"><a href="#progress"><i class="fa fa-fw fa-bar-chart-o"></i><span>Skills</span></a></li>
-                    <li class="menu-item"><a href="#timeline-vertical"><i class="fa fa-fw fa-shopping-cart"></i><span>Timeline</span></a></li>
-                    <li class="menu-item"><a href="#photocard"><i class="fa fa-fw fa-recycle"></i><span>Featured</span></a></li>
-                    <li class="menu-item"><a href="#testmonials"><i class="fa fa-fw fa-bell-o"></i><span>Testmonials</span></a></li>
-                    <li class="menu-item"><a href="#feedback"><i class="fa fa-fw fa-bell-o"></i><span>Feedback</span></a></li>
-                    <li class="menu-item"><a href="https://wrapbootstrap.com/theme/fletcher-personal-landing-page-html-WB029022K?ref=neuethemes" target="_blank"><i class="fa fa-fw fa-bell-o"></i><span>Buy the Template</span></a></li>
-                    <li class="socials">
-                        <ul>
-                            <li><a href="#!"><i class="flaticon-facebook44"></i></a></li>
-                            <li><a href="#!"><i class="flaticon-google110"></i></a></li>
-                            <li><a href="#!"><i class="flaticon-pinterest27"></i></a></li>
-                            <li><a href="#!"><i class="flaticon-instagram13"></i></a></li>
-                            <li><a href="#!"><i class="flaticon-linkedin21"></i></a></li>
-                            <li><a href="#!"><i class="flaticon-twitter37"></i></a></li>
-                        </ul>
-                    </li>*@
+        
             </ul>
 
 
@@ -156,43 +122,8 @@
             <div></div>
         </div>
     </div>
-    <!-- / Off-canvas menu -->
 
     <div class="content-wrap bg-color14">
-
-        <!-- main-top -->
-        <!-- Top Navigation -->
-        @*<header id="header-wrapper-mp" class="head-overlay sticky-menu-light pt-section" data-name="Home">*@
-        @*<header id="header-wrapper-mp" class="head-overlay pt-section" data-name="Home" style="display:none">
-                @*<div class="sticky-header header-light sticky-overlay nobg" role="navigation">
-                <div class="header-light sticky-overlay nobg" role="navigation">
-                    <div class="container mp-nav">
-
-                        <!-- Logo -->
-                        <div id="site-title"><a href="/"><h1 class="font-accident-one-bold">Download YouTube</h1></a></div>
-
-                        <!-- Main menu -->
-                        <nav id="main-menu" class="nav site-navigation primary-navigation">
-                            <ul class="sf-menu clearfix" id="example">
-                                <li class="m-desktop menu-item active"><a href="#header-wrapper-mp">Home</a></li>
-                                <li class="m-desktop menu-item"><a href="#audio">Audio</a></li>
-                                <li class="m-desktop menu-item"><a href="#video">Video</a></li>
-
-                                <li class="mob-button">
-                                    <div class="menu-button nav-icon" id="open-button">
-                                        <div></div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-
-                    </div>
-
-                </div>
-
-            </header>*@
-        <!-- /Top Navigation -->
-
         <section id="Home" class="pt-section" data-name="Home">
             <div class="container">
                 <div class="text-center color--youtube">
@@ -233,26 +164,6 @@
 
             </p>
         </section>
-        @*<ul class="social">
-                <li>
-
-                    <div class="text-center center-block fb-like"
-                         data-href="https://www.facebook.com/DownloadYouTubeOrg"
-                         data-colorscheme="light"
-                         data-layout="button_count"
-                         data-action="like"
-                         data-size="small"
-                         data-show-faces="false"
-                         data-share="true">
-                    </div>
-
-                </li>
-                <li>
-                    <g:plusone></g:plusone>
-                </li>
-            </ul>*@
-
-
         <div class="menu-button nav-icon" id="open-button">
             <div></div>
         </div>
@@ -263,7 +174,6 @@
 
 
         <div id="content">
-            <!-- Details Block -->
             <section id="video" class="e-block light pt-section" data-name="Video"></section>
 
 
@@ -273,49 +183,34 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-3">
-                                <!-- About Widget -->
                                 <h4>Download YouTube</h4>
                                 <div class="dividewhite2"></div>
                                 <p>Download YouTube audio & video</p>
-                                <!-- / About Widget -->
                                 <div class="dividewhite4"></div>
                             </div>
                             <div class="col-sm-3">
-                                <!-- Contacts Widget -->
                                 <h4>Contacts</h4>
                                 <div class="dividewhite2"></div>
                                 <div class="contact">
                                     <div class="footer-addr">
                                         <a href="mailto:admin@download-youtube.org" target="_blank">admin@download-youtube.org</a>
-                                        @*<div class="footer-icon"><i class="fa fa-home"></i></div>
-                                            <div class="addr-text">12345, Direct Drive - 110, Daytona Beach, Florida, USA</div>*@
+                                       
                                     </div>
                                     <div class="footer-addr">
-                                        @*<div class="footer-icon"><i class="fa fa-phone"></i></div>
-                                            <div class="addr-text">1 234 567 67 45</div>*@
+                                   
                                     </div>
                                 </div>
-                                <!-- / Contacts Widget -->
                                 <div class="dividewhite4"></div>
                             </div>
                             <div class="col-sm-3">
-                                <!-- Flickr feed Widget -->
                                 <h4>Media</h4>
                                 <div class="dividewhite2"></div>
                                 <ul id="basicuse" class="thumbs">
-                                    <!-- To make it working Flickr feed: uncomment the Flickr feed section
-                                    in script.js, set up the Flickr ID and delete all the li's with content below -->
-                                    @*<li><a href="http://www.flickr.com/photos/55166285@N00/1274107940/" ="the sunken garden by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1245/1274107940_ede5aa897d_s.jpg" class="img-rounded" alt="the sunken garden"></a></li>
-                                        <li><a href="http://www.flickr.com/photos/55166285@N00/1274119018/" ="tree rings by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1015/1274119018_1422d64d17_t.jpg" class="img-rounded" alt="tree rings"></a></li>
-                                        <li><a href="http://www.flickr.com/photos/55166285@N00/1274114292/" ="study of flowers by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1012/1274114292_f847986865_t.jpg" class="img-rounded" alt="study of flowers"></a></li>
-                                        <li><a href="http://www.flickr.com/photos/25251822@N07/23506251141/" ="study of flowers by perfectweb, on Flickr"><img src="https://c1.staticflickr.com/1/731/23506251141_0c177771be_t.jpg" class="img-rounded" alt="study of flowers"></a></li>
-                                        <li><a href="http://www.flickr.com/photos/55166285@N00/1274119018/" ="tree rings by perfectweb, on Flickr"><img src="https://c2.staticflickr.com/2/1015/1274119018_1422d64d17_t.jpg" class="img-rounded" alt="tree rings"></a></li>*@
+                                   
                                 </ul>
-                                <!-- / Flickr feed Widget -->
                                 <div class="dividewhite4"></div>
                             </div>
                             <div class="col-sm-3">
-                                <!-- Follow us Widget -->
                                 <h4>Follow us</h4>
 
 
@@ -344,7 +239,6 @@
                                     </div>
 
                                 </div>
-                                <!-- / Follow us Widget -->
                                 <div class="dividewhite4"></div>
                             </div>
                         </div>
@@ -358,72 +252,30 @@
                     </div>
                 </div>
             </footer>
-            <!-- /footer -->
-            <!-- Back to Top -->
             <div id="back-top"><a href="#top"></a></div>
-            <!-- /Back to Top -->
         </div>
     </div>
-    <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
-    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+    <script src="//code.jquery.com/jquery-1.12.3.min.js"></script> 
     @RenderSection("scripts", false)
-
-    @*<script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.all.min.js"></script>
-        <script src="//kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
-        @Html.Kendo().DeferredScripts()*@
 
     <div id="image-cache" class="hidden"></div>
 
-    <!-- CSS -->
-    @*<link href="assets/vendor/bootstrap/css/bootstrap.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />*@
+  
     <link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />
     <link href="assets/vendor/fontawesome/css/font-awesome.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
     <link href="assets/vendor/flaticon/flaticon.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
-
     <link href="assets/vendor/rs-plugin/css/settings.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
     <link href="assets/vendor/rs-plugin/css/layers.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
     <link href="assets/vendor/rs-plugin/css/navigation.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
-
     <link href="assets/vendor/mfp/css/magnific-popup.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
     <link href="assets/vendor/progresstracker/css/jquery.progresstracker.min.css" property='stylesheet' rel="stylesheet">
-
     <link href="~/assets/vendor/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="~/assets/vendor/pe-icon-7-stroke/css/helper.css" rel="stylesheet" />
-
     <link href="~/assets/vendor/audioplayer/css/audioplayer.css" rel="stylesheet" />
-
-    <!-- Custom CSS -->
     <link href="assets/custom/css/style.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
 
-
-
-    <!-- JS -->
-    @*<script type="text/javascript" src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>*@
-
-    @*<script type="text/javascript" src="assets/vendor/horiz-timeline/js/hortimeline.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/rs-plugin/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
-        <script type="text/javascript" src="assets/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
-        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
-
-        <script type="text/javascript" src="assets/vendor/jarallax/js/jarallax.js"></script>
-        <script type="text/javascript" src="assets/vendor/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/isotope/js/isotope.pkgd.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/mfp/js/jquery.magnific-popup.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/anicounter/jquery.counterup.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/circle-progress/circle-progress.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/waypoints/waypoints.min.js"></script>
-        <script type="text/javascript" src="assets/vendor/offcanvas-menu/js/classie.min.js"></script>*@
-
-    @*<script type="text/javascript" src="assets/vendor/flickr/js/jflickrfeed.min.js"></script>*@
     <script type="text/javascript" src="assets/vendor/sticky/js/jquery.sticky.min.js"></script>
     <script type="text/javascript" src="assets/vendor/progresstracker/js/jquery.progresstracker.min.js"></script>
-    @*<script type="text/javascript" src="assets/vendor/audioplayer/js/audioplayer.js"></script>
-        <script type="text/javascript" src="assets/vendor/audiojs/audiojs/audio.min.js"></script>*@
-    @*<script src="//api.html5media.info/1.2.2/html5media.min.js"></script>*@
     <script type="text/javascript" src="assets/custom/js/script.js"></script>
 
     <script>
@@ -432,9 +284,5 @@
         };
     </script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-    @*<script src="~/Scripts/bundle.js"></script>*@
-
-
 </body>
 </html>
