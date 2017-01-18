@@ -6,7 +6,7 @@ $(document).ready(function r() {
             $(".audioFiles").html('');
         }
         $.each(urlsArray, function f(indexInArray, valueOfElement) {
-            if (valueOfElement.indexOf('youtube.com/') > 0) {
+            if (valueOfElement.indexOf('youtube.com/') > 0 || valueOfElement.indexOf('youtu.be/') > 0) {
                 if (valueOfElement.lastIndexOf('list=') > 0) {
                     $.ajax({
                         url: '/home/getvideourlsfromplaylistid',

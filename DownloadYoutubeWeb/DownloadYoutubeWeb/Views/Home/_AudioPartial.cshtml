@@ -2,8 +2,8 @@
 
 
 <input type="checkbox" id="@Model.Guid" class="k-checkbox" checked="checked">
-<label class="k-checkbox-label" for="@Model.Guid"></label>
-<h5 class="team-member-title">@Model.title</h5>
+<label class="k-checkbox-label team-member-title" for="@Model.Guid">@Model.title</label>
+@*<h5 class="team-member-title">@Model.title</h5>*@
 <a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">
     <img src="@Model.PosterUrl" alt="@Model.title" class="img-responsive author-userpic center-block"><p></p>
 </a>

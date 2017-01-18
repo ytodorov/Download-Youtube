@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 
 namespace DownloadYoutubeWeb.Infrastructure
@@ -36,6 +37,23 @@ namespace DownloadYoutubeWeb.Infrastructure
                 videoUrls.Add(Url);
             }
             return videoUrls;
+        }
+
+        public static string GetFullUrlFromYouTube(string url)
+        {
+            if (url.ToLowerInvariant().Contains("youtu.be"))
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = client.GetAsync(url).Result;
+                    var fullUrl = response?.RequestMessage?.RequestUri?.ToString();
+                    return fullUrl;
+                }
+            }
+            else
+            {
+                return url;
+            }
         }
     }
 }

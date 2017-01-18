@@ -6,13 +6,12 @@
             var urls = $("#tbUrls").val();
 
             var urlsArray: string[] = urls.replace(/\n/g, " ").split(" ");
-            if (urlsArray.length > 0)
-            {
+            if (urlsArray.length > 0) {
                 $(".audioFiles").html('');
             }
 
-            $.each(urlsArray, function f(indexInArray, valueOfElement: string) { 
-                if (valueOfElement.indexOf('youtube.com/') > 0) {
+            $.each(urlsArray, function f(indexInArray, valueOfElement: string) {
+                if (valueOfElement.indexOf('youtube.com/') > 0 || valueOfElement.indexOf('youtu.be/') > 0) {
 
                     if (valueOfElement.lastIndexOf('list=') > 0) {
 

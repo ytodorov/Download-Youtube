@@ -14,5 +14,9 @@ namespace DownloadYoutubeWeb
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+        protected void Application_Error()
+        {
+            Exception ex = Server.GetLastError();
+        }
     }
 }

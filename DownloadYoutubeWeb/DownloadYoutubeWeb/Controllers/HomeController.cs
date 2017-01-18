@@ -59,12 +59,24 @@ namespace DownloadYoutubeWeb.Controllers
 
         }
 
+        
+
         public ActionResult DownloadAudio(string uri, string type)
         {
             YouTubeVideo video = GetVideo(uri, type);
             var bytes = video.GetBytes();
             string contentType = MimeMapping.GetMimeMapping(video.FullName);
             var result = File(bytes, contentType, video.FullName);
+
+            //var mp3Bytes = AudioUtils.GetMp3Bytes(bytes, Guid.NewGuid().ToString());
+            //string contentTypeMp3 = MimeMapping.GetMimeMapping("test.mp3");
+
+            //var changedExtension = video.FullName.Replace(video.FileExtension, ".mp3");
+
+            //var result = File(mp3Bytes, contentTypeMp3, changedExtension);
+
+            
+
             return result;
         }
 
@@ -107,6 +119,10 @@ namespace DownloadYoutubeWeb.Controllers
         }
         public ActionResult _AudioPartial(string uri)
         {
+            if (uri.ToLowerInvariant().Contains("youtu.be"))
+            {
+                uri = YoutubeManager.GetFullUrlFromYouTube(uri);
+            }
 
 
             int maxTryAttempts = 5;
@@ -123,11 +139,11 @@ namespace DownloadYoutubeWeb.Controllers
                     var videos = youTube.GetAllVideos(link).ToList(); // gets a Video object with info about the video
 
                     var youTubeGuid = string.Empty;
-                    var arr = uri.Split(new string[] { "v=" }, StringSplitOptions.RemoveEmptyEntries);
-                    if (arr.Length == 2)
-                    {
-                        youTubeGuid = arr[1];
-                    }
+                  
+                    Uri uriObject = new Uri(uri);
+                    youTubeGuid = HttpUtility.ParseQueryString(uriObject.Query).Get("v");
+
+                    
 
                     //var videos = MemoryCacheManager.Get("videos") as List<YouTubeVideo>;
                     var video = videos.FirstOrDefault(v => v.AdaptiveKind == AdaptiveKind.Audio);
@@ -161,10 +177,14 @@ namespace DownloadYoutubeWeb.Controllers
 
                 var postData = new MultipartFormDataContent();
                 postData.Add(new StringContent("ffmpeg"), "program");
-                postData.Add(new StringContent("ffmpeg.exe -i input.mp4 -vn -f mp3 -ab 192k output.mp3"), "args");
-                postData.Add(new StringContent("input.mp4"), "inputFileName");
+                postData.Add(new StringContent(" -i in -vn -f mp3 -ab 192k output.mp3"), "args");
+                postData.Add(new StringContent("in"), "inputFileName");
 
-                postData.Add(new StringContent("input.mp4"), "inputBytes");
+                var bytes = System.IO.File.ReadAllBytes(@"C:\tmp\1.mp4");
+
+                var inputBytesBase64 = Convert.ToBase64String(bytes);
+
+                postData.Add(new StringContent(inputBytesBase64), "inputBytesBase64");
 
                 
                 var address = $"home/ExecFfmpeg";
