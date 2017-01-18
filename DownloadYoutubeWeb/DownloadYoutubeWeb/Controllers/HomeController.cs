@@ -2,10 +2,12 @@
 using DownloadYoutubeWeb.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -149,5 +151,33 @@ namespace DownloadYoutubeWeb.Controllers
             }
             return new EmptyResult();
         }
+
+        public ActionResult Test()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:49722/");
+                client.Timeout = new TimeSpan(0, 20, 0);
+
+                var postData = new MultipartFormDataContent();
+                postData.Add(new StringContent("ffmpeg"), "program");
+                postData.Add(new StringContent("ffmpeg.exe -i input.mp4 -vn -f mp3 -ab 192k output.mp3"), "args");
+                postData.Add(new StringContent("input.mp4"), "inputFileName");
+
+                postData.Add(new StringContent("input.mp4"), "inputBytes");
+
+                
+                var address = $"home/ExecFfmpeg";
+
+                var response = client.PostAsync(address, postData).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = response.Content.ReadAsStringAsync().Result;
+                   
+                }
+            }
+            return null;
+        }
+
     }
 }

@@ -12,7 +12,7 @@
             }
 
             $.each(urlsArray, function f(indexInArray, valueOfElement: string) { 
-                if (valueOfElement.indexOf('youtube.com/watch?v=') > 0) {
+                if (valueOfElement.indexOf('youtube.com/') > 0) {
 
                     if (valueOfElement.lastIndexOf('list=') > 0) {
 
