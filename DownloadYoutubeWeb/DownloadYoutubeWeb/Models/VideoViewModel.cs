@@ -29,5 +29,7 @@ namespace DownloadYoutubeWeb.Models
         public string AudioUrlToPlay { get; set; }
 
         public string AudioUrlVorbis { get; set; }
+
+        public string VideoId { get; set; }
     }
 }

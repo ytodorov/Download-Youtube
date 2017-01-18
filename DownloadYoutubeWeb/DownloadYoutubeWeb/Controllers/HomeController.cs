@@ -146,18 +146,22 @@ namespace DownloadYoutubeWeb.Controllers
                     
 
                     //var videos = MemoryCacheManager.Get("videos") as List<YouTubeVideo>;
-                    var video = videos.FirstOrDefault(v => v.AdaptiveKind == AdaptiveKind.Audio);
-                    VideoViewModel videoVM = new VideoViewModel();
-                    videoVM.Guid = Guid.NewGuid().ToString();
-                    videoVM.PosterUrl = $"//img.youtube.com/vi/{youTubeGuid}/1.jpg";
-                    videoVM.AudioBitrate = video.AudioBitrate;
-                    videoVM.AudioFormat = video.AudioFormat.ToString();
-                    videoVM.FileExtension = video.FileExtension;
-                    videoVM.title = video.Title.Replace(" - YouTube", string.Empty);
-                    videoVM.source = video.Uri;
-                    videoVM.AudioUrlMp4 = HttpUtility.UrlEncode(uri.EncodeBase64());
-                    videoVM.AudioUrlToPlay = video.Uri;
-                    return PartialView(videoVM);
+                    var video = videos.FirstOrDefault(v => v.Format ==  VideoFormat.Mp4 && v.Resolution == 360);
+                    if (video != null)
+                    {
+                        VideoViewModel videoVM = new VideoViewModel();
+                        videoVM.Guid = Guid.NewGuid().ToString();
+                        videoVM.PosterUrl = $"//img.youtube.com/vi/{youTubeGuid}/1.jpg";
+                        videoVM.AudioBitrate = video.AudioBitrate;
+                        videoVM.AudioFormat = video.AudioFormat.ToString();
+                        videoVM.FileExtension = video.FileExtension;
+                        videoVM.title = video.Title.Replace(" - YouTube", string.Empty);
+                        videoVM.source = video.Uri;
+                        videoVM.AudioUrlMp4 = HttpUtility.UrlEncode(uri.EncodeBase64());
+                        videoVM.AudioUrlToPlay = video.Uri;
+                        videoVM.VideoId = youTubeGuid;
+                        return PartialView(videoVM);
+                    }
                 }
                 catch (Exception)
                 {
