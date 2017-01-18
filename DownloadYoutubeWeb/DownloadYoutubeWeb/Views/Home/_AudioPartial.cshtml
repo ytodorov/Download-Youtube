@@ -1,16 +1,19 @@
 ﻿@model VideoViewModel
 
-    <h5 class="team-member-title">@Model.title</h5>
-    <a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">
-        <img src="@Model.PosterUrl" alt="@Model.title" class="img-responsive author-userpic center-block"><p></p>
-    </a>
+
+<input type="checkbox" id="@Model.Guid" class="k-checkbox" checked="checked">
+<label class="k-checkbox-label" for="@Model.Guid"></label>
+<h5 class="team-member-title">@Model.title</h5>
+<a href="/home/downloadaudio?type=vorbis&uri=@Model.AudioUrlMp4">
+    <img src="@Model.PosterUrl" alt="@Model.title" class="img-responsive author-userpic center-block"><p></p>
+</a>
 @{
     var guid = Guid.NewGuid().ToString();
 }
-    <audio controls preload="none" id="@guid" title="@Model.title">
-        <source src="@Model.AudioUrlToPlay">           
-        Your browser does not support the audio element.
-    </audio>
+<audio controls preload="none" id="@guid" title="@Model.title">
+    <source src="@Model.AudioUrlToPlay">
+    Your browser does not support the audio element.
+</audio>
 
 @*<script>$(function () { $('#@guid').audioPlayer(); });</script>*@
 

@@ -7,6 +7,7 @@ namespace DownloadYoutubeWeb.Models
 {
     public class VideoViewModel
     {
+        public string Guid { get; set; }
         public string AdaptiveKind { get; set; }
         public int AudioBitrate { get; set; }
         public string AudioFormat { get; set; }

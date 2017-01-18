@@ -3,10 +3,13 @@
 
     $("#btnLoadUrls").click(
         function btnLoadUrls_Click(e) {
-            debugger;
             var urls = $("#tbUrls").val();
 
-            var urlsArray = urls.replace(/\n/g, " ").split(" ");
+            var urlsArray: string[] = urls.replace(/\n/g, " ").split(" ");
+            if (urlsArray.length > 0)
+            {
+                $(".audioFiles").html('');
+            }
 
             $.each(urlsArray, function f(indexInArray, valueOfElement: string) { 
                 if (valueOfElement.indexOf('youtube.com/watch?v=') > 0) {
@@ -50,9 +53,6 @@
                         var last = $(".audioFiles").last();
                         last.append('<div class="col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
 
-
-
-                        debugger;
                         $.ajax({
                             url: '/home/_audiopartial',
                             type: 'POST',

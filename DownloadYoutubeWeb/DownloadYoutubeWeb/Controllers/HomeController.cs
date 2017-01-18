@@ -130,6 +130,7 @@ namespace DownloadYoutubeWeb.Controllers
                     //var videos = MemoryCacheManager.Get("videos") as List<YouTubeVideo>;
                     var video = videos.FirstOrDefault(v => v.AdaptiveKind == AdaptiveKind.Audio);
                     VideoViewModel videoVM = new VideoViewModel();
+                    videoVM.Guid = Guid.NewGuid().ToString();
                     videoVM.PosterUrl = $"//img.youtube.com/vi/{youTubeGuid}/1.jpg";
                     videoVM.AudioBitrate = video.AudioBitrate;
                     videoVM.AudioFormat = video.AudioFormat.ToString();
