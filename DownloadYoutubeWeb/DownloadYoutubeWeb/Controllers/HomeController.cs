@@ -83,8 +83,8 @@ namespace DownloadYoutubeWeb.Controllers
             //stream.Read(bytes, 0, bytes.Length);
 
             var bytes = video.GetBytes();
-
-            bytes = AudioUtils.ConvertToMp3Bytes(bytes, video.FileExtension);
+            
+            bytes = AudioUtils.ConvertToMp3Bytes(Server, bytes, video.FileExtension);
             string contentTypeMp3 = MimeMapping.GetMimeMapping("test.mp3");
             string mp3FileName = Path.GetFileNameWithoutExtension(video.FullName) + ".mp3";
 

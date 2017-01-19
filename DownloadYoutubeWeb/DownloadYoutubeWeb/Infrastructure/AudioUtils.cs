@@ -62,14 +62,21 @@ namespace DownloadYoutubeWeb.Infrastructure
             return null;
         }
 
-        public static byte[] ConvertToMp3Bytes(byte[] bytes, string extensionWithDot)
+        public static byte[] ConvertToMp3Bytes(HttpServerUtilityBase server, byte[] bytes, string extensionWithDot)
         {
-            var tempFileInput = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + extensionWithDot);
+            var folderPath = server.MapPath("~/tmp");
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var tempFileInput = Path.Combine(folderPath, Guid.NewGuid().ToString() + extensionWithDot);
 
             File.WriteAllBytes(tempFileInput, bytes);
 
-            var tempFileOutput = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".mp3");
-
+            var tempFileOutput = Path.Combine(folderPath, Guid.NewGuid().ToString() + ".mp3");
+            
             var inputFile = new MediaFile { Filename = tempFileInput };
             var outputFile = new MediaFile { Filename = tempFileOutput };
 
@@ -84,8 +91,14 @@ namespace DownloadYoutubeWeb.Infrastructure
 
             }
 
-            File.Delete(tempFileInput);
-            File.Delete(tempFileOutput);
+            for (int i = 0; i < 5; i++)
+            {                
+                File.Delete(tempFileInput);
+                File.Delete(tempFileOutput);
+                break;
+            }
+
+           
 
             return result;
         }
