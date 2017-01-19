@@ -28,43 +28,64 @@ namespace DownloadYoutubeWeb.Controllers
 
         public ActionResult DownloadAll(string[] uris, string type)
         {
-            uris = new string[] { "https://www.youtube.com/watch?v=MAqrLgRYxiU", "https://www.youtube.com/watch?v=tAbbE1oMXJQ" };
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                using (ZipArchive archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true, null))
-                {
-                    foreach (var uri in uris)
-                    {
-                        YouTubeVideo video = GetVideo(HttpUtility.UrlEncode(uri.EncodeBase64()), type);
+            //uris = new string[] { "https://www.youtube.com/watch?v=MAqrLgRYxiU", "https://www.youtube.com/watch?v=tAbbE1oMXJQ" };
+            //using (MemoryStream memoryStream = new MemoryStream())
+            //{
+            //    using (ZipArchive archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true, null))
+            //    {
+            //        foreach (var uri in uris)
+            //        {
+            //            YouTubeVideo video = GetVideo(HttpUtility.UrlEncode(uri.EncodeBase64()), type);
 
-                        if (archive.Entries.Any(e => e.Name.Equals(video?.FullName, StringComparison.InvariantCultureIgnoreCase)))
-                        {
-                            continue;
-                        }
-                        using (ZipArchiveEntry entry = archive.CreateEntry(video?.FullName))
-                        {
-                            var renderedBytes = video.GetBytes();
-                            BinaryWriter writer = new BinaryWriter(entry.Open());
-                            writer.Write(renderedBytes);
-                            writer.Flush();
-                        }
-                    }
+            //            if (archive.Entries.Any(e => e.Name.Equals(video?.FullName, StringComparison.InvariantCultureIgnoreCase)))
+            //            {
+            //                continue;
+            //            }
+            //            using (ZipArchiveEntry entry = archive.CreateEntry(video?.FullName))
+            //            {
+            //                var renderedBytes = video.GetBytes();
+            //                BinaryWriter writer = new BinaryWriter(entry.Open());
+            //                writer.Write(renderedBytes);
+            //                writer.Flush();
+            //            }
+            //        }
 
-                }
-                var arr = memoryStream.ToArray();
-                string contentType = MimeMapping.GetMimeMapping("AllFiles.zip");
-                return File(arr, "application/zip", "AllFiles.zip");
-                //return File(arr, contentType, "AllFiles.zip");
-            }
-
+            //    }
+            //    var arr = memoryStream.ToArray();
+            //    string contentType = MimeMapping.GetMimeMapping("AllFiles.zip");
+            //    return File(arr, "application/zip", "AllFiles.zip");
+            //    //return File(arr, contentType, "AllFiles.zip");
+            //}
+            return new EmptyResult();
         }
 
         
 
-        public ActionResult DownloadAudio(string uri, string type)
+        public ActionResult DownloadAudio(string uri, string format, string formatCode, string resolution)
         {
-            YouTubeVideo video = GetVideo(uri, type);
+            YouTubeVideo video = GetVideo(uri, format, formatCode, resolution);
+
+            //var realUri = video.GetUriAsync().Result;
+
+            //Stream stream = null;
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    var response = client.GetAsync(realUri).Result;
+
+            //    stream = response.Content.ReadAsStreamAsync().Result;
+            //}
+
+
+            ////var stream = video.Stream();
+            //stream.Position = 0;
+            //byte[] bytes = new byte[stream.Length];
+
+            //stream.Read(bytes, 0, bytes.Length);
+
             var bytes = video.GetBytes();
+
+
+
             string contentType = MimeMapping.GetMimeMapping(video.FullName);
             var result = File(bytes, contentType, video.FullName);
 
@@ -80,23 +101,16 @@ namespace DownloadYoutubeWeb.Controllers
             return result;
         }
 
-        private YouTubeVideo GetVideo(string uri, string type)
+        private YouTubeVideo GetVideo(string uri, string format, string formatCode, string resolution)
         {
             uri = HttpUtility.UrlDecode(uri).DecodeBase64();
 
 
             var youTube = YouTube.Default; // starting point for YouTube actions
             var videosToShow = youTube.GetAllVideos(uri).ToList(); // gets a Video object with info about the video
-            var videos = videosToShow.Where(v => v.AdaptiveKind == AdaptiveKind.Audio);
-            YouTubeVideo video = null;
-            if (type?.IsCaseInsensitiveEqual("Mp4") == true)
-            {
-                video = videos.FirstOrDefault(v => v.Format == VideoFormat.Mp4);
-            }
-            else
-            {
-                video = videos.FirstOrDefault(v => v.Format != VideoFormat.Mp4);
-            }
+            YouTubeVideo video = videosToShow.FirstOrDefault(v => v.Format.ToString() == format
+            && v.FormatCode.ToString() == formatCode && v.Resolution.ToString() == resolution);
+   
             return video;
         }
 
@@ -128,7 +142,7 @@ namespace DownloadYoutubeWeb.Controllers
             int maxTryAttempts = 5;
             for (int i = 0; i < maxTryAttempts; i++)
             {
-
+                
 
                 try
                 {
@@ -143,25 +157,42 @@ namespace DownloadYoutubeWeb.Controllers
                     Uri uriObject = new Uri(uri);
                     youTubeGuid = HttpUtility.ParseQueryString(uriObject.Query).Get("v");
 
-                    
+
 
                     //var videos = MemoryCacheManager.Get("videos") as List<YouTubeVideo>;
-                    var video = videos.FirstOrDefault(v => v.Format ==  VideoFormat.Mp4 && v.Resolution == 360);
-                    if (video != null)
+                    //var video = videos.FirstOrDefault(v => v.Format ==  VideoFormat.Mp4 && v.Resolution == 360);
+
+                    List<VideoViewModel> resultList = new List<VideoViewModel>();
+                    foreach (var video in videos)
                     {
-                        VideoViewModel videoVM = new VideoViewModel();
-                        videoVM.Guid = Guid.NewGuid().ToString();
-                        videoVM.PosterUrl = $"//img.youtube.com/vi/{youTubeGuid}/1.jpg";
-                        videoVM.AudioBitrate = video.AudioBitrate;
-                        videoVM.AudioFormat = video.AudioFormat.ToString();
-                        videoVM.FileExtension = video.FileExtension;
-                        videoVM.title = video.Title.Replace(" - YouTube", string.Empty);
-                        videoVM.source = video.Uri;
-                        videoVM.AudioUrlMp4 = HttpUtility.UrlEncode(uri.EncodeBase64());
-                        videoVM.AudioUrlToPlay = video.Uri;
-                        videoVM.VideoId = youTubeGuid;
-                        return PartialView(videoVM);
+
+
+                        if (video != null)
+                        {
+                            VideoViewModel videoVM = new VideoViewModel();
+                            videoVM.Guid = Guid.NewGuid().ToString();
+                            videoVM.Format = video.Format.ToString();
+                            videoVM.AdaptiveKind = video.AdaptiveKind.ToString();
+                            videoVM.PosterUrl = $"//img.youtube.com/vi/{youTubeGuid}/1.jpg";
+                            videoVM.AudioBitrate = video.AudioBitrate;
+                            videoVM.AudioFormat = video.AudioFormat.ToString();
+                            videoVM.FileExtension = video.FileExtension;
+                            videoVM.FormatCode = video.FormatCode;
+                            
+                            videoVM.title = video.Title.Replace(" - YouTube", string.Empty);
+                            videoVM.AudioUrlMp4 = HttpUtility.UrlEncode(uri.EncodeBase64());
+                            videoVM.Resolution = video.Resolution;
+                            // тука забива
+                            //videoVM.source = video.Uri;
+
+                            //videoVM.AudioUrlToPlay = video.Uri;
+                            videoVM.VideoId = youTubeGuid;
+                            resultList.Add(videoVM);
+                            //return PartialView(videoVM);
+                        }
                     }
+                    resultList = resultList.Where(r => r != null && r.AdaptiveKind != AdaptiveKind.None.ToString()).ToList();
+                    return PartialView(resultList);
                 }
                 catch (Exception)
                 {
