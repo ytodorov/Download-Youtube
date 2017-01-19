@@ -71,11 +71,12 @@ namespace DownloadYoutubeWeb.Infrastructure
                 Directory.CreateDirectory(folderPath);
             }
 
-            var tempFileInput = Path.Combine(folderPath, Guid.NewGuid().ToString() + extensionWithDot);
+            var tempFileInput = Path.Combine(folderPath, "input" + Guid.NewGuid().ToString() + extensionWithDot);
 
             File.WriteAllBytes(tempFileInput, bytes);
 
-            var tempFileOutput = Path.Combine(folderPath, Guid.NewGuid().ToString() + ".mp3");
+            var tempFileOutput = Path.Combine(folderPath, "output" + Guid.NewGuid().ToString() + ".mp3");
+            File.WriteAllBytes(tempFileOutput, new byte[0]);
             
             var inputFile = new MediaFile { Filename = tempFileInput };
             var outputFile = new MediaFile { Filename = tempFileOutput };
@@ -90,15 +91,10 @@ namespace DownloadYoutubeWeb.Infrastructure
                 result = File.ReadAllBytes(outputFile.Filename);
 
             }
-
-            for (int i = 0; i < 5; i++)
-            {                
+              
                 File.Delete(tempFileInput);
                 File.Delete(tempFileOutput);
-                break;
-            }
-
-           
+       
 
             return result;
         }

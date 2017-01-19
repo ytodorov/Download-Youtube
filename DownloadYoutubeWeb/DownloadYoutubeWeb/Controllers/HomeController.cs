@@ -63,44 +63,52 @@ namespace DownloadYoutubeWeb.Controllers
 
         public ActionResult DownloadAudio(string uri, string format, string formatCode, string resolution)
         {
-            YouTubeVideo video = GetVideo(uri, format, formatCode, resolution);
+            try
+            {
+                YouTubeVideo video = GetVideo(uri, format, formatCode, resolution);
 
-            //var realUri = video.GetUriAsync().Result;
+                //var realUri = video.GetUriAsync().Result;
 
-            //Stream stream = null;
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    var response = client.GetAsync(realUri).Result;
+                //Stream stream = null;
+                //using (HttpClient client = new HttpClient())
+                //{
+                //    var response = client.GetAsync(realUri).Result;
 
-            //    stream = response.Content.ReadAsStreamAsync().Result;
-            //}
+                //    stream = response.Content.ReadAsStreamAsync().Result;
+                //}
 
 
-            ////var stream = video.Stream();
-            //stream.Position = 0;
-            //byte[] bytes = new byte[stream.Length];
+                ////var stream = video.Stream();
+                //stream.Position = 0;
+                //byte[] bytes = new byte[stream.Length];
 
-            //stream.Read(bytes, 0, bytes.Length);
+                //stream.Read(bytes, 0, bytes.Length);
 
-            var bytes = video.GetBytes();
+                var bytes = video.GetBytes();
+
+                bytes = AudioUtils.ConvertToMp3Bytes(Server, bytes, video.FileExtension);
+                string contentTypeMp3 = MimeMapping.GetMimeMapping("test.mp3");
+                string mp3FileName = Path.GetFileNameWithoutExtension(video.FullName) + ".mp3";
+
+                string contentType = MimeMapping.GetMimeMapping(video.FullName);
+                var result = File(bytes, contentTypeMp3, mp3FileName);
+
+                //var mp3Bytes = AudioUtils.GetMp3Bytes(bytes, Guid.NewGuid().ToString());
+                //string contentTypeMp3 = MimeMapping.GetMimeMapping("test.mp3");
+
+                //var changedExtension = video.FullName.Replace(video.FileExtension, ".mp3");
+
+                //var result = File(mp3Bytes, contentTypeMp3, changedExtension);
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message + e.StackTrace);
+            }
             
-            bytes = AudioUtils.ConvertToMp3Bytes(Server, bytes, video.FileExtension);
-            string contentTypeMp3 = MimeMapping.GetMimeMapping("test.mp3");
-            string mp3FileName = Path.GetFileNameWithoutExtension(video.FullName) + ".mp3";
 
-            string contentType = MimeMapping.GetMimeMapping(video.FullName);
-            var result = File(bytes, contentTypeMp3, mp3FileName);
-
-            //var mp3Bytes = AudioUtils.GetMp3Bytes(bytes, Guid.NewGuid().ToString());
-            //string contentTypeMp3 = MimeMapping.GetMimeMapping("test.mp3");
-
-            //var changedExtension = video.FullName.Replace(video.FileExtension, ".mp3");
-
-            //var result = File(mp3Bytes, contentTypeMp3, changedExtension);
-
-            
-
-            return result;
+           
         }
 
         private YouTubeVideo GetVideo(string uri, string format, string formatCode, string resolution)
