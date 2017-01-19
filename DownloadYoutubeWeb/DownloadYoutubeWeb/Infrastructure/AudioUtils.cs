@@ -1,4 +1,6 @@
-﻿using NAudio.Wave;
+﻿using MediaToolkit;
+using MediaToolkit.Model;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,6 +60,34 @@ namespace DownloadYoutubeWeb.Infrastructure
                 }
             }
             return null;
+        }
+
+        public static byte[] ConvertToMp3Bytes(byte[] bytes, string extensionWithDot)
+        {
+            var tempFileInput = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + extensionWithDot);
+
+            File.WriteAllBytes(tempFileInput, bytes);
+
+            var tempFileOutput = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".mp3");
+
+            var inputFile = new MediaFile { Filename = tempFileInput };
+            var outputFile = new MediaFile { Filename = tempFileOutput };
+
+            byte[] result = null;
+            using (var engine = new Engine())
+            {
+                engine.GetMetadata(inputFile);
+
+                engine.Convert(inputFile, outputFile);
+
+                result = File.ReadAllBytes(outputFile.Filename);
+
+            }
+
+            File.Delete(tempFileInput);
+            File.Delete(tempFileOutput);
+
+            return result;
         }
 
         
