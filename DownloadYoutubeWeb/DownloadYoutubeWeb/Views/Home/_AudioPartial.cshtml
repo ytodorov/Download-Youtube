@@ -2,40 +2,43 @@
 @{
     var video = Model.OrderBy(v => v.Resolution).FirstOrDefault(v => v.AdaptiveKind == AdaptiveKind.Video.ToString());
 }
-<div>
-    <input type="checkbox" id="@video.Guid" class="k-checkbox" checked="checked">
-    <label class="k-checkbox-label team-member-title" for="@video.Guid">@video.title</label>
-</div>
 
-@{
-    var guid = Guid.NewGuid().ToString();
-}
+<div style="border-bottom: 1px dashed #dadada;margin-bottom:10px; margin-top:10px">
+    <div>
+        <input type="checkbox" id="@video.Guid" class="k-checkbox" checked="checked">
+        <label class="k-checkbox-label team-member-title" for="@video.Guid">@video.title</label>
+    </div>
 
-<iframe id="ytplayer" type="text/html"
-        src="https://www.youtube.com/embed/@(video.VideoId)?autoplay=0&origin=http://example.com"
-        frameborder="0"></iframe>
-
-<div class="team-member-title">Download audio in:</div>
-<div>
-    @foreach (var v in Model)
-    {
-        if (v.AdaptiveKind == AdaptiveKind.Audio.ToString())
-        {
-            <a target="_blank" href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
-                @v.Format &nbsp;
-            </a>
-        }
+    @{
+        var guid = Guid.NewGuid().ToString();
     }
-</div>
-<div class="team-member-title">Download video in:</div>
-<div>
-    @foreach (var v in Model)
-    {
-        if (v.AdaptiveKind == AdaptiveKind.Video.ToString())
+
+    <iframe id="ytplayer" type="text/html"
+            src="https://www.youtube.com/embed/@(video.VideoId)?autoplay=0&origin=http://example.com"
+            frameborder="0"></iframe>
+
+    <div class="team-member-title">Download audio in:</div>
+    <div>
+        @foreach (var v in Model)
         {
-            <a target="_blank" href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
-                @v.Format-@v.Resolution &nbsp;
-            </a>
+            if (v.AdaptiveKind == AdaptiveKind.Audio.ToString())
+            {
+                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))" href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
+                    @v.Format &nbsp;
+                </a>
+            }
         }
-    }
+    </div>
+    <div class="team-member-title">Download video in:</div>
+    <div>
+        @foreach (var v in Model)
+        {
+            if (v.AdaptiveKind == AdaptiveKind.Video.ToString())
+            {
+                <a target="_blank" href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
+                    @v.Format-@v.Resolution &nbsp;
+                </a>
+            }
+        }
+    </div>
 </div>

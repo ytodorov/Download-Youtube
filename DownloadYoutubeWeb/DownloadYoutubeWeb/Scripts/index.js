@@ -74,10 +74,25 @@ $(document).ready(function r() {
             $("#btnLoadUrls").click();
         }, 500);
     });
-    $("#clearAudioFiles").click(function f() {
+    $("#clearAudioFiles").click(function () {
         $(".audioFiles").html("");
         $(".audioCompleted").hide();
         ;
+    });
+    $(".downloadInWebM").click(function () {
+        var aMp4 = $(".webm");
+        aMp4.each(function (num, elem) {
+            debugger;
+            var a = $(elem);
+            var href = a.attr('href');
+            window.open(href, '_parent');
+        });
+        aMp4.click();
+    });
+    $(".downloadInMp4").click(function () {
+        debugger;
+        var aMp4 = $(".mp4");
+        aMp4.click();
     });
     var timeout = setTimeout(function alignGoogle() {
         var g = $("div[id*='plusone'],iframe[id*='twitter']");

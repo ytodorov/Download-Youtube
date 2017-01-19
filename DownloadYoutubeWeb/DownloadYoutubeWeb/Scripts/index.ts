@@ -101,9 +101,30 @@
     });
 
 
-    $("#clearAudioFiles").click(function f() {
+    $("#clearAudioFiles").click(function () {
         $(".audioFiles").html("");
         $(".audioCompleted").hide();;
+    });
+
+    $(".downloadInWebM").click(function () {
+    
+
+        var aMp4 = $(".webm");
+
+        aMp4.each((num, elem) => {
+
+            debugger;
+            var a = $(elem);
+            var href = a.attr('href');
+            window.open(href, '_parent');
+        })
+
+        aMp4.click();
+    });
+    $(".downloadInMp4").click(function () {
+        debugger;
+        var aMp4 = $(".mp4");
+        aMp4.click();
     });
 
 
