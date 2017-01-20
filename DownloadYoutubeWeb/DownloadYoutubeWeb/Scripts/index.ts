@@ -148,6 +148,7 @@
 });
 
 function GetCultureTwoLetterISOLanguageName() {
+    debugger;
     if (window.location.href.toLowerCase().indexOf("/bg") >= 0) 
     {
         return "/bg";
