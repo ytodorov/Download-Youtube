@@ -1,49 +1,42 @@
-﻿<section id="audio" class="pt-section" data-name="Audio">
+﻿<section id="audio" class="pt-section" data-name="@Resource.Audio">
     <div class="container dark">
-
         <div class="text-center">
-                      
-            <p><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="btnLoadExample1">Click for Example</a></p>
-                <textarea class="k-textbox bg-color00" id="tbUrls" style="width:95%;height:200px" placeholder="Paste youtube urls here."></textarea>
-    
+            <p><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="btnLoadExample1">@Resource.BtnExampleText</a></p>
+            <textarea class="k-textbox bg-color00" id="tbUrls" style="width:95%;height:200px" placeholder="@Resource.TbUrlsPlaceholder"></textarea>
             <br />
-            <p><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="btnLoadUrls">Extract</a></p>    
-      
+            <div>
+                <p><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="btnLoadUrls">@Resource.BtnLoadUrlsMetadataText</a></p>
+            </div>
+
         </div>
-        <p class="small text-center center-block  audioCompleted" style="display:none"><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="clearAudioFiles">Clear</a></p>
+        <p class="small text-center center-block  audioCompleted" style="display:none">
+        <a href="javascript:void(0)" class="btn btn-lgr-str bg-color00" id="clearAudioFiles">@Resource.BtnClearText</a>
+        </p>
         <div class="row audioFiles">
 
         </div>
-        <div class="row audioCompleted" style="display:none">
+        @*<div class="row audioCompleted" style="display:none">
             <div class="col-md-6 infoblock">
                 <h4 class="font-accident-one-bold text-center"><a href="javascript:void(0)" class="downloadInMp4">Download selected in Mp4 (AAC)</a></h4>
                 <p class="small text-justify">
                     Advanced Audio Coding (AAC) is an audio coding standard for lossy digital audio compression. Designed to be the successor of the MP3 format, AAC generally achieves better sound quality than MP3 at similar bit rates.
                 </p>
-                <p class="small text-center center-block"><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00 downloadInMp4">Download</a></p>    
+                <p class="small text-center center-block"><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00 downloadInMp4">Download</a></p>
             </div>
             <div class="col-md-6 infoblock">
                 <h4 class="font-accident-one-bold text-center"><a href="javascript:void(0)" class="downloadInWebM">Download selected in WebM (Vorbis)</a></h4>
-            
+
                 <p class="small text-justify">
                     Vorbis is a free and open-source software project headed by the Xiph.Org Foundation (formerly Xiphophorus company). The project produces an audio coding format and software reference encoder/decoder (codec) for lossy audio compression. Vorbis is most commonly used in conjunction with the Ogg container format and it is therefore often referred to as Ogg Vorbis.
                 </p>
-                <p class="small text-center center-block"><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00 downloadInWebM">Download</a></p>    
-            </div>    
-            @*<div class="col-md-6 infoblock">
-                <h4 class="font-accident-one-bold text-center"><a href="/home/downloadall?type=vorbis">Download selected in MP3</a></h4>
+                <p class="small text-center center-block"><a href="javascript:void(0)" class="btn btn-lgr-str bg-color00 downloadInWebM">Download</a></p>
+            </div>          
+        </div>*@
 
-                <p class="small text-justify">
-                    MPEG-1 and/or MPEG-2 Audio Layer III, more commonly referred to as MP3, is an audio coding format for digital audio which uses a form of lossy data compression. It is a common audio format for consumer audio streaming or storage, as well as a de facto standard of digital audio compression for the transfer and playback of music on most digital audio players and computing devices.
-                </p>
-                <p class="small text-center center-block"><a href="/home/downloadall?type=mp3" class="btn btn-lgr-str bg-color00">Download</a></p>
-            </div>*@            
-        </div>
-      
     </div>
 </section>
 @section scripts {
-<script src="~/scripts/index.js"></script>
-    }
+    <script src="~/scripts/index.js"></script>
+}
 
 

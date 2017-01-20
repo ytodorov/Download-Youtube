@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="@Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName">
 <!--[if IE 9]>
 <html class="ie9" lang="en">    <![endif]-->
 <!--[if IE 8]>
 <html class="ie8" lang="en">    <![endif]-->
 <head>
-    <title>Download YouTube audio and video files.</title>
+    <title>@Resource.SiteTitle</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1">
@@ -49,7 +49,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+            js.src = "//connect.facebook.net/" + "@Thread.CurrentThread.CurrentCulture.Name" + "/sdk.js#xfbml=1&version=v2.8";
             fjs.parentNode.insertBefore(js, fjs);
         } (document, 'script', 'facebook-jssdk'));</script>
 
@@ -70,7 +70,7 @@
                 <li class="menu-item"><a href="#header-wrapper-mp"><i class="fa fa-fw fa-star-o"></i><span>Home</span></a></li>
                 <li class="menu-item"><a href="#audio"><i class="fa fa-fw fa-bell-o"></i><span>Audio</span></a></li>
                 <li class="menu-item"><a href="#video"><i class="fa fa-fw fa-bell-o"></i><span>Video</span></a></li>
-        
+
             </ul>
 
 
@@ -81,7 +81,7 @@
     </div>
 
     <div class="content-wrap bg-color14">
-        <section id="Home" class="pt-section" data-name="Home">
+        <section id="Home" class="pt-section" data-name="@Resource.Home">
             <div class="container">
                 <div class="text-center color--youtube">
                     <h1 class="font-regular-bold hovercolor"><a href="/" target="_self">Download YouTube</a></h1>
@@ -93,7 +93,7 @@
             #___plusone_0 { vertical-align: bottom; }
         </style>
 
-        <section id="Social" class="pt-section" data-name="Social">
+        <section id="Social" class="pt-section" data-name="@Resource.FollowUs">
             <p class="text-center center-block">
                 <div class="container">
                     <div class="row">
@@ -131,7 +131,7 @@
 
 
         <div id="content">
-            <section id="video" class="e-block light pt-section" data-name="Video"></section>
+            <section id="video" class="e-block light pt-section" data-name="@Resource.Video"></section>
 
 
 
@@ -142,33 +142,41 @@
                             <div class="col-sm-3">
                                 <h4>Download YouTube</h4>
                                 <div class="dividewhite2"></div>
-                                <p>Download YouTube audio & video</p>
+                                <p>@Resource.SiteTitle</p>
                                 <div class="dividewhite4"></div>
                             </div>
                             <div class="col-sm-3">
-                                <h4>Contacts</h4>
+                                <h4>@Resource.Contacts</h4>
                                 <div class="dividewhite2"></div>
                                 <div class="contact">
                                     <div class="footer-addr">
                                         <a href="mailto:admin@download-youtube.org" target="_blank">admin@download-youtube.org</a>
-                                       
+
                                     </div>
                                     <div class="footer-addr">
-                                   
+
                                     </div>
                                 </div>
                                 <div class="dividewhite4"></div>
                             </div>
                             <div class="col-sm-3">
-                                <h4>Media</h4>
+                                <h4>Language</h4>
                                 <div class="dividewhite2"></div>
                                 <ul id="basicuse" class="thumbs">
-                                   
+                                    <li>
+                                        <a href="/">English
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/bg">
+                                            Български
+                                        </a>
+                                    </li>
                                 </ul>
                                 <div class="dividewhite4"></div>
                             </div>
                             <div class="col-sm-3">
-                                <h4>Follow us</h4>
+                                <h4>@Resource.FollowUs</h4>
 
 
 
@@ -204,7 +212,11 @@
                 <div id="copyrights-wrapper" class="e-block light bg-color01">
                     <div class="container text-center copy-container">
                         <div class="copyright">
-                            © @DateTime.Now.Year <a href="/" target="_blank">Download YouTube</a>. All rights reserved &nbsp;&nbsp;&nbsp;<a href="/" target="_blank">Legal Notice</a>&nbsp;&nbsp;&nbsp;<a href="/" target="_blank">Terms &amp; Conditions</a><br>
+                            © @DateTime.Now.Year
+                            <a href="/" target="_blank">Download YouTube</a>. @Resource.AllRightsReserved &nbsp;&nbsp;&nbsp;
+                            @*<a href="/" target="_blank">Legal Notice</a>&nbsp;&nbsp;&nbsp;
+                                <a href="/" target="_blank">Terms &amp; Conditions</a>*@
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -212,7 +224,7 @@
             <div id="back-top"><a href="#top"></a></div>
         </div>
     </div>
-    <script src="//code.jquery.com/jquery-1.12.3.min.js"></script> 
+    <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
     @RenderSection("scripts", false)
 
     <div id="image-cache" class="hidden"></div>
@@ -234,6 +246,9 @@
 
     <script type="text/javascript" src="assets/vendor/sticky/js/jquery.sticky.min.js"></script>
     <script type="text/javascript" src="assets/vendor/progresstracker/js/jquery.progresstracker.min.js"></script>
+
+    <script src="~/assets/custom/js/jquery-multidownload.js"></script>
+
     <script type="text/javascript" src="assets/custom/js/script.js"></script>
 
     <script>

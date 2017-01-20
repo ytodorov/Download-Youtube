@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DownloadYoutubeWeb.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,10 +14,14 @@ namespace DownloadYoutubeWeb
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            ControllerBuilder.Current.SetControllerFactory(new DefaultControllerFactory(new LocalizedControllerActivator()));
         }
         protected void Application_Error()
         {
             Exception ex = Server.GetLastError();
         }
     }
+
+
 }

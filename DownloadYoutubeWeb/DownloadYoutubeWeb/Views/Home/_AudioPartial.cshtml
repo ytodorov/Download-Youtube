@@ -17,19 +17,19 @@
             src="https://www.youtube.com/embed/@(video.VideoId)?autoplay=0&origin=http://example.com"
             frameborder="0"></iframe>
 
-    <div class="team-member-title">Download audio in:</div>
+    <div class="team-member-title">@Resource.DownloadAudioIn</div>
     <div>
         @foreach (var v in Model)
         {
             if (v.AdaptiveKind == AdaptiveKind.Audio.ToString())
             {
-                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))" href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
+                <a class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))" href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
                     @v.Format &nbsp;
                 </a>
             }
         }
     </div>
-    <div class="team-member-title">Download video in:</div>
+    <div class="team-member-title">@Resource.DownloadVideoIn</div>
     <div>
         @foreach (var v in Model)
         {

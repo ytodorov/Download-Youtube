@@ -18,9 +18,13 @@ namespace DownloadYoutubeWeb.Controllers
 {
     public class HomeController : Controller
     {
+        //protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
 
+        //    base.OnActionExecuting(filterContext);
+        //}
 
-        [OutputCache(Duration = 1, Location = System.Web.UI.OutputCacheLocation.Server)]
+        //[OutputCache(Duration = 1, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             return View();

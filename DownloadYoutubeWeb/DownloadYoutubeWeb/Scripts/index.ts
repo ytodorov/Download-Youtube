@@ -16,7 +16,7 @@
                     if (valueOfElement.lastIndexOf('list=') > 0) {
 
                         $.ajax({
-                            url: '/home/getvideourlsfromplaylistid',
+                            url: GetCultureTwoLetterISOLanguageName() + '/home/getvideourlsfromplaylistid',
                             type: 'POST',
                             data: { uri: valueOfElement },
                             success: function (resultArray: string[]) {
@@ -27,7 +27,7 @@
                                     last.append('<div class="col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
 
                                     $.ajax({
-                                        url: '/home/_audiopartial',
+                                        url: GetCultureTwoLetterISOLanguageName() +'/home/_audiopartial',
                                         type: 'POST',
                                         data: { uri: uri },
                                         success: function (result) {
@@ -53,7 +53,7 @@
                         last.append('<div class="col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
 
                         $.ajax({
-                            url: '/home/_audiopartial',
+                            url: GetCultureTwoLetterISOLanguageName() + '/home/_audiopartial',
                             type: 'POST',
                             data: { uri: valueOfElement },
                             success: function (result) {
@@ -107,24 +107,24 @@
     });
 
     $(".downloadInWebM").click(function () {
-    
+        var aMp4 : any = $(".webm");
+        aMp4.multiDownload({ delay: 5000 });
+        //aMp4.each((num, elem) => {
 
-        var aMp4 = $(".webm");
+        //    debugger;
+        //    var a = $(elem);
+        //    var href = a.attr('href');
+        //    window.open(href, '_parent');
+        //})
 
-        aMp4.each((num, elem) => {
-
-            debugger;
-            var a = $(elem);
-            var href = a.attr('href');
-            window.open(href, '_parent');
-        })
-
-        aMp4.click();
+        //aMp4.click();
     });
     $(".downloadInMp4").click(function () {
-        debugger;
-        var aMp4 = $(".mp4");
-        aMp4.click();
+        var aMp4: any = $(".webm");
+        aMp4.multiDownload({ delay: 5000 });
+        //debugger;
+        //var aMp4 = $(".mp4");
+        //aMp4.click();
     });
 
 
@@ -146,4 +146,12 @@
 
 
 });
+
+function GetCultureTwoLetterISOLanguageName() {
+    if (window.location.href.toLowerCase().indexOf("/bg") >= 0) 
+    {
+        return "/bg";
+    }
+    return "";
+}
 

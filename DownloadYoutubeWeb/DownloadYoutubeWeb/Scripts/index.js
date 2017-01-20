@@ -9,7 +9,7 @@ $(document).ready(function r() {
             if (valueOfElement.indexOf('youtube.com/') > 0 || valueOfElement.indexOf('youtu.be/') > 0) {
                 if (valueOfElement.lastIndexOf('list=') > 0) {
                     $.ajax({
-                        url: '/home/getvideourlsfromplaylistid',
+                        url: GetCultureTwoLetterISOLanguageName() + '/home/getvideourlsfromplaylistid',
                         type: 'POST',
                         data: { uri: valueOfElement },
                         success: function (resultArray) {
@@ -17,7 +17,7 @@ $(document).ready(function r() {
                                 var last = $(".audioFiles").last();
                                 last.append('<div class="col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
                                 $.ajax({
-                                    url: '/home/_audiopartial',
+                                    url: GetCultureTwoLetterISOLanguageName() + '/home/_audiopartial',
                                     type: 'POST',
                                     data: { uri: uri },
                                     success: function (result) {
@@ -38,7 +38,7 @@ $(document).ready(function r() {
                     var last = $(".audioFiles").last();
                     last.append('<div class="col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
                     $.ajax({
-                        url: '/home/_audiopartial',
+                        url: GetCultureTwoLetterISOLanguageName() + '/home/_audiopartial',
                         type: 'POST',
                         data: { uri: valueOfElement },
                         success: function (result) {
@@ -81,18 +81,21 @@ $(document).ready(function r() {
     });
     $(".downloadInWebM").click(function () {
         var aMp4 = $(".webm");
-        aMp4.each(function (num, elem) {
-            debugger;
-            var a = $(elem);
-            var href = a.attr('href');
-            window.open(href, '_parent');
-        });
-        aMp4.click();
+        aMp4.multiDownload({ delay: 5000 });
+        //aMp4.each((num, elem) => {
+        //    debugger;
+        //    var a = $(elem);
+        //    var href = a.attr('href');
+        //    window.open(href, '_parent');
+        //})
+        //aMp4.click();
     });
     $(".downloadInMp4").click(function () {
-        debugger;
-        var aMp4 = $(".mp4");
-        aMp4.click();
+        var aMp4 = $(".webm");
+        aMp4.multiDownload({ delay: 5000 });
+        //debugger;
+        //var aMp4 = $(".mp4");
+        //aMp4.click();
     });
     var timeout = setTimeout(function alignGoogle() {
         var g = $("div[id*='plusone'],iframe[id*='twitter']");
@@ -105,4 +108,10 @@ $(document).ready(function r() {
         }
     }, 2000);
 });
+function GetCultureTwoLetterISOLanguageName() {
+    if (window.location.href.toLowerCase().indexOf("/bg") >= 0) {
+        return "/bg";
+    }
+    return "";
+}
 //# sourceMappingURL=index.js.map

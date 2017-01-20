@@ -322,6 +322,7 @@
     <Content Include="assets\custom\images\WB029022K-01.png" />
     <Content Include="assets\custom\images\WB029022K-02.png" />
     <Content Include="assets\custom\images\WB029022K.png" />
+    <Content Include="assets\custom\js\jquery-multidownload.js" />
     <Content Include="assets\custom\js\script.js" />
     <Content Include="assets\custom\php\form.php" />
     <Content Include="assets\vendor\anicounter\jquery.counterup.min.js" />
@@ -525,10 +526,21 @@
     </Compile>
     <Compile Include="Infrastructure\AudioUtils.cs" />
     <Compile Include="Infrastructure\CacheManager.cs" />
+    <Compile Include="Infrastructure\LocalizedControllerActivator.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
     <Compile Include="Infrastructure\YoutubeManager.cs" />
     <Compile Include="Models\VideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.bg.Designer.cs">
+      <DependentUpon>Resource.bg.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -593,6 +605,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
