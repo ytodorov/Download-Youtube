@@ -517,6 +517,7 @@
     <Content Include="Scripts\bundle.min.js">
       <DependentUpon>bundle.js</DependentUpon>
     </Content>
+    <Content Include="sitemap.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
