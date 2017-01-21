@@ -15,7 +15,7 @@ $(document).ready(function r() {
                         success: function (resultArray) {
                             $.each(resultArray, function f(indexInArray, uri) {
                                 var last = $(".audioFiles").last();
-                                last.append('<div class="col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
+                                last.append('<div class="col-xs-12 col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
                                 $.ajax({
                                     url: GetCultureTwoLetterISOLanguageName() + '/home/_audiopartial',
                                     type: 'POST',
@@ -36,7 +36,7 @@ $(document).ready(function r() {
                 }
                 else {
                     var last = $(".audioFiles").last();
-                    last.append('<div class="col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
+                    last.append('<div class="col-xs-12 col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
                     $.ajax({
                         url: GetCultureTwoLetterISOLanguageName() + '/home/_audiopartial',
                         type: 'POST',
@@ -109,7 +109,7 @@ $(document).ready(function r() {
     }, 2000);
 });
 function GetCultureTwoLetterISOLanguageName() {
-    if (window.location.href.toLowerCase().indexOf("/bg") >= 0) {
+    if (window.location.toString().toLowerCase().indexOf("/bg") >= 0) {
         return "/bg";
     }
     return "";

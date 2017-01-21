@@ -210,7 +210,7 @@ namespace DownloadYoutubeWeb.Controllers
                 }
                 catch (Exception)
                 {
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                 }
 
             }

@@ -147,6 +147,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="SiteTitle" xml:space="preserve">
     <value>Download YouTube audio and video files.</value>
   </data>
