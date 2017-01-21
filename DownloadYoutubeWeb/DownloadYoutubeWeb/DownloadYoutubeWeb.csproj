@@ -512,6 +512,7 @@
     <Content Include="Libs\tr-TR\Kendo.Mvc.resources.dll" />
     <Content Include="Libs\uk-UA\Kendo.Mvc.resources.dll" />
     <Content Include="Libs\zh-CN\Kendo.Mvc.resources.dll" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\bundle.min.js">
       <DependentUpon>bundle.js</DependentUpon>
