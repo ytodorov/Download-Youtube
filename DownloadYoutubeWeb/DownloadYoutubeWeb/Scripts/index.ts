@@ -1,5 +1,18 @@
 ﻿$(document).ready(function r() {
 
+    $(".chooseLangugage").click(
+        function setCookie() {
+            var lang = $(this).attr("href");
+            if (lang == "/bg")
+            {
+                document.cookie = "userSetLangugaTo=bg";
+            }
+            else
+            {
+                document.cookie = "userSetLangugaTo=en";
+            }
+        }
+    );
 
     $("#btnLoadUrls").click(
         function btnLoadUrls_Click(e) {

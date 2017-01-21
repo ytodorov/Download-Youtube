@@ -27,6 +27,48 @@ namespace DownloadYoutubeWeb.Controllers
         //[OutputCache(Duration = 1, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
+            if (Request.Url.ToString().IndexOf("/bg", StringComparison.InvariantCultureIgnoreCase) == -1)
+            {
+                if (Request.Cookies["userSetLangugaTo"] == null)
+                {
+                    if (!Request.IsLocal)
+                    {
+                        using (HttpClient client = new HttpClient())
+                        {
+                            var ip = Request.UserHostAddress;
+                            var uriToGet = $"https://toolsfornet.com/iplocation/getipcountrycode?ip={ip}";
+                            var twoLetterCountry = client.GetStringAsync(uriToGet).Result?.ToLowerInvariant();
+                            if ("bg".Equals(twoLetterCountry, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                Response.Redirect("/bg");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (HttpClient client = new HttpClient())
+                        {
+                            var ip = "77.70.121.132";
+                            var uriToGet = $"https://toolsfornet.com/iplocation/getipcountrycode?ip={ip}";
+                            var twoLetterCountry = client.GetStringAsync(uriToGet).Result?.ToLowerInvariant();
+                            if ("bg".Equals(twoLetterCountry, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                Response.Redirect("/bg");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var setLanguage = Request.Cookies["userSetLangugaTo"].Value;
+                    //if (setLanguage?.Equals("en"))
+                    //{
+                    //    Response.Redirect("/bg");
+                    //}
+                }
+            }
+
+
             return View();
         }
 
@@ -63,7 +105,7 @@ namespace DownloadYoutubeWeb.Controllers
             return new EmptyResult();
         }
 
-        
+
 
         public ActionResult DownloadAudio(string uri, string format, string formatCode, string resolution)
         {
@@ -110,9 +152,9 @@ namespace DownloadYoutubeWeb.Controllers
             {
                 return Json(e.Message + e.StackTrace);
             }
-            
 
-           
+
+
         }
 
         private YouTubeVideo GetVideo(string uri, string format, string formatCode, string resolution)
@@ -124,7 +166,7 @@ namespace DownloadYoutubeWeb.Controllers
             var videosToShow = youTube.GetAllVideos(uri).ToList(); // gets a Video object with info about the video
             YouTubeVideo video = videosToShow.FirstOrDefault(v => v.Format.ToString() == format
             && v.FormatCode.ToString() == formatCode && v.Resolution.ToString() == resolution);
-   
+
             return video;
         }
 
@@ -156,7 +198,7 @@ namespace DownloadYoutubeWeb.Controllers
             int maxTryAttempts = 5;
             for (int i = 0; i < maxTryAttempts; i++)
             {
-                
+
 
                 try
                 {
@@ -167,7 +209,7 @@ namespace DownloadYoutubeWeb.Controllers
                     var videos = youTube.GetAllVideos(link).ToList(); // gets a Video object with info about the video
 
                     var youTubeGuid = string.Empty;
-                  
+
                     Uri uriObject = new Uri(uri);
                     youTubeGuid = HttpUtility.ParseQueryString(uriObject.Query).Get("v");
 
@@ -192,7 +234,7 @@ namespace DownloadYoutubeWeb.Controllers
                             videoVM.AudioFormat = video.AudioFormat.ToString();
                             videoVM.FileExtension = video.FileExtension;
                             videoVM.FormatCode = video.FormatCode;
-                            
+
                             videoVM.title = video.Title.Replace(" - YouTube", string.Empty);
                             videoVM.AudioUrlMp4 = HttpUtility.UrlEncode(uri.EncodeBase64());
                             videoVM.Resolution = video.Resolution;
@@ -235,14 +277,14 @@ namespace DownloadYoutubeWeb.Controllers
 
                 postData.Add(new StringContent(inputBytesBase64), "inputBytesBase64");
 
-                
+
                 var address = $"home/ExecFfmpeg";
 
                 var response = client.PostAsync(address, postData).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     string json = response.Content.ReadAsStringAsync().Result;
-                   
+
                 }
             }
             return null;
