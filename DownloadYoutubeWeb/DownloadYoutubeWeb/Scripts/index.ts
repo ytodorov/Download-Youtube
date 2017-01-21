@@ -148,7 +148,9 @@
 });
 
 function GetCultureTwoLetterISOLanguageName() {
-    if (window.location.toString().toLowerCase().indexOf("/bg") >= 0) 
+    var html = $("html").first();
+    var lang = html.attr("lang");
+    if (lang == "bg") 
     {
         return "/bg";
     }
