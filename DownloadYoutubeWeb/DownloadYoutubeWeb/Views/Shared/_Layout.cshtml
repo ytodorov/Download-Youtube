@@ -87,11 +87,12 @@
                     <h1 class="font-regular-bold hovercolor"><a href="/" target="_self" class="ahome">Download YouTube</a></h1>
                 </div>
                 <div class="text-center color--youtube">
-                    <h2 class="font-regular-normal hovercolor">@Resource.SiteTitle</h2>
+                    <h2 class="font-regular-normal hovercolor">@Resource.SiteTitle.Replace(".", string.Empty)</h2>
                 </div>
             </div>
         </section>
-        <section id="Social" class="pt-section" data-name="@Resource.FollowUs">
+        <div id="Social" class="pt-section" data-name="@Resource.FollowUs">
+            @*<h4 style="display:none">@Resource.FollowUs</h4>*@
 
             <div class="container">
                 <div class="row">
@@ -122,7 +123,7 @@
                 </div>
             </div>
 
-        </section>
+        </div>
         <div class="menu-button nav-icon" id="open-button">
             <div></div>
         </div>
