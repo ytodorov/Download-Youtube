@@ -146,7 +146,7 @@
 
     var timeout = setTimeout(function alignGoogle() {
 
-        var g = $("div[id*='plusone'],iframe[id*='twitter']");
+        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter']");
 
         g.mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
