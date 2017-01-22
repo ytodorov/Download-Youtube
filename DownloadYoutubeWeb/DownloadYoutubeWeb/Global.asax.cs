@@ -20,6 +20,11 @@ namespace DownloadYoutubeWeb
         protected void Application_Error()
         {
             Exception ex = Server.GetLastError();
+            // Yordan, handle error 500
+            if (ex is HttpException)
+            {
+                Response.Redirect("/");
+            }
         }
     }
 

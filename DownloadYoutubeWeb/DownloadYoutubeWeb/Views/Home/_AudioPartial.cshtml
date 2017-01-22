@@ -5,8 +5,9 @@
 
 <div style="border-bottom: 1px dashed #dadada;margin-bottom:10px; margin-top:10px">
     <div>
-        <input type="checkbox" id="@video.Guid" class="k-checkbox" checked="checked">
-        <label class="k-checkbox-label team-member-title" for="@video.Guid">@video.title</label>
+        @*<input type="checkbox" id="@video.Guid" class="k-checkbox" checked="checked">
+    <label class="k-checkbox-label team-member-title" for="@video.Guid">@video.title</label>*@
+        <div class="team-member-title">@video.title</div>
     </div>
 
     @{
@@ -17,17 +18,43 @@
             src="https://www.youtube.com/embed/@(video.VideoId)?autoplay=0&origin=http://example.com"
             frameborder="0"></iframe>
 
+    @*Ако няма target="_blank" то тогава не се свалят паралелно файловете, защото всеки следващ прекъсва предишния*@
     <div class="team-member-title">@Resource.DownloadAudioIn</div>
     <div>
-        @foreach (var v in Model)
-        {
-            if (v.AdaptiveKind == AdaptiveKind.Audio.ToString())
+        @{
+            var audios = Model.Where(a => a.AdaptiveKind == AdaptiveKind.Audio.ToString()).ToList();
+        }
+                @foreach (var v in audios)
+                {
+                    <i class="pe-7s-like" title="@Resource.Recommended"></i><a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
+                @v.Format &nbsp;
+            </a>
+            if (audios.IndexOf(v) == audios.Count - 1)
             {
-                <a class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))" href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
-                    @v.Format &nbsp;
+                <a  target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=mp3">
+                    mp3
+                </a>
+                <a  target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=m4a">
+                    m4a
+                </a>
+                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=wma">
+                    wma
+                </a>
+                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=flac">
+                    flac
+                </a>
+                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=wav">
+                    wav
                 </a>
             }
         }
+
     </div>
     <div class="team-member-title">@Resource.DownloadVideoIn</div>
     <div>

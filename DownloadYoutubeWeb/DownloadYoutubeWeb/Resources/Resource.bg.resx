@@ -150,6 +150,9 @@
   <data name="Language" xml:space="preserve">
     <value>Език</value>
   </data>
+  <data name="Recommended" xml:space="preserve">
+    <value>Препоръчително</value>
+  </data>
   <data name="SiteTitle" xml:space="preserve">
     <value>Изтегляне на YouTube аудио и видео файлове.</value>
   </data>

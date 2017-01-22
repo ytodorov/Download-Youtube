@@ -18,6 +18,20 @@ namespace DownloadYoutubeWeb.Controllers
 {
     public class HomeController : Controller
     {
+        protected override void HandleUnknownAction(string actionName)
+        {
+            if (Request.Cookies["userSetLangugaTo"] == null)
+            {
+                Response.Redirect("/");
+            }
+            else
+            {
+                var lang = Request.Cookies["userSetLangugaTo"].Value;
+                Response.Redirect("/" + lang);
+            }
+               
+            //base.HandleUnknownAction(actionName);
+        }
         //protected override void OnActionExecuting(ActionExecutingContext filterContext)
         //{
 
@@ -107,11 +121,48 @@ namespace DownloadYoutubeWeb.Controllers
 
 
 
-        public ActionResult DownloadAudio(string uri, string format, string formatCode, string resolution)
+        public ActionResult DownloadAudio(string uri, string format, string formatcode, string resolution, string convertto)
         {
             try
             {
-                YouTubeVideo video = GetVideo(uri, format, formatCode, resolution);
+                YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
+
+                if (!string.IsNullOrEmpty(convertto))
+                {
+                    var inputBytes = video.GetBytes();
+                    var inputFileBytesAsBase64String = Convert.ToBase64String(inputBytes);
+                    var inputFileExtensionWithDot = video.FileExtension;
+                    var outputFileExtensionWithDot = $".{convertto}";
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        //client.BaseAddress = new Uri("http://localhost:49722/");
+                        client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
+
+                        client.Timeout = TimeSpan.FromMinutes(10);
+
+                        var postData = new MultipartFormDataContent();
+                        postData.Add(new StringContent(inputFileBytesAsBase64String), "inputFileBytesAsBase64String");
+                        postData.Add(new StringContent(inputFileExtensionWithDot), "inputFileExtensionWithDot");
+                        postData.Add(new StringContent(outputFileExtensionWithDot), "outputFileExtensionWithDot");
+
+                        var address = $"home/ConvertAudio";
+
+                        var response = client.PostAsync(address, postData).Result;
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string str = response.Content.ReadAsStringAsync().Result;
+                            byte[] bArray = Convert.FromBase64String(str);
+
+                            string fn = Path.GetFileNameWithoutExtension(video.FullName) + "." + convertto;
+
+                            string ct = MimeMapping.GetMimeMapping(fn);
+                            var r = File(bArray, ct, fn);
+                            return r;
+                        }
+                    }
+
+                }
 
                 //var realUri = video.GetUriAsync().Result;
 

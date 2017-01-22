@@ -110,7 +110,7 @@
 
         setTimeout(function () {
             $("#btnLoadUrls").click();
-        }, 500);
+        }, 1);
     });
 
 

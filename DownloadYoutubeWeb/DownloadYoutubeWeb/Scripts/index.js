@@ -81,7 +81,7 @@ $(document).ready(function r() {
         $("#tbUrls").val(urlsForExample1);
         setTimeout(function () {
             $("#btnLoadUrls").click();
-        }, 500);
+        }, 1);
     });
     $("#clearAudioFiles").click(function () {
         $(".audioFiles").html("");
