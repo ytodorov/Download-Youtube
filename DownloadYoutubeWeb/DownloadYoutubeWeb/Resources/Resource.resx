@@ -141,11 +141,20 @@
   <data name="DownloadVideoIn" xml:space="preserve">
     <value>Download video in:</value>
   </data>
+  <data name="ExtractionInTheCloudDescription" xml:space="preserve">
+    <value>The extraction process of audio and video data of YouTube urls happens in the cloud, so it won’t drain any capacity from your computer.</value>
+  </data>
+  <data name="ExtractionInTheCloudTitle" xml:space="preserve">
+    <value>Extraction in the cloud</value>
+  </data>
   <data name="FollowUs" xml:space="preserve">
     <value>Follow us</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -156,10 +165,22 @@
   <data name="SiteTitle" xml:space="preserve">
     <value>Download YouTube audio and video files.</value>
   </data>
+  <data name="SupportMultipleFormatsDescription" xml:space="preserve">
+    <value>DownloadYouTube.org app supports the following formats: mp4, webm, mp3, m4a, wma, flac, wav, aac and ogg.</value>
+  </data>
+  <data name="SupportMultipleFormatsTitle" xml:space="preserve">
+    <value>Support multiple formats</value>
+  </data>
   <data name="TbUrlsPlaceholder" xml:space="preserve">
     <value>Paste YouTube video or playlist urls here.</value>
   </data>
   <data name="Video" xml:space="preserve">
     <value>Video</value>
+  </data>
+  <data name="WorksOnAllPlatformsDescription" xml:space="preserve">
+    <value>DownloadYouTube.org app runs in the browser, which means it works on all systems. It doesn’t matter If you use Windows, Mac or Linux. Just use a modern Browser!</value>
+  </data>
+  <data name="WorksOnAllPlatformsTitle" xml:space="preserve">
+    <value>Works on all platforms</value>
   </data>
 </root>

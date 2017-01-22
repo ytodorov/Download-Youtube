@@ -8,6 +8,8 @@ $(document).ready(function r() {
             document.cookie = "userSetLangugaTo=en";
         }
     });
+    debugger;
+    $("a.ahome").attr("href", GetCultureTwoLetterISOLanguageName());
     $("#btnLoadUrls").click(function btnLoadUrls_Click(e) {
         var urls = $("#tbUrls").val();
         var urlsArray = urls.replace(/\n/g, " ").split(" ");

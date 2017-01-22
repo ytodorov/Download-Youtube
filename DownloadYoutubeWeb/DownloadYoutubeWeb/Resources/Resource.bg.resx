@@ -141,11 +141,20 @@
   <data name="DownloadVideoIn" xml:space="preserve">
     <value>Зареждане на видеото във формат:</value>
   </data>
+  <data name="ExtractionInTheCloudDescription" xml:space="preserve">
+    <value>Извличането на аудио и видео данни от YouTube адреси става в облака, т.е. ресурсите на вашия компютър не се използват и той не се натоварва допълнително.</value>
+  </data>
+  <data name="ExtractionInTheCloudTitle" xml:space="preserve">
+    <value>Извличане в облака</value>
+  </data>
   <data name="FollowUs" xml:space="preserve">
     <value>Следвайте ни</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Начало</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Инфо</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Език</value>
@@ -156,10 +165,22 @@
   <data name="SiteTitle" xml:space="preserve">
     <value>Изтегляне на YouTube аудио и видео файлове.</value>
   </data>
+  <data name="SupportMultipleFormatsDescription" xml:space="preserve">
+    <value>Приложението DownloadYouTube.org поддържа следните формати: mp4, webm, mp3, m4a, wma, flac, wav, aac и ogg.</value>
+  </data>
+  <data name="SupportMultipleFormatsTitle" xml:space="preserve">
+    <value>Различни формати</value>
+  </data>
   <data name="TbUrlsPlaceholder" xml:space="preserve">
     <value>Поставете YouTube адреси на видеа или плейлисти тук.</value>
   </data>
   <data name="Video" xml:space="preserve">
     <value>Видео</value>
+  </data>
+  <data name="WorksOnAllPlatformsDescription" xml:space="preserve">
+    <value>Приложението DownloadYouTube.org работи в браузър и може да се използва от всички операционни системи. Няма значение дали сте с Windows, Mac или Linux. Просто използвайте модерен браузър.</value>
+  </data>
+  <data name="WorksOnAllPlatformsTitle" xml:space="preserve">
+    <value>Работа на много платформи</value>
   </data>
 </root>

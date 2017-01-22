@@ -14,6 +14,9 @@
         }
     );
 
+    debugger;
+    $("a.ahome").attr("href", GetCultureTwoLetterISOLanguageName());
+
     $("#btnLoadUrls").click(
         function btnLoadUrls_Click(e) {
             var urls = $("#tbUrls").val();

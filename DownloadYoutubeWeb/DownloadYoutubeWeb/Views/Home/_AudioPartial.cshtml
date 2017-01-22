@@ -6,7 +6,7 @@
 <div style="border-bottom: 1px dashed #dadada;margin-bottom:10px; margin-top:10px">
     <div>
         @*<input type="checkbox" id="@video.Guid" class="k-checkbox" checked="checked">
-    <label class="k-checkbox-label team-member-title" for="@video.Guid">@video.title</label>*@
+            <label class="k-checkbox-label team-member-title" for="@video.Guid">@video.title</label>*@
         <div class="team-member-title">@video.title</div>
     </div>
 
@@ -24,19 +24,20 @@
         @{
             var audios = Model.Where(a => a.AdaptiveKind == AdaptiveKind.Audio.ToString()).ToList();
         }
-                @foreach (var v in audios)
-                {
-                    <i class="pe-7s-like" title="@Resource.Recommended"></i><a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
-                @v.Format &nbsp;
+        @foreach (var v in audios)
+        {
+            <span class="hovercolor"><i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i></span>
+        <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+        href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
+                @v.Format.ToLowerInvariant() &nbsp;
             </a>
             if (audios.IndexOf(v) == audios.Count - 1)
             {
-                <a  target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=mp3">
                     mp3
                 </a>
-                <a  target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=m4a">
                     m4a
                 </a>
@@ -51,6 +52,14 @@
                 <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=wav">
                     wav
+                </a>
+                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=aac">
+                    aac
+                </a>
+                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=ogg">
+                    ogg
                 </a>
             }
         }

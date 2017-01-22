@@ -133,6 +133,24 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The extraction process of audio and video data of YouTube urls happens in the cloud, so it won’t drain any capacity from your computer..
+        /// </summary>
+        public static string ExtractionInTheCloudDescription {
+            get {
+                return ResourceManager.GetString("ExtractionInTheCloudDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extraction in the cloud.
+        /// </summary>
+        public static string ExtractionInTheCloudTitle {
+            get {
+                return ResourceManager.GetString("ExtractionInTheCloudTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Follow us.
         /// </summary>
         public static string FollowUs {
@@ -147,6 +165,15 @@ namespace DownloadYoutubeWeb.Resources {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        public static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
             }
         }
         
@@ -178,6 +205,24 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DownloadYouTube.org app supports the following formats: mp4, webm, mp3, m4a, wma, flac, wav, aac and ogg..
+        /// </summary>
+        public static string SupportMultipleFormatsDescription {
+            get {
+                return ResourceManager.GetString("SupportMultipleFormatsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support multiple formats.
+        /// </summary>
+        public static string SupportMultipleFormatsTitle {
+            get {
+                return ResourceManager.GetString("SupportMultipleFormatsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paste YouTube video or playlist urls here..
         /// </summary>
         public static string TbUrlsPlaceholder {
@@ -192,6 +237,24 @@ namespace DownloadYoutubeWeb.Resources {
         public static string Video {
             get {
                 return ResourceManager.GetString("Video", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DownloadYouTube.org app runs in the browser, which means it works on all systems. It doesn’t matter If you use Windows, Mac or Linux. Just use a modern Browser!.
+        /// </summary>
+        public static string WorksOnAllPlatformsDescription {
+            get {
+                return ResourceManager.GetString("WorksOnAllPlatformsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Works on all platforms.
+        /// </summary>
+        public static string WorksOnAllPlatformsTitle {
+            get {
+                return ResourceManager.GetString("WorksOnAllPlatformsTitle", resourceCulture);
             }
         }
     }
