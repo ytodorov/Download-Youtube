@@ -325,6 +325,7 @@
     <Content Include="assets\custom\js\jquery-multidownload.js" />
     <Content Include="assets\custom\js\script.js" />
     <Content Include="assets\custom\php\form.php" />
+    <Content Include="assets\img\DownloadYouTube.png" />
     <Content Include="assets\vendor\anicounter\jquery.counterup.min.js" />
     <Content Include="assets\vendor\audiojs\audiojs\audio.min.js" />
     <Content Include="assets\vendor\audiojs\audiojs\audiojs.swf" />
@@ -471,8 +472,6 @@
     <Content Include="assets\vendor\sticky\js\jquery.sticky.js" />
     <Content Include="assets\vendor\sticky\js\jquery.sticky.min.js" />
     <Content Include="assets\vendor\waypoints\waypoints.min.js" />
-    <Content Include="BlueDucks_FourFlossFiveSix.mp3" />
-    <Content Include="demo.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="libmp3lame.32.dll">
