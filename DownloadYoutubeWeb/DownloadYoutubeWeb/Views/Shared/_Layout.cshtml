@@ -21,7 +21,7 @@
     <link rel=icon href=favicon.ico sizes="16x16" type="image/png">
     <link href="~/assets/custom/css/preloader.css" rel="stylesheet" />
     <script>
-        (function (doc) { var addEvent = 'addEventListener', type = 'gesturestart', qsa = 'querySelectorAll', scales = [1, 1], meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : []; function fix() { meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1]; doc.removeEventListener(type, fix, true); } if ((meta = meta[meta.length - 1]) && addEvent in doc) { fix(); scales = [.25, 1.6]; doc[addEvent](type, fix, true); } } (document));
+        (function (doc) { var addEvent = 'addEventListener', type = 'gesturestart', qsa = 'querySelectorAll', scales = [1, 1], meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : []; function fix() { meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1]; doc.removeEventListener(type, fix, true); } if ((meta = meta[meta.length - 1]) && addEvent in doc) { fix(); scales = [.25, 1.6]; doc[addEvent](type, fix, true); } }(document));
     </script>
 </head>
 <body class="">
@@ -41,7 +41,7 @@
             };
 
             return t;
-        } (document, "script", "twitter-wjs"));</script>
+        }(document, "script", "twitter-wjs"));</script>
 
     <div id="fb-root"></div>
     <script>
@@ -51,7 +51,7 @@
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/" + "@Thread.CurrentThread.CurrentCulture.Name.Replace("-","_")" + "/sdk.js#xfbml=1&version=v2.8";
             fjs.parentNode.insertBefore(js, fjs);
-        } (document, 'script', 'facebook-jssdk'));</script>
+        }(document, 'script', 'facebook-jssdk'));</script>
 
     <div id="preloader">
         <div class="sk-folding-cube">
@@ -90,38 +90,38 @@
                     <h2 class="font-regular-normal hovercolor">@Resource.SiteTitle</h2>
                 </div>
             </div>
-        </section>          
+        </section>
         <section id="Social" class="pt-section" data-name="@Resource.FollowUs">
-            <p class="text-center center-block">@*<h5>@Resource.FollowUs</h5> SEO Hint*@
-                <div class="container">
-                    <div class="row">
-                        @*<div class="col-sm-2"></div>*@
-                        <div class="social-share col-sm-12">
-                            <div class="fb-like"
-                                 data-href="https://www.facebook.com/DownloadYouTubeOrg"
-                                 data-colorscheme="light"
-                                 data-layout="button_count"
-                                 data-action="like"
-                                 data-size="small"
-                                 data-show-faces="false"
-                                 data-share="true">
-                            </div>
-                            <a class="twitter-follow-button"
-                               style="vertical-align:bottom"
-                               href="https://twitter.com/DownloadYouT"
-                               data-show-screen-name="false">
-                            </a>
-                            <a class="twitter-share-button"
-                               href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fdownload-youtube.org"
-                               data-show-screen-name="false">
-                                Tweet
-                            </a>
-                            <div class="g-follow" data-size="medium" data-annotation="inline" data-width="200" data-href="https://plus.google.com/116818711365591733192" data-rel="author"></div>
-                            <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="200"></div>
+
+            <div class="container">
+                <div class="row">
+                    @*<div class="col-sm-2"></div>*@
+                    <div class="social-share col-sm-12">
+                        <div class="fb-like"
+                             data-href="https://www.facebook.com/DownloadYouTubeOrg"
+                             data-colorscheme="light"
+                             data-layout="button_count"
+                             data-action="like"
+                             data-size="small"
+                             data-show-faces="false"
+                             data-share="true">
                         </div>
+                        <a class="twitter-follow-button"
+                           style="vertical-align:bottom"
+                           href="https://twitter.com/DownloadYouT"
+                           data-show-screen-name="false">
+                        </a>
+                        <a class="twitter-share-button"
+                           href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fdownload-youtube.org"
+                           data-show-screen-name="false">
+                            Tweet
+                        </a>
+                        <div class="g-follow" data-size="medium" data-annotation="inline" data-width="200" data-href="https://plus.google.com/116818711365591733192" data-rel="author"></div>
+                        <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="200"></div>
                     </div>
                 </div>
-            </p>
+            </div>
+
         </section>
         <div class="menu-button nav-icon" id="open-button">
             <div></div>
@@ -135,7 +135,7 @@
         <div id="content">
             <section id="info" class="pt-section" data-name="@Resource.Info">
                 <div class="container dark">
-                    <div class="row features">                      
+                    <div class="row features">
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="feature">
                                 <h3><i class="pe-7s-medal"></i>&nbsp; @Resource.SupportMultipleFormatsTitle</h3>
