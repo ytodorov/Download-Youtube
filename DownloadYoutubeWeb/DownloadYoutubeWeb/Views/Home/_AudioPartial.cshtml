@@ -27,38 +27,38 @@
         @foreach (var v in audios)
         {
             <span class="hovercolor"><i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i></span>
-        <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-        href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
+            <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+               href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()">
                 @v.Format.ToLowerInvariant() &nbsp;
             </a>
             if (audios.IndexOf(v) == audios.Count - 1)
             {
-                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=mp3">
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&@Guid.NewGuid().ToString()&convertto=mp3">
                     mp3
                 </a>
-                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=m4a">
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&@Guid.NewGuid().ToString()&convertto=m4a">
                     m4a
                 </a>
-                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=wma">
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&@Guid.NewGuid().ToString()&convertto=wma">
                     wma
                 </a>
-                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=flac">
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&@Guid.NewGuid().ToString()&convertto=flac">
                     flac
                 </a>
-                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=wav">
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&@Guid.NewGuid().ToString()&convertto=wav">
                     wav
                 </a>
-                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=aac">
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&@Guid.NewGuid().ToString()&convertto=aac">
                     aac
                 </a>
-                <a target="_blank" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&convertto=ogg">
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&@Guid.NewGuid().ToString()&convertto=ogg">
                     ogg
                 </a>
             }
@@ -78,3 +78,24 @@
         }
     </div>
 </div>
+<script>
+    $("[data-guid]").click(function f() {
+        debugger;
+        var $a = $(this);
+        var guid = $a.attr("data-guid");
+        var href = $a.attr("href");
+
+        // Това показва popup-blocked
+
+        //$.ajax({
+        //    url: href,
+        //    success: function (g) {
+        //        window.open(href, '_blank');
+        //    }
+        //}
+        //    );
+
+
+    });
+
+</script>
