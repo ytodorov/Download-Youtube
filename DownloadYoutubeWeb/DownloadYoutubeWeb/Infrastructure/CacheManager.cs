@@ -9,7 +9,7 @@ namespace DownloadYoutubeWeb.Infrastructure
 {
     public static class MemoryCacheManager
     {
-        public static void Set(string key, object value, int? hoursToExpire = null)
+        public static void Set(string key, object value, double? hoursToExpire = null)
         {
             if (string.IsNullOrEmpty(key))
             {
@@ -17,7 +17,7 @@ namespace DownloadYoutubeWeb.Infrastructure
             }
             if (!hoursToExpire.HasValue)
             {
-                hoursToExpire = 168;
+                hoursToExpire = 10;
             }
             DateTimeOffset dto = new DateTimeOffset(DateTime.Now.AddHours(hoursToExpire.GetValueOrDefault()));
             MemoryCache.Default.Set(key, value, dto);

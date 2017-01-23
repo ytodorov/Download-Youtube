@@ -8,7 +8,6 @@ $(document).ready(function r() {
             document.cookie = "userSetLangugaTo=en";
         }
     });
-    debugger;
     $("a.ahome").attr("href", GetCultureTwoLetterISOLanguageName());
     $("#btnLoadUrls").click(function btnLoadUrls_Click(e) {
         var urls = $("#tbUrls").val();
@@ -94,7 +93,6 @@ $(document).ready(function r() {
         var aMp4 = $(".webm");
         aMp4.multiDownload({ delay: 5000 });
         //aMp4.each((num, elem) => {
-        //    debugger;
         //    var a = $(elem);
         //    var href = a.attr('href');
         //    window.open(href, '_parent');

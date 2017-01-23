@@ -16,29 +16,8 @@ using VideoLibrary;
 
 namespace DownloadYoutubeWeb.Controllers
 {
-    public class HomeController : Controller
-    {
-        protected override void HandleUnknownAction(string actionName)
-        {
-            if (Request.Cookies["userSetLangugaTo"] == null)
-            {
-                Response.Redirect("/");
-            }
-            else
-            {
-                var lang = Request.Cookies["userSetLangugaTo"].Value;
-                Response.Redirect("/" + lang);
-            }
-               
-            //base.HandleUnknownAction(actionName);
-        }
-        //protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        //{
-
-        //    base.OnActionExecuting(filterContext);
-        //}
-
-        //[OutputCache(Duration = 1, Location = System.Web.UI.OutputCacheLocation.Server)]
+    public class HomeController : BaseController
+    {       
         public ActionResult Index()
         {
             if (Request.Url.ToString().IndexOf("/bg", StringComparison.InvariantCultureIgnoreCase) == -1)
@@ -120,11 +99,27 @@ namespace DownloadYoutubeWeb.Controllers
         }
 
 
+        public ActionResult DownloadAudioStream(string guid)
+        {
+            FileContentResult fs = MemoryCacheManager.Get(guid) as FileContentResult;
+            return fs;
+        }
 
-        public ActionResult DownloadAudio(string uri, string format, string formatcode, string resolution, string convertto)
+        public ActionResult DownloadAudio(string uri, string format, string formatcode,
+            string resolution, string convertto, string guid, bool? leftclick)
         {
             try
             {
+                if (MemoryCacheManager.Get(guid) != null)
+                {
+                    if (leftclick.GetValueOrDefault() != true)
+                    {
+                        return MemoryCacheManager.Get(guid) as FileContentResult;
+                    }
+                    return Json(guid);
+                }
+
+
                 YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
 
                 if (!string.IsNullOrEmpty(convertto))
@@ -158,54 +153,35 @@ namespace DownloadYoutubeWeb.Controllers
 
                             string ct = MimeMapping.GetMimeMapping(fn);
                             var r = File(bArray, ct, fn);
-                            return r;
+                            if (leftclick.GetValueOrDefault() != true)
+                            {
+                                return r;
+                            }
+                            MemoryCacheManager.Set(guid, r, 0.1);                            
+                            return Json(guid);
                         }
                     }
 
                 }
 
-                //var realUri = video.GetUriAsync().Result;
-
-                //Stream stream = null;
-                //using (HttpClient client = new HttpClient())
-                //{
-                //    var response = client.GetAsync(realUri).Result;
-
-                //    stream = response.Content.ReadAsStreamAsync().Result;
-                //}
-
-
-                ////var stream = video.Stream();
-                //stream.Position = 0;
-                //byte[] bytes = new byte[stream.Length];
-
-                //stream.Read(bytes, 0, bytes.Length);
+              
 
                 var bytes = video.GetBytes();
-
-                //bytes = AudioUtils.ConvertToMp3Bytes(Server, bytes, video.FileExtension);
-                string contentTypeMp3 = MimeMapping.GetMimeMapping("test.mp3");
-                string mp3FileName = Path.GetFileNameWithoutExtension(video.FullName) + ".mp3";
 
                 string contentType = MimeMapping.GetMimeMapping(video.FullName);
                 var result = File(bytes, contentType, video.FullName);
 
-                //var mp3Bytes = AudioUtils.GetMp3Bytes(bytes, Guid.NewGuid().ToString());
-                //string contentTypeMp3 = MimeMapping.GetMimeMapping("test.mp3");
-
-                //var changedExtension = video.FullName.Replace(video.FileExtension, ".mp3");
-
-                //var result = File(mp3Bytes, contentTypeMp3, changedExtension);
-
-                return result;
+                if (leftclick.GetValueOrDefault() != true)
+                {
+                    return result;
+                }
+                MemoryCacheManager.Set(guid, result, 0.1);
+                return Json(guid);            
             }
             catch (Exception e)
             {
                 return Json(e.Message + e.StackTrace);
             }
-
-
-
         }
 
         private YouTubeVideo GetVideo(string uri, string format, string formatCode, string resolution)

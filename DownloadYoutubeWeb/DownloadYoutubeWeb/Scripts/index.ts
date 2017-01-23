@@ -14,7 +14,6 @@
         }
     );
 
-    debugger;
     $("a.ahome").attr("href", GetCultureTwoLetterISOLanguageName());
 
     $("#btnLoadUrls").click(
@@ -127,7 +126,6 @@
         aMp4.multiDownload({ delay: 5000 });
         //aMp4.each((num, elem) => {
 
-        //    debugger;
         //    var a = $(elem);
         //    var href = a.attr('href');
         //    window.open(href, '_parent');
