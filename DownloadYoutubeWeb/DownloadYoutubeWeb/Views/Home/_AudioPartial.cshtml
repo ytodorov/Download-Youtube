@@ -94,14 +94,19 @@
         var href = $a.attr("href");
         //$a.append('<i class="fa-li fa fa-spinner fa-spin ' + guid + '"></i>');
         // Това показва popup-blocked
-        debugger;
         var iToShow = $a.next("i");
         iToShow.show();
         $.ajax({
             url: href + "&leftclick=true",
             success: function (g) {
+                debugger;
+                var url = "/home/downloadaudiostream?guid=" + g;
+                if ($("span." + g).length == 0) {
+                    $('<a target="_blank" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+                }
                 iToShow.hide();
-                window.location = "/home/downloadaudiostream?guid=" + g;
+
+                //window.location = "/home/downloadaudiostream?guid=" + g;
             }
         }
             );
