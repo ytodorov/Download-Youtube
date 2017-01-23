@@ -102,7 +102,9 @@
                 debugger;
                 var url = "/home/downloadaudiostream?guid=" + g;
                 if ($("span." + g).length == 0) {
-                    $('<a target="_blank" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+                    var newGuid = new Date().getTime();
+                    $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+                    //$("a." + newGuid)[0].click();
                 }
                 iToShow.hide();
 

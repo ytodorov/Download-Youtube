@@ -110,11 +110,11 @@ namespace DownloadYoutubeWeb.Controllers
         {
             try
             {
-                if (Request.Browser.IsMobileDevice)
-                {
-                    // отваряме в нов таб
-                    leftclick = false;
-                }
+                //if (Request.Browser.IsMobileDevice)
+                //{
+                //    // отваряме в нов таб
+                //    leftclick = false;
+                //}
 
                 if (MemoryCacheManager.Get(guid) != null)
                 {
