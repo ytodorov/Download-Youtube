@@ -53,7 +53,7 @@
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=flac">
                     flac
                 </a>
-                  <i class="pe-7s-refresh pe-spin" style="display:none"></i>
+                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=wav">
                     wav
@@ -75,20 +75,23 @@
     </div>
     <div class="team-member-title">@Resource.DownloadVideoIn</div>
     <div>
-        @foreach (var v in Model)
+        @{
+            var videos = Model.Where(a => a.AdaptiveKind == AdaptiveKind.Video.ToString()).ToList();
+        }
+
+        @foreach (var v in videos)
         {
-            if (v.AdaptiveKind == AdaptiveKind.Video.ToString())
-            {
-                <a target="_blank" href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4">
-                    @v.Format-@v.Resolution &nbsp;
-                </a>
-            }
+            <a target="_blank" data-guid="@Guid.NewGuid().ToString()" title="@v.FormatCode"
+                href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()">
+                @v.Format-@v.Resolution &nbsp;
+            </a>
+            <i class="pe-7s-refresh pe-spin" style="display:none"></i>
         }
     </div>
 </div>
 <script>
     $("[data-guid]").unbind("click").click(function f(e) {
-       
+
         var $a = $(this);
         var guid = $a.attr("data-guid");
         var href = $a.attr("href");
@@ -99,7 +102,6 @@
         $.ajax({
             url: href + "&leftclick=true",
             success: function (g) {
-                debugger;
                 var url = "/home/downloadaudiostream?guid=" + g;
                 if ($("span." + g).length == 0) {
                     var newGuid = new Date().getTime();
@@ -111,7 +113,7 @@
                 //window.location = "/home/downloadaudiostream?guid=" + g;
             }
         }
-            );
+        );
 
         e.preventDefault();
 

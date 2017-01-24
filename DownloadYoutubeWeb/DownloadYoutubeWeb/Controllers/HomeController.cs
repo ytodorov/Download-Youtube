@@ -128,7 +128,10 @@ namespace DownloadYoutubeWeb.Controllers
 
                 YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
 
-                if (!string.IsNullOrEmpty(convertto))
+                string unencodedUri = HttpUtility.UrlDecode(uri).DecodeBase64();
+
+
+                if (!string.IsNullOrEmpty(convertto) || video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("video") == true)
                 {
                     var inputBytes = video.GetBytes();
                     var inputFileBytesAsBase64String = Convert.ToBase64String(inputBytes);
@@ -137,8 +140,8 @@ namespace DownloadYoutubeWeb.Controllers
 
                     using (HttpClient client = new HttpClient())
                     {
-                        //client.BaseAddress = new Uri("http://localhost:49722/");
-                        client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
+                        client.BaseAddress = new Uri("http://localhost:49722/");
+                        //client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
 
                         client.Timeout = TimeSpan.FromMinutes(10);
 
@@ -147,7 +150,24 @@ namespace DownloadYoutubeWeb.Controllers
                         postData.Add(new StringContent(inputFileExtensionWithDot), "inputFileExtensionWithDot");
                         postData.Add(new StringContent(outputFileExtensionWithDot), "outputFileExtensionWithDot");
 
-                        var address = $"home/ConvertAudio";
+                        string audioFormatCode = "bestaudio";
+
+                        if (video.FileExtension.ToLowerInvariant().Contains("mp4"))
+                        {
+                            audioFormatCode = "m4a";
+                        }
+                        else if (video.FileExtension.ToLowerInvariant().Contains("webm"))
+                        {
+                            audioFormatCode = "webm";
+                        }
+
+
+                        var args = $" -f {formatcode}+{audioFormatCode} {unencodedUri}";
+                        postData.Add(new StringContent(args), "args");
+                        postData.Add(new StringContent("youtube-dl"), "program");
+                        //youtube - dl.exe - f 278 + bestaudio https://www.youtube.com/watch?v=CevxZvSJLk8
+
+                        var address = $"home/youtubedownload";
 
                         var response = client.PostAsync(address, postData).Result;
                         if (response.IsSuccessStatusCode)
@@ -155,7 +175,11 @@ namespace DownloadYoutubeWeb.Controllers
                             string str = response.Content.ReadAsStringAsync().Result;
                             byte[] bArray = Convert.FromBase64String(str);
 
-                            string fn = Path.GetFileNameWithoutExtension(video.FullName) + "." + convertto;
+                            string fn = video.FullName;
+                            if (!string.IsNullOrEmpty(convertto))
+                            {
+                                fn = Path.GetFileNameWithoutExtension(video.FullName) + "." + convertto;
+                            }
 
                             string ct = MimeMapping.GetMimeMapping(fn);
                             var r = File(bArray, ct, fn);
