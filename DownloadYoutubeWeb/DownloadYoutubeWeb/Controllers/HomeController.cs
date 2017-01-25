@@ -9,7 +9,9 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using Telerik.Windows.Zip;
 using VideoLibrary;
@@ -101,11 +103,11 @@ namespace DownloadYoutubeWeb.Controllers
 
         public ActionResult DownloadAudioStream(string guid)
         {
-            FileContentResult fs = MemoryCacheManager.Get(guid) as FileContentResult;
+            ActionResult fs = MemoryCacheManager.Get(guid) as ActionResult;
             return fs;
         }
 
-        public ActionResult DownloadAudio(string uri, string format, string formatcode,
+        public async Task<ActionResult> DownloadAudio(string uri, string format, string formatcode,
             string resolution, string convertto, string guid, bool? leftclick)
         {
             try
@@ -120,7 +122,7 @@ namespace DownloadYoutubeWeb.Controllers
                 {
                     if (leftclick.GetValueOrDefault() != true)
                     {
-                        return MemoryCacheManager.Get(guid) as FileContentResult;
+                        return MemoryCacheManager.Get(guid) as ActionResult;
                     }
                     return Json(guid);
                 }
@@ -133,23 +135,16 @@ namespace DownloadYoutubeWeb.Controllers
 
                 if (!string.IsNullOrEmpty(convertto) || video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("video") == true)
                 {
-                    var inputBytes = video.GetBytes();
-                    var inputFileBytesAsBase64String = Convert.ToBase64String(inputBytes);
-                    var inputFileExtensionWithDot = video.FileExtension;
-                    var outputFileExtensionWithDot = $".{convertto}";
+                    
 
                     using (HttpClient client = new HttpClient())
                     {
-                        client.BaseAddress = new Uri("http://localhost:49722/");
-                        //client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
+                        //client.BaseAddress = new Uri("http://localhost:49722/");
+                        client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
 
                         client.Timeout = TimeSpan.FromMinutes(10);
-
                         var postData = new MultipartFormDataContent();
-                        postData.Add(new StringContent(inputFileBytesAsBase64String), "inputFileBytesAsBase64String");
-                        postData.Add(new StringContent(inputFileExtensionWithDot), "inputFileExtensionWithDot");
-                        postData.Add(new StringContent(outputFileExtensionWithDot), "outputFileExtensionWithDot");
-
+                       
                         string audioFormatCode = "bestaudio";
 
                         if (video.FileExtension.ToLowerInvariant().Contains("mp4"))
@@ -160,8 +155,7 @@ namespace DownloadYoutubeWeb.Controllers
                         {
                             audioFormatCode = "webm";
                         }
-
-
+                        
                         var args = $" -f {formatcode}+{audioFormatCode} {unencodedUri}";
                         postData.Add(new StringContent(args), "args");
                         postData.Add(new StringContent("youtube-dl"), "program");
@@ -169,26 +163,73 @@ namespace DownloadYoutubeWeb.Controllers
 
                         var address = $"home/youtubedownload";
 
+
+                     
+                        
+
+
+
                         var response = client.PostAsync(address, postData).Result;
                         if (response.IsSuccessStatusCode)
                         {
-                            string str = response.Content.ReadAsStringAsync().Result;
-                            byte[] bArray = Convert.FromBase64String(str);
-
-                            string fn = video.FullName;
-                            if (!string.IsNullOrEmpty(convertto))
+                            using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
                             {
-                                fn = Path.GetFileNameWithoutExtension(video.FullName) + "." + convertto;
+                                string baseDir = HostingEnvironment.ApplicationPhysicalPath;
+                                string tempFolderName = "tmp";
+                                string fullDirPath = Path.Combine(baseDir, tempFolderName);
+                                if (!Directory.Exists(fullDirPath))
+                                {
+                                    Directory.CreateDirectory(fullDirPath);
+                                }
+
+                                string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
+
+                                //Path.GetTempFileName();
+                                using (Stream streamToWriteTo = System.IO.File.Open(fileToWriteTo, FileMode.Create))
+                                {
+                                    streamToReadFrom.CopyToAsync(streamToWriteTo).Wait();
+
+                                   
+                                }
+                               
+
+                                //string str = System.IO.File.ReadAllText(fileToWriteTo);
+                                //byte[] bArray = Convert.FromBase64String(str);
+
+                                string fn = video.FullName;
+                                if (!string.IsNullOrEmpty(convertto))
+                                {
+                                    fn = Path.GetFileNameWithoutExtension(video.FullName) + "." + convertto;
+                                }
+
+                                string ct = MimeMapping.GetMimeMapping(fn);
+                                var r = File(fileToWriteTo, ct, fn);
+                                if (leftclick.GetValueOrDefault() != true)
+                                {
+                                    return r;
+                                }
+                                MemoryCacheManager.Set(guid, r, 0.1);
+                                return Json(guid);
                             }
 
-                            string ct = MimeMapping.GetMimeMapping(fn);
-                            var r = File(bArray, ct, fn);
-                            if (leftclick.GetValueOrDefault() != true)
-                            {
-                                return r;
-                            }
-                            MemoryCacheManager.Set(guid, r, 0.1);                            
-                            return Json(guid);
+                            //string str = response.Content.ReadAsStringAsync().Result;
+                            //    byte[] bArray = Convert.FromBase64String(str);
+
+                            //    string fn = video.FullName;
+                            //    if (!string.IsNullOrEmpty(convertto))
+                            //    {
+                            //        fn = Path.GetFileNameWithoutExtension(video.FullName) + "." + convertto;
+                            //    }
+
+                            //    string ct = MimeMapping.GetMimeMapping(fn);
+                            //    var r = File(bArray, ct, fn);
+                            //    if (leftclick.GetValueOrDefault() != true)
+                            //    {
+                            //        return r;
+                            //    }
+                            //    MemoryCacheManager.Set(guid, r, 0.1);
+                            //    return Json(guid);
+
                         }
                     }
 
