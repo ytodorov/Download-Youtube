@@ -205,6 +205,15 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fast and free download of YouTube audio and video files..
+        /// </summary>
+        public static string SiteDescription {
+            get {
+                return ResourceManager.GetString("SiteDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download YouTube audio and video files..
         /// </summary>
         public static string SiteTitle {

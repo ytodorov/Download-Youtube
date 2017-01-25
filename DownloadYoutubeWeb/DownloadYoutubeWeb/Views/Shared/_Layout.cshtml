@@ -6,17 +6,21 @@
 <html class="ie8" lang="en">    <![endif]-->
 <head>
     <title>@Resource.SiteTitle</title>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <meta name="description" content="Fast and free download of YouTube audio and video files. Download in multiple formats without registration.">
+    <meta name="description" content="@Resource.SiteDescription">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="download, youtube, audio, video, converter, mp3, HD">
+
     <meta property="og:url" content="http://download-youtube.org" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="@Resource.SiteTitle" />
-    <meta property="og:description" content="Fast and free download of YouTube audio and video files. Download in multiple formats without registration." />
-    <meta property="og:image" content="http://download-youtube.org/favicon.ico" />
+    <meta property="og:description" content="@Resource.SiteDescription" />
+    <meta property="og:image" content="http://download-youtube.org/assets/img/downloadyoutube.png" />
+     @(Html.Raw(Html.GetOgMetaLocale()))
+
     <link rel="canonical" href="http://download-youtube.org" />
     <link rel=icon href=favicon.ico sizes="16x16" type="image/png">
     <link href="~/assets/custom/css/preloader.css" rel="stylesheet" />

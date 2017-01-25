@@ -165,6 +165,9 @@
   <data name="Recommended" xml:space="preserve">
     <value>Recommended</value>
   </data>
+  <data name="SiteDescription" xml:space="preserve">
+    <value>Fast and free download of YouTube audio and video files.</value>
+  </data>
   <data name="SiteTitle" xml:space="preserve">
     <value>Download YouTube audio and video files.</value>
   </data>
