@@ -147,6 +147,9 @@
   <data name="ExtractionInTheCloudTitle" xml:space="preserve">
     <value>Извличане в облака</value>
   </data>
+  <data name="FileIsBeingProccessed" xml:space="preserve">
+    <value>Файлът в момента се обработва. Моля изчакайте!</value>
+  </data>
   <data name="FollowUs" xml:space="preserve">
     <value>Следвайте ни</value>
   </data>

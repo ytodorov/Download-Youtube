@@ -149,7 +149,7 @@ namespace DownloadYoutubeWeb.Controllers
                         var bytes = video.GetBytes();
 
                         string contentType = MimeMapping.GetMimeMapping(video.FullName);
-                        var result = File(bytes, contentType, video.FullName);
+                        var result = File(bytes, contentType, video.FullName.Replace("- YouTube", string.Empty));
 
                         if (leftclick.GetValueOrDefault() != true)
                         {
@@ -221,10 +221,10 @@ namespace DownloadYoutubeWeb.Controllers
                                     streamToReadFrom.CopyToAsync(streamToWriteTo).Wait();
                                 }
 
-                                string fn = video.FullName;
+                                string fn = video.FullName.Replace("- YouTube", string.Empty);
                                 if (!string.IsNullOrEmpty(convertto))
                                 {
-                                    fn = Path.GetFileNameWithoutExtension(video.FullName) + "." + convertto;
+                                    fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
                                 }
 
                                 string ct = MimeMapping.GetMimeMapping(fn);

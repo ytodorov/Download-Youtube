@@ -349,6 +349,7 @@
     <Content Include="assets\vendor\flaticon\flaticon.svg" />
     <Content Include="assets\vendor\flaticon\license.txt" />
     <Content Include="assets\vendor\flickr\js\jflickrfeed.min.js" />
+    <Content Include="assets\vendor\fontawesome\css\font-awesome-animation.min.css" />
     <Content Include="assets\vendor\fontawesome\css\font-awesome.css" />
     <Content Include="assets\vendor\fontawesome\css\font-awesome.min.css" />
     <Content Include="assets\vendor\fontawesome\fonts\fontawesome-webfont.svg" />

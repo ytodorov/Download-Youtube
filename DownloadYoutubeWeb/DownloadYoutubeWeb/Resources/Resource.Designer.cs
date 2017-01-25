@@ -151,6 +151,15 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file is being processed. Please wait!.
+        /// </summary>
+        public static string FileIsBeingProccessed {
+            get {
+                return ResourceManager.GetString("FileIsBeingProccessed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Follow us.
         /// </summary>
         public static string FollowUs {

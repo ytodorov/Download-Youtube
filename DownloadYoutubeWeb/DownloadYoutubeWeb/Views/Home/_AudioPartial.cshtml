@@ -63,10 +63,12 @@
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=wav">
                     wav
                 </a>
-                <i class="pe-7s-refresh pe-spin" style="display:none"></i>            
-            }
+                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
+            }            
         }
-
+        <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
+        
+        
     </div>
     <div class="team-member-title">@Resource.DownloadVideoIn</div>
     <div>
@@ -82,6 +84,7 @@
             </a>
             <i class="pe-7s-refresh pe-spin" style="display:none"></i>
         }
+        <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow"></i></div>
     </div>
 </div>
 <script>
@@ -93,7 +96,13 @@
         //$a.append('<i class="fa-li fa fa-spinner fa-spin ' + guid + '"></i>');
         // Това показва popup-blocked
         var iToShow = $a.next("i");
+        debugger;
+        var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
+        fileIsBeingProccessed.show();
         iToShow.show();
+        $a.unbind("click").click(function f(e) {
+            e.preventDefault();
+        });
         $.ajax({
             url: href + "&leftclick=true",
             success: function (g) {
@@ -101,9 +110,12 @@
                 if ($("span." + g).length == 0) {
                     var newGuid = new Date().getTime();
                     $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
-                    //$("a." + newGuid)[0].click();
+                    // Променяме и на цъкнатия линк url-а за да не се натисне пак
+                  
                 }
+                $a.attr("href", url);
                 iToShow.hide();
+                fileIsBeingProccessed.hide();
 
                 //window.location = "/home/downloadaudiostream?guid=" + g;
             }

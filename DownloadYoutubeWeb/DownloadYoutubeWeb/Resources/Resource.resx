@@ -147,6 +147,9 @@
   <data name="ExtractionInTheCloudTitle" xml:space="preserve">
     <value>Extraction in the cloud</value>
   </data>
+  <data name="FileIsBeingProccessed" xml:space="preserve">
+    <value>The file is being processed. Please wait!</value>
+  </data>
   <data name="FollowUs" xml:space="preserve">
     <value>Follow us</value>
   </data>
