@@ -15,7 +15,7 @@
     }
 
     <iframe id="ytplayer" type="text/html"
-            src="https://www.youtube.com/embed/@(video.VideoId)?autoplay=0&origin=http://example.com"
+            src="https://www.youtube.com/embed/@(video.VideoId)?autoplay=0&origin=http://download-youtube.org"
             frameborder="0"></iframe>
 
     @*Ако няма target="_blank" то тогава не се свалят паралелно файловете, защото всеки следващ прекъсва предишния*@
@@ -40,35 +40,30 @@
                 </a>
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=aac">
+                    aac
+                </a>
+                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=vorbis">
+                    vorbis
+                </a>
+                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
+                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=m4a">
                     m4a
                 </a>
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=wma">
-                    wma
-                </a>
-                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=flac">
-                    flac
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=opus">
+                    opus
                 </a>
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=wav">
                     wav
                 </a>
-                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=aac">
-                    aac
-                </a>
-                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=ogg">
-                    ogg
-                </a>
-                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
+                <i class="pe-7s-refresh pe-spin" style="display:none"></i>            
             }
         }
 

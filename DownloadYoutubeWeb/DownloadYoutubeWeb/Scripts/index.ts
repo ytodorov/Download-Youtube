@@ -93,7 +93,7 @@
 
 
     $("#btnLoadExample1").click(function example1() {
-        var urlsForExample1 = 'https://www.youtube.com/watch?v=-4kTei0XrCs&list=PL04831A1BBA13F830';
+        var urlsForExample1 = 'https://www.youtube.com/watch?v=o7KQxJC-e64&list=PLCXyhM8bTR_sbwKMHzVqg_InKnzaRKyWE';
 
         //https://www.youtube.com/watch?v=DtoM41TH7HM
         //https://www.youtube.com/watch?v=2bVtPqZCniA&#13;&#10;

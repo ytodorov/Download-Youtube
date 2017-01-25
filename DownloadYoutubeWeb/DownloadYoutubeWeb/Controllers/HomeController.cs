@@ -19,48 +19,59 @@ using VideoLibrary;
 namespace DownloadYoutubeWeb.Controllers
 {
     public class HomeController : BaseController
-    {       
+    {
+        public const int MAX_RETRY_COUNT = 3;
+
         public ActionResult Index()
         {
-            if (Request.Url.ToString().IndexOf("/bg", StringComparison.InvariantCultureIgnoreCase) == -1)
+            try
             {
-                if (Request.Cookies["userSetLangugaTo"] == null)
+                if (Request.Url.ToString().IndexOf("/bg", StringComparison.InvariantCultureIgnoreCase) == -1)
                 {
-                    if (!Request.IsLocal)
+                    if (Request.Cookies["userSetLangugaTo"] == null)
                     {
-                        using (HttpClient client = new HttpClient())
+                        if (!Request.IsLocal)
                         {
-                            var ip = Request.UserHostAddress;
-                            var uriToGet = $"https://toolsfornet.com/iplocation/getipcountrycode?ip={ip}";
-                            var twoLetterCountry = client.GetStringAsync(uriToGet).Result?.ToLowerInvariant();
-                            if ("bg".Equals(twoLetterCountry, StringComparison.InvariantCultureIgnoreCase))
+                            using (HttpClient client = new HttpClient())
                             {
-                                Response.Redirect("/bg");
+                                client.Timeout = TimeSpan.FromSeconds(3);
+                                var ip = Request.UserHostAddress;
+                                var uriToGet = $"https://toolsfornet.com/iplocation/getipcountrycode?ip={ip}";
+                                var twoLetterCountry = client.GetStringAsync(uriToGet).Result?.ToLowerInvariant();
+                                if ("bg".Equals(twoLetterCountry, StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    Response.Redirect("/bg");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            using (HttpClient client = new HttpClient())
+                            {
+                                client.Timeout = TimeSpan.FromSeconds(3);
+                                var ip = "77.70.121.132";
+                                var uriToGet = $"https://toolsfornet.com/iplocation/getipcountrycode?ip={ip}";
+                                var twoLetterCountry = client.GetStringAsync(uriToGet).Result?.ToLowerInvariant();
+                                if ("bg".Equals(twoLetterCountry, StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    Response.Redirect("/bg");
+                                }
                             }
                         }
                     }
                     else
                     {
-                        using (HttpClient client = new HttpClient())
-                        {
-                            var ip = "77.70.121.132";
-                            var uriToGet = $"https://toolsfornet.com/iplocation/getipcountrycode?ip={ip}";
-                            var twoLetterCountry = client.GetStringAsync(uriToGet).Result?.ToLowerInvariant();
-                            if ("bg".Equals(twoLetterCountry, StringComparison.InvariantCultureIgnoreCase))
-                            {
-                                Response.Redirect("/bg");
-                            }
-                        }
+                        var setLanguage = Request.Cookies["userSetLangugaTo"].Value;
+                        //if (setLanguage?.Equals("en"))
+                        //{
+                        //    Response.Redirect("/bg");
+                        //}
                     }
                 }
-                else
-                {
-                    var setLanguage = Request.Cookies["userSetLangugaTo"].Value;
-                    //if (setLanguage?.Equals("en"))
-                    //{
-                    //    Response.Redirect("/bg");
-                    //}
-                }
+            }
+            catch (Exception)
+            {
+
             }
 
 
@@ -110,32 +121,46 @@ namespace DownloadYoutubeWeb.Controllers
         public async Task<ActionResult> DownloadAudio(string uri, string format, string formatcode,
             string resolution, string convertto, string guid, bool? leftclick)
         {
-            try
+            var errorMessage = string.Empty;
+
+            for (int i = 0; i < MAX_RETRY_COUNT; i++)
             {
-                //if (Request.Browser.IsMobileDevice)
-                //{
-                //    // отваряме в нов таб
-                //    leftclick = false;
-                //}
 
-                if (MemoryCacheManager.Get(guid) != null)
+
+                try
                 {
-                    if (leftclick.GetValueOrDefault() != true)
+
+                    if (MemoryCacheManager.Get(guid) != null)
                     {
-                        return MemoryCacheManager.Get(guid) as ActionResult;
+                        if (leftclick.GetValueOrDefault() != true)
+                        {
+                            return MemoryCacheManager.Get(guid) as ActionResult;
+                        }
+                        return Json(guid);
                     }
-                    return Json(guid);
-                }
 
 
-                YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
+                    YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
+                    string unencodedUri = HttpUtility.UrlDecode(uri).DecodeBase64();
 
-                string unencodedUri = HttpUtility.UrlDecode(uri).DecodeBase64();
+                    if (video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("audio") == true && string.IsNullOrEmpty(convertto))
+                    {
+                        // Тук сме в случая само когато имаме звук в WebM или mp4 формат
+                        var bytes = video.GetBytes();
+
+                        string contentType = MimeMapping.GetMimeMapping(video.FullName);
+                        var result = File(bytes, contentType, video.FullName);
+
+                        if (leftclick.GetValueOrDefault() != true)
+                        {
+                            return result;
+                        }
+                        MemoryCacheManager.Set(guid, result, 1);
+                        return Json(guid);
+                    }
 
 
-                if (!string.IsNullOrEmpty(convertto) || video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("video") == true)
-                {
-                    
+
 
                     using (HttpClient client = new HttpClient())
                     {
@@ -144,33 +169,40 @@ namespace DownloadYoutubeWeb.Controllers
 
                         client.Timeout = TimeSpan.FromMinutes(10);
                         var postData = new MultipartFormDataContent();
-                       
-                        string audioFormatCode = "bestaudio";
 
-                        if (video.FileExtension.ToLowerInvariant().Contains("mp4"))
+                        string args = string.Empty;
+
+                        if (video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("video") == true)
                         {
-                            audioFormatCode = "m4a";
+
+                            // за да се избегне конвертирането в .mkv  Матрьошка
+                            string audioFormatCode = "bestaudio";
+
+                            if (video.FileExtension.ToLowerInvariant().Contains("mp4"))
+                            {
+                                audioFormatCode = "m4a";
+                            }
+                            else if (video.FileExtension.ToLowerInvariant().Contains("webm"))
+                            {
+                                audioFormatCode = "webm";
+                            }
+
+                            args = $" -f {formatcode}+{audioFormatCode} {unencodedUri}";
                         }
-                        else if (video.FileExtension.ToLowerInvariant().Contains("webm"))
+                        else
                         {
-                            audioFormatCode = "webm";
+                            // за аудио конвертиране
+                            //youtube-dl.exe -f bestaudio https://www.youtube.com/watch?v=-1cyCmUdDNQ -x --audio-format mp3,
+                            args = $" -f bestaudio {unencodedUri} -x --audio-format {convertto}";
                         }
-                        
-                        var args = $" -f {formatcode}+{audioFormatCode} {unencodedUri}";
+
                         postData.Add(new StringContent(args), "args");
                         postData.Add(new StringContent("youtube-dl"), "program");
-                        //youtube - dl.exe - f 278 + bestaudio https://www.youtube.com/watch?v=CevxZvSJLk8
 
                         var address = $"home/youtubedownload";
-
-
-                     
-                        
-
-
-
                         var response = client.PostAsync(address, postData).Result;
                         if (response.IsSuccessStatusCode)
+
                         {
                             using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
                             {
@@ -184,17 +216,10 @@ namespace DownloadYoutubeWeb.Controllers
 
                                 string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
 
-                                //Path.GetTempFileName();
                                 using (Stream streamToWriteTo = System.IO.File.Open(fileToWriteTo, FileMode.Create))
                                 {
                                     streamToReadFrom.CopyToAsync(streamToWriteTo).Wait();
-
-                                   
                                 }
-                               
-
-                                //string str = System.IO.File.ReadAllText(fileToWriteTo);
-                                //byte[] bArray = Convert.FromBase64String(str);
 
                                 string fn = video.FullName;
                                 if (!string.IsNullOrEmpty(convertto))
@@ -208,51 +233,22 @@ namespace DownloadYoutubeWeb.Controllers
                                 {
                                     return r;
                                 }
-                                MemoryCacheManager.Set(guid, r, 0.1);
+                                MemoryCacheManager.Set(guid, r, 1);
                                 return Json(guid);
                             }
 
-                            //string str = response.Content.ReadAsStringAsync().Result;
-                            //    byte[] bArray = Convert.FromBase64String(str);
-
-                            //    string fn = video.FullName;
-                            //    if (!string.IsNullOrEmpty(convertto))
-                            //    {
-                            //        fn = Path.GetFileNameWithoutExtension(video.FullName) + "." + convertto;
-                            //    }
-
-                            //    string ct = MimeMapping.GetMimeMapping(fn);
-                            //    var r = File(bArray, ct, fn);
-                            //    if (leftclick.GetValueOrDefault() != true)
-                            //    {
-                            //        return r;
-                            //    }
-                            //    MemoryCacheManager.Set(guid, r, 0.1);
-                            //    return Json(guid);
-
                         }
+                        string error = response.Content.ReadAsStringAsync().Result;
+                        return Json(error);
                     }
 
                 }
-
-              
-
-                var bytes = video.GetBytes();
-
-                string contentType = MimeMapping.GetMimeMapping(video.FullName);
-                var result = File(bytes, contentType, video.FullName);
-
-                if (leftclick.GetValueOrDefault() != true)
+                catch (Exception e)
                 {
-                    return result;
+                    errorMessage = e.Message + e.StackTrace;
                 }
-                MemoryCacheManager.Set(guid, result, 0.1);
-                return Json(guid);            
             }
-            catch (Exception e)
-            {
-                return Json(e.Message + e.StackTrace);
-            }
+            return Json(errorMessage);
         }
 
         private YouTubeVideo GetVideo(string uri, string format, string formatCode, string resolution)
