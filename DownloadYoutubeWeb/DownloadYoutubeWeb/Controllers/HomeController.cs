@@ -121,149 +121,169 @@ namespace DownloadYoutubeWeb.Controllers
             return fs;
         }
 
-        public async Task<ActionResult> DownloadAudio(string uri, string format, string formatcode,
+        public JsonResult IsStreamReady(string guid)
+        {
+            ActionResult fs = MemoryCacheManager.Get(guid) as ActionResult;
+            if (fs != null)
+            {
+                return Json(true);
+            }
+            return Json(false);
+        }
+
+        public ActionResult DownloadAudio(string uri, string format, string formatcode,
             string resolution, string convertto, string guid, bool? leftclick)
         {
-            var errorMessage = string.Empty;
-
-            for (int i = 0; i < MAX_RETRY_COUNT; i++)
+            Task.Factory.StartNew(() =>
             {
 
+                var errorMessage = string.Empty;
 
-                try
+                for (int i = 0; i < MAX_RETRY_COUNT; i++)
                 {
 
-                    if (MemoryCacheManager.Get(guid) != null)
+
+                    try
                     {
-                        if (leftclick.GetValueOrDefault() != true)
+
+                        if (MemoryCacheManager.Get(guid) != null)
                         {
-                            return MemoryCacheManager.Get(guid) as ActionResult;
+                            if (leftclick.GetValueOrDefault() != true)
+                            {
+                                //return MemoryCacheManager.Get(guid) as ActionResult;
+                            }
+                            //return guid; //Json(guid);
+                            return;
                         }
-                        return Json(guid);
+
+
+                        YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
+                        string unencodedUri = HttpUtility.UrlDecode(uri).DecodeBase64();
+
+                        Uri uriObject = new Uri(unencodedUri);
+                        var query = uriObject.Query; //?v=F_DE-sfyFj8&feature=youtu.be
+                        string v = HttpUtility.ParseQueryString(uriObject.Query).Get("v");
+                        unencodedUri = unencodedUri.Replace(query, string.Empty);
+                        // Това е важно за да премахнем всякакви други querystring параметри - те създават проблеми
+                        unencodedUri = $"{unencodedUri}?v={v}";
+
+                        if (video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("audio") == true && string.IsNullOrEmpty(convertto))
+                        {
+                            // Тук сме в случая само когато имаме звук в WebM или mp4 формат
+                            var bytes = video.GetBytes();
+
+                            string contentType = MimeMapping.GetMimeMapping(video.FullName);
+                            var result = File(bytes, contentType, video.FullName.Replace("- YouTube", string.Empty));
+
+                            //if (leftclick.GetValueOrDefault() != true)
+                            //{
+                            //    return result;
+                            //}
+                            MemoryCacheManager.Set(guid, result, 1);
+                            return;
+                            //return Json(guid);
+                        }
+
+
+
+
+                        using (HttpClient client = new HttpClient())
+                        {
+                            //client.BaseAddress = new Uri("http://localhost:49722/");
+                            client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
+
+                            client.Timeout = TimeSpan.FromHours(1);
+                            var postData = new MultipartFormDataContent();
+
+                            string args = string.Empty;
+
+                            if (video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("video") == true)
+                            {
+
+                                // за да се избегне конвертирането в .mkv  Матрьошка
+                                string audioFormatCode = "bestaudio";
+
+                                if (video.FileExtension.ToLowerInvariant().Contains("mp4"))
+                                {
+                                    audioFormatCode = "m4a";
+                                }
+                                else if (video.FileExtension.ToLowerInvariant().Contains("webm"))
+                                {
+                                    audioFormatCode = "webm";
+                                }
+
+                                args = $" -f {formatcode}+{audioFormatCode} {unencodedUri}";
+                            }
+                            else
+                            {
+                                // за аудио конвертиране
+                                //youtube-dl.exe -f bestaudio https://www.youtube.com/watch?v=-1cyCmUdDNQ -x --audio-format mp3,
+                                args = $" -f bestaudio {unencodedUri} -x --audio-format {convertto}";
+                            }
+
+                            postData.Add(new StringContent(args), "args");
+                            postData.Add(new StringContent("youtube-dl"), "program");
+
+                            var address = $"home/youtubedownload";
+
+                            postData.Headers.Add("TransferEncodingChunked", "true");
+
+                            client.Timeout = TimeSpan.FromMilliseconds(Timeout.Infinite);
+                            var request = new HttpRequestMessage(HttpMethod.Post, address);
+                            request.Content = postData;
+
+                            var response = client.SendAsync(
+                                request, HttpCompletionOption.ResponseHeadersRead).Result;
+                            var stream = response.Content.ReadAsStreamAsync().Result;
+
+                            string baseDir = HostingEnvironment.ApplicationPhysicalPath;
+                            string tempFolderName = "tmp";
+                            string fullDirPath = Path.Combine(baseDir, tempFolderName);
+                            if (!Directory.Exists(fullDirPath))
+                            {
+                                Directory.CreateDirectory(fullDirPath);
+                            }
+
+                            string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
+
+                            byte[] buffer = new byte[16 * 1024];
+                            using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
+                            {
+                                int read;
+                                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                                {
+                                    ms.Write(buffer, 0, read);
+                                }
+                            }
+
+                            string fn = video.FullName.Replace("- YouTube", string.Empty);
+                            if (!string.IsNullOrEmpty(convertto))
+                            {
+                                fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
+                            }
+
+                            string ct = MimeMapping.GetMimeMapping(fn);
+                            var r = File(fileToWriteTo, ct, fn);
+                            //if (leftclick.GetValueOrDefault() != true)
+                            //{
+                            //    return r;
+                            //}
+                            MemoryCacheManager.Set(guid, r, 1);
+                            return;
+                            //return Json(guid);
+                        }
+
                     }
-
-
-                    YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
-                    string unencodedUri = HttpUtility.UrlDecode(uri).DecodeBase64();
-
-                    Uri uriObject = new Uri(unencodedUri);
-                    var query = uriObject.Query; //?v=F_DE-sfyFj8&feature=youtu.be
-                    string v = HttpUtility.ParseQueryString(uriObject.Query).Get("v");
-                    unencodedUri = unencodedUri.Replace(query, string.Empty);
-                    // Това е важно за да премахнем всякакви други querystring параметри - те създават проблеми
-                    unencodedUri = $"{unencodedUri}?v={v}";
-
-                    if (video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("audio") == true && string.IsNullOrEmpty(convertto))
+                    catch (Exception e)
                     {
-                        // Тук сме в случая само когато имаме звук в WebM или mp4 формат
-                        var bytes = video.GetBytes();
-
-                        string contentType = MimeMapping.GetMimeMapping(video.FullName);
-                        var result = File(bytes, contentType, video.FullName.Replace("- YouTube", string.Empty));
-
-                        if (leftclick.GetValueOrDefault() != true)
-                        {
-                            return result;
-                        }
-                        MemoryCacheManager.Set(guid, result, 1);
-                        return Json(guid);
+                        errorMessage = e.Message + e.StackTrace;
                     }
-
-
-
-
-                    using (HttpClient client = new HttpClient())
-                    {
-                        //client.BaseAddress = new Uri("http://localhost:49722/");
-                        client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
-
-                        client.Timeout = TimeSpan.FromHours(1);
-                        var postData = new MultipartFormDataContent();
-
-                        string args = string.Empty;
-
-                        if (video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("video") == true)
-                        {
-
-                            // за да се избегне конвертирането в .mkv  Матрьошка
-                            string audioFormatCode = "bestaudio";
-
-                            if (video.FileExtension.ToLowerInvariant().Contains("mp4"))
-                            {
-                                audioFormatCode = "m4a";
-                            }
-                            else if (video.FileExtension.ToLowerInvariant().Contains("webm"))
-                            {
-                                audioFormatCode = "webm";
-                            }
-
-                            args = $" -f {formatcode}+{audioFormatCode} {unencodedUri}";
-                        }
-                        else
-                        {
-                            // за аудио конвертиране
-                            //youtube-dl.exe -f bestaudio https://www.youtube.com/watch?v=-1cyCmUdDNQ -x --audio-format mp3,
-                            args = $" -f bestaudio {unencodedUri} -x --audio-format {convertto}";
-                        }
-
-                        postData.Add(new StringContent(args), "args");
-                        postData.Add(new StringContent("youtube-dl"), "program");
-
-                        var address = $"home/youtubedownload";
-
-                        postData.Headers.Add("TransferEncodingChunked", "true");
-
-                        client.Timeout = TimeSpan.FromMilliseconds(Timeout.Infinite);
-                        var request = new HttpRequestMessage(HttpMethod.Post, address);
-                        request.Content = postData;
-
-                        var response = client.SendAsync(
-                            request, HttpCompletionOption.ResponseHeadersRead).Result;
-                        var stream = response.Content.ReadAsStreamAsync().Result;
-
-                        string baseDir = HostingEnvironment.ApplicationPhysicalPath;
-                        string tempFolderName = "tmp";
-                        string fullDirPath = Path.Combine(baseDir, tempFolderName);
-                        if (!Directory.Exists(fullDirPath))
-                        {
-                            Directory.CreateDirectory(fullDirPath);
-                        }
-
-                        string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
-
-                        byte[] buffer = new byte[16 * 1024];
-                        using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
-                        {
-                            int read;
-                            while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                            {
-                                ms.Write(buffer, 0, read);
-                            }
-                        }
-
-                        string fn = video.FullName.Replace("- YouTube", string.Empty);
-                        if (!string.IsNullOrEmpty(convertto))
-                        {
-                            fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
-                        }
-
-                        string ct = MimeMapping.GetMimeMapping(fn);
-                        var r = File(fileToWriteTo, ct, fn);
-                        if (leftclick.GetValueOrDefault() != true)
-                        {
-                            return r;
-                        }
-                        MemoryCacheManager.Set(guid, r, 1);
-                        return Json(guid);
-                    }
-
                 }
-                catch (Exception e)
-                {
-                    errorMessage = e.Message + e.StackTrace;
-                }
-            }
-            return Json(errorMessage);
+
+              
+            });
+
+            return Json(guid);
         }
 
         private YouTubeVideo GetVideo(string uri, string format, string formatCode, string resolution)

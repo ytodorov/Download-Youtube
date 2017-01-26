@@ -105,17 +105,44 @@
         $.ajax({
             url: href + "&leftclick=true",
             success: function (g) {
-                var url = "/home/downloadaudiostream?guid=" + g;
-                if ($("span." + g).length == 0) {
-                    var newGuid = new Date().getTime();
-                    $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
-                    // Променяме и на цъкнатия линк url-а за да не се натисне пак
+
+                var interval = setInterval(function f() {
+                    $.ajax({
+                        url: '/home/isstreamready?guid=' + g,
+                        success: function (booleanResult) { 
+
+                            if (booleanResult == true) {
+                                var url = "/home/downloadaudiostream?guid=" + g;
+                                if ($("span." + g).length == 0) {
+                                    var newGuid = new Date().getTime();
+                                    $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+                                    // Променяме и на цъкнатия линк url-а за да не се натисне пак
+
+                                }
+                                $a.attr("href", url);
+                                $a.unbind("click");
+                                iToShow.hide();
+                                fileIsBeingProccessed.hide();
+
+                                clearInterval(interval);
+                            }
+                        }
+                    });
+                }, 1000);
+
+
+
+                //var url = "/home/downloadaudiostream?guid=" + g;
+                //if ($("span." + g).length == 0) {
+                //    var newGuid = new Date().getTime();
+                //    $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+                //    // Променяме и на цъкнатия линк url-а за да не се натисне пак
                   
-                }
-                $a.attr("href", url);
-                $a.unbind("click");
-                iToShow.hide();
-                fileIsBeingProccessed.hide();
+                //}
+                //$a.attr("href", url);
+                //$a.unbind("click");
+                //iToShow.hide();
+                //fileIsBeingProccessed.hide();
 
                 //window.location = "/home/downloadaudiostream?guid=" + g;
             }
