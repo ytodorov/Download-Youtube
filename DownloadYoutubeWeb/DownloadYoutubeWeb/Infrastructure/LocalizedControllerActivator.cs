@@ -37,8 +37,9 @@ namespace DownloadYoutubeWeb.Infrastructure
                     Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-GB");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LoggingManager.Logger.Error(ex, ex.Message);
                 // Yordan
                 //throw new NotSupportedException(String.Format("ERROR: Invalid language code '{0}'.", lang));
             }

@@ -72,9 +72,9 @@ namespace DownloadYoutubeWeb.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                LoggingManager.Logger.Error(ex, ex.Message);
             }
 
 
@@ -149,12 +149,7 @@ namespace DownloadYoutubeWeb.Controllers
                         {
 
                             if (MemoryCacheManager.Get(guid) != null)
-                            {
-                                if (leftclick.GetValueOrDefault() != true)
-                                {
-                                    //return MemoryCacheManager.Get(guid) as ActionResult;
-                                }
-                                //return guid; //Json(guid);
+                            {                               
                                 return;
                             }
 
@@ -176,14 +171,9 @@ namespace DownloadYoutubeWeb.Controllers
 
                                 string contentType = MimeMapping.GetMimeMapping(video.FullName);
                                 var result = File(bytes, contentType, video.FullName.Replace("- YouTube", string.Empty));
-
-                                //if (leftclick.GetValueOrDefault() != true)
-                                //{
-                                //    return result;
-                                //}
+                           
                                 MemoryCacheManager.Set(guid, result, 1);
                                 return;
-                                //return Json(guid);
                             }
 
 
@@ -227,16 +217,14 @@ namespace DownloadYoutubeWeb.Controllers
                                 postData.Add(new StringContent("youtube-dl"), "program");
 
                                 var address = $"home/youtubedownload";
-
-                                postData.Headers.Add("TransferEncodingChunked", "true");
-
-                                client.Timeout = TimeSpan.FromMilliseconds(Timeout.Infinite);
                                 var request = new HttpRequestMessage(HttpMethod.Post, address);
                                 request.Content = postData;
-
+                                LoggingManager.Logger.Info($"SendAsync start '{args}'");
                                 var response = client.SendAsync(
                                     request, HttpCompletionOption.ResponseHeadersRead).Result;
                                 var stream = response.Content.ReadAsStreamAsync().Result;
+
+                                LoggingManager.Logger.Info($"Content return from '{args}'");
 
                                 string baseDir = HostingEnvironment.ApplicationPhysicalPath;
                                 string tempFolderName = "tmp";
@@ -246,7 +234,7 @@ namespace DownloadYoutubeWeb.Controllers
                                     Directory.CreateDirectory(fullDirPath);
                                 }
 
-                                string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
+                                string fileToWriteTo = Path.Combine(fullDirPath, guid + ".tmp");
 
                                 byte[] buffer = new byte[16 * 1024];
                                 using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
@@ -266,19 +254,19 @@ namespace DownloadYoutubeWeb.Controllers
 
                                 string ct = MimeMapping.GetMimeMapping(fn);
                                 var r = File(fileToWriteTo, ct, fn);
-                                //if (leftclick.GetValueOrDefault() != true)
-                                //{
-                                //    return r;
-                                //}
-                                MemoryCacheManager.Set(guid, r, 1);
+                             
+                                MemoryCacheManager.Set(guid, r);
+
+                                LoggingManager.Logger.Info($"file {guid} {fn} downloaded OK");
+
                                 return;
-                                //return Json(guid);
+                               
                             }
 
                         }
-                        catch (Exception e)
+                        catch (Exception ex)
                         {
-                            errorMessage = e.Message + e.StackTrace;
+                            LoggingManager.Logger.Error(ex, ex.Message);
                         }
                     }
                 }
@@ -385,8 +373,9 @@ namespace DownloadYoutubeWeb.Controllers
                     resultList = resultList.Where(r => r != null && r.AdaptiveKind != AdaptiveKind.None.ToString()).ToList();
                     return PartialView(resultList);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    LoggingManager.Logger.Error(ex, ex.Message);
                     Thread.Sleep(1000);
                 }
 
