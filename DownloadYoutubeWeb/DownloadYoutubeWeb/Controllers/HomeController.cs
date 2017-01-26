@@ -212,140 +212,49 @@ namespace DownloadYoutubeWeb.Controllers
                         var address = $"home/youtubedownload";
 
                         postData.Headers.Add("TransferEncodingChunked", "true");
-                        //Exception of type 'System.OutOfMemoryException' was thrown.
-
-
-                        //HttpWebRequest httpWebRequest = new HttpWebRequest();
-
-
-                        HttpRequestMessage hrm = new HttpRequestMessage(HttpMethod.Post, address);
-                        hrm.Content = postData;
-
-                        //var response = await client.SendAsync(hrm);
-
-
-
-
-
-                        //var response = client.PostAsync(address, postData).Result;
-                        //if (response.IsSuccessStatusCode)
-                        //address = $"{address}?args={args}&program=youtube-dl";
-
 
                         client.Timeout = TimeSpan.FromMilliseconds(Timeout.Infinite);
-                        var requestUri = address;
-
-                        var formUrlEncodedContent = new FormUrlEncodedContent(
-                            new List<KeyValuePair<string, string>>() {
-            new KeyValuePair<string, string>("userId", "1000") });
-
-                        formUrlEncodedContent.Headers.ContentType =
-                            new MediaTypeHeaderValue("application/x-www-form-urlencoded");
-
-                        var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
+                        var request = new HttpRequestMessage(HttpMethod.Post, address);
                         request.Content = postData;
 
                         var response = client.SendAsync(
                             request, HttpCompletionOption.ResponseHeadersRead).Result;
                         var stream = response.Content.ReadAsStreamAsync().Result;
 
-                        //using (var reader = new StreamReader(stream))
+                        string baseDir = HostingEnvironment.ApplicationPhysicalPath;
+                        string tempFolderName = "tmp";
+                        string fullDirPath = Path.Combine(baseDir, tempFolderName);
+                        if (!Directory.Exists(fullDirPath))
                         {
-                            string baseDir = HostingEnvironment.ApplicationPhysicalPath;
-                            string tempFolderName = "tmp";
-                            string fullDirPath = Path.Combine(baseDir, tempFolderName);
-                            if (!Directory.Exists(fullDirPath))
-                            {
-                                Directory.CreateDirectory(fullDirPath);
-                            }
-
-                            string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
-
-                            //while (!reader.EndOfStream)
-                            //{
-
-                            //    //We are ready to read the stream
-                            //    var currentLine = reader.ReadLine();
-                              
-
-                        
-
-
-                            //}
-
-
-                            byte[] buffer = new byte[16 * 1024];
-                            using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
-                            {
-                                int read;
-                                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                                {
-                                    ms.Write(buffer, 0, read);
-                                }
-                               
-                            }
-
-
-
-                            string fn = video.FullName.Replace("- YouTube", string.Empty);
-                            if (!string.IsNullOrEmpty(convertto))
-                            {
-                                fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
-                            }
-
-                            string ct = MimeMapping.GetMimeMapping(fn);
-                            var r = File(fileToWriteTo, ct, fn);
-                            if (leftclick.GetValueOrDefault() != true)
-                            {
-                                return r;
-                            }
-                            MemoryCacheManager.Set(guid, r, 1);
-                            return Json(guid);
+                            Directory.CreateDirectory(fullDirPath);
                         }
 
+                        string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
 
+                        byte[] buffer = new byte[16 * 1024];
+                        using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
+                        {
+                            int read;
+                            while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                ms.Write(buffer, 0, read);
+                            }
+                        }
 
+                        string fn = video.FullName.Replace("- YouTube", string.Empty);
+                        if (!string.IsNullOrEmpty(convertto))
+                        {
+                            fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
+                        }
 
-
-                        //using (HttpResponseMessage response = await client.GetAsync(address, HttpCompletionOption.ResponseHeadersRead))
-                        //{
-                        //    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
-                        //    {
-                        //        string baseDir = HostingEnvironment.ApplicationPhysicalPath;
-                        //        string tempFolderName = "tmp";
-                        //        string fullDirPath = Path.Combine(baseDir, tempFolderName);
-                        //        if (!Directory.Exists(fullDirPath))
-                        //        {
-                        //            Directory.CreateDirectory(fullDirPath);
-                        //        }
-
-                        //        string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
-
-                        //        using (Stream streamToWriteTo = System.IO.File.Open(fileToWriteTo, FileMode.Create))
-                        //        {
-                        //            await streamToReadFrom.CopyToAsync(streamToWriteTo);
-                        //        }
-
-                        //        string fn = video.FullName.Replace("- YouTube", string.Empty);
-                        //        if (!string.IsNullOrEmpty(convertto))
-                        //        {
-                        //            fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
-                        //        }
-
-                        //        string ct = MimeMapping.GetMimeMapping(fn);
-                        //        var r = File(fileToWriteTo, ct, fn);
-                        //        if (leftclick.GetValueOrDefault() != true)
-                        //        {
-                        //            return r;
-                        //        }
-                        //        MemoryCacheManager.Set(guid, r, 1);
-                        //        return Json(guid);
-                        //    }
-                        //}
-
-
-                        //string error = response.Content.ReadAsStringAsync().Result;
-                        return Json("error");
+                        string ct = MimeMapping.GetMimeMapping(fn);
+                        var r = File(fileToWriteTo, ct, fn);
+                        if (leftclick.GetValueOrDefault() != true)
+                        {
+                            return r;
+                        }
+                        MemoryCacheManager.Set(guid, r, 1);
+                        return Json(guid);
                     }
 
                 }
