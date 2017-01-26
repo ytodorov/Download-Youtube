@@ -12,6 +12,8 @@ namespace DownloadYoutubeWeb
     {
         protected void Application_Start()
         {
+            LoggingManager.Logger.Info("ApplicationStart");
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
@@ -20,6 +22,7 @@ namespace DownloadYoutubeWeb
         protected void Application_Error()
         {
             Exception ex = Server.GetLastError();
+            LoggingManager.Logger.Error(ex, ex.Message);
             // Yordan, handle error 500
             if (ex is HttpException)
             {

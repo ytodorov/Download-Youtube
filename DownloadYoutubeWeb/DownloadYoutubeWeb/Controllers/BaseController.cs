@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DownloadYoutubeWeb.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,8 +25,15 @@ namespace DownloadYoutubeWeb.Controllers
             return baseResult;
         }
 
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            LoggingManager.Logger.Error(filterContext.Exception, filterContext.Exception.Message);
+            base.OnException(filterContext);
+        }
+
         protected override void HandleUnknownAction(string actionName)
         {
+            LoggingManager.Logger.Error($"HandleUnknownAction: {actionName}");
             if (Request.Cookies["userSetLangugaTo"] == null)
             {
                 Response.Redirect("/");
