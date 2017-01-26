@@ -174,10 +174,10 @@ namespace DownloadYoutubeWeb.Controllers
 
                     using (HttpClient client = new HttpClient())
                     {
-                        client.BaseAddress = new Uri("http://localhost:49722/");
-                        //client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
+                        //client.BaseAddress = new Uri("http://localhost:49722/");
+                        client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
 
-                        client.Timeout = TimeSpan.FromMinutes(30);
+                        client.Timeout = TimeSpan.FromHours(1);
                         var postData = new MultipartFormDataContent();
 
                         string args = string.Empty;
