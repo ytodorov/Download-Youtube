@@ -7,7 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -143,6 +146,13 @@ namespace DownloadYoutubeWeb.Controllers
                     YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
                     string unencodedUri = HttpUtility.UrlDecode(uri).DecodeBase64();
 
+                    Uri uriObject = new Uri(unencodedUri);
+                    var query = uriObject.Query; //?v=F_DE-sfyFj8&feature=youtu.be
+                    string v = HttpUtility.ParseQueryString(uriObject.Query).Get("v");
+                    unencodedUri = unencodedUri.Replace(query, string.Empty);
+                    // Това е важно за да премахнем всякакви други querystring параметри - те създават проблеми
+                    unencodedUri = $"{unencodedUri}?v={v}";
+
                     if (video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("audio") == true && string.IsNullOrEmpty(convertto))
                     {
                         // Тук сме в случая само когато имаме звук в WebM или mp4 формат
@@ -164,10 +174,10 @@ namespace DownloadYoutubeWeb.Controllers
 
                     using (HttpClient client = new HttpClient())
                     {
-                        //client.BaseAddress = new Uri("http://localhost:49722/");
-                        client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
+                        client.BaseAddress = new Uri("http://localhost:49722/");
+                        //client.BaseAddress = new Uri("http://ants-neu.cloudapp.net/");
 
-                        client.Timeout = TimeSpan.FromMinutes(10);
+                        client.Timeout = TimeSpan.FromMinutes(30);
                         var postData = new MultipartFormDataContent();
 
                         string args = string.Empty;
@@ -200,46 +210,142 @@ namespace DownloadYoutubeWeb.Controllers
                         postData.Add(new StringContent("youtube-dl"), "program");
 
                         var address = $"home/youtubedownload";
-                        var response = client.PostAsync(address, postData).Result;
-                        if (response.IsSuccessStatusCode)
 
+                        postData.Headers.Add("TransferEncodingChunked", "true");
+                        //Exception of type 'System.OutOfMemoryException' was thrown.
+
+
+                        //HttpWebRequest httpWebRequest = new HttpWebRequest();
+
+
+                        HttpRequestMessage hrm = new HttpRequestMessage(HttpMethod.Post, address);
+                        hrm.Content = postData;
+
+                        //var response = await client.SendAsync(hrm);
+
+
+
+
+
+                        //var response = client.PostAsync(address, postData).Result;
+                        //if (response.IsSuccessStatusCode)
+                        //address = $"{address}?args={args}&program=youtube-dl";
+
+
+                        client.Timeout = TimeSpan.FromMilliseconds(Timeout.Infinite);
+                        var requestUri = address;
+
+                        var formUrlEncodedContent = new FormUrlEncodedContent(
+                            new List<KeyValuePair<string, string>>() {
+            new KeyValuePair<string, string>("userId", "1000") });
+
+                        formUrlEncodedContent.Headers.ContentType =
+                            new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+                        var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
+                        request.Content = postData;
+
+                        var response = client.SendAsync(
+                            request, HttpCompletionOption.ResponseHeadersRead).Result;
+                        var stream = response.Content.ReadAsStreamAsync().Result;
+
+                        //using (var reader = new StreamReader(stream))
                         {
-                            using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                            string baseDir = HostingEnvironment.ApplicationPhysicalPath;
+                            string tempFolderName = "tmp";
+                            string fullDirPath = Path.Combine(baseDir, tempFolderName);
+                            if (!Directory.Exists(fullDirPath))
                             {
-                                string baseDir = HostingEnvironment.ApplicationPhysicalPath;
-                                string tempFolderName = "tmp";
-                                string fullDirPath = Path.Combine(baseDir, tempFolderName);
-                                if (!Directory.Exists(fullDirPath))
-                                {
-                                    Directory.CreateDirectory(fullDirPath);
-                                }
-
-                                string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
-
-                                using (Stream streamToWriteTo = System.IO.File.Open(fileToWriteTo, FileMode.Create))
-                                {
-                                    streamToReadFrom.CopyToAsync(streamToWriteTo).Wait();
-                                }
-
-                                string fn = video.FullName.Replace("- YouTube", string.Empty);
-                                if (!string.IsNullOrEmpty(convertto))
-                                {
-                                    fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
-                                }
-
-                                string ct = MimeMapping.GetMimeMapping(fn);
-                                var r = File(fileToWriteTo, ct, fn);
-                                if (leftclick.GetValueOrDefault() != true)
-                                {
-                                    return r;
-                                }
-                                MemoryCacheManager.Set(guid, r, 1);
-                                return Json(guid);
+                                Directory.CreateDirectory(fullDirPath);
                             }
 
+                            string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
+
+                            //while (!reader.EndOfStream)
+                            //{
+
+                            //    //We are ready to read the stream
+                            //    var currentLine = reader.ReadLine();
+                              
+
+                        
+
+
+                            //}
+
+
+                            byte[] buffer = new byte[16 * 1024];
+                            using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
+                            {
+                                int read;
+                                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                                {
+                                    ms.Write(buffer, 0, read);
+                                }
+                               
+                            }
+
+
+
+                            string fn = video.FullName.Replace("- YouTube", string.Empty);
+                            if (!string.IsNullOrEmpty(convertto))
+                            {
+                                fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
+                            }
+
+                            string ct = MimeMapping.GetMimeMapping(fn);
+                            var r = File(fileToWriteTo, ct, fn);
+                            if (leftclick.GetValueOrDefault() != true)
+                            {
+                                return r;
+                            }
+                            MemoryCacheManager.Set(guid, r, 1);
+                            return Json(guid);
                         }
-                        string error = response.Content.ReadAsStringAsync().Result;
-                        return Json(error);
+
+
+
+
+
+                        //using (HttpResponseMessage response = await client.GetAsync(address, HttpCompletionOption.ResponseHeadersRead))
+                        //{
+                        //    using (Stream streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                        //    {
+                        //        string baseDir = HostingEnvironment.ApplicationPhysicalPath;
+                        //        string tempFolderName = "tmp";
+                        //        string fullDirPath = Path.Combine(baseDir, tempFolderName);
+                        //        if (!Directory.Exists(fullDirPath))
+                        //        {
+                        //            Directory.CreateDirectory(fullDirPath);
+                        //        }
+
+                        //        string fileToWriteTo = Path.Combine(fullDirPath, Guid.NewGuid().ToString() + ".tmp");
+
+                        //        using (Stream streamToWriteTo = System.IO.File.Open(fileToWriteTo, FileMode.Create))
+                        //        {
+                        //            await streamToReadFrom.CopyToAsync(streamToWriteTo);
+                        //        }
+
+                        //        string fn = video.FullName.Replace("- YouTube", string.Empty);
+                        //        if (!string.IsNullOrEmpty(convertto))
+                        //        {
+                        //            fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
+                        //        }
+
+                        //        string ct = MimeMapping.GetMimeMapping(fn);
+                        //        var r = File(fileToWriteTo, ct, fn);
+                        //        if (leftclick.GetValueOrDefault() != true)
+                        //        {
+                        //            return r;
+                        //        }
+                        //        MemoryCacheManager.Set(guid, r, 1);
+                        //        return Json(guid);
+                        //    }
+                        //}
+
+
+                        //string error = response.Content.ReadAsStringAsync().Result;
+                        return Json("error");
                     }
 
                 }

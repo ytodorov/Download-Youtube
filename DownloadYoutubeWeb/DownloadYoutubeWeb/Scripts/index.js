@@ -102,7 +102,6 @@ $(document).ready(function r() {
     $(".downloadInMp4").click(function () {
         var aMp4 = $(".webm");
         aMp4.multiDownload({ delay: 5000 });
-        //debugger;
         //var aMp4 = $(".mp4");
         //aMp4.click();
     });
