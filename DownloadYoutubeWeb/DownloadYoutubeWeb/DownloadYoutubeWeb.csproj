@@ -155,6 +155,7 @@
     <Content Include="assets\custom\css\animate.css" />
     <Content Include="assets\custom\css\preloader.css" />
     <Content Include="assets\custom\css\style.css" />
+    <Content Include="assets\custom\images\back_top.png" />
     <Content Include="assets\custom\js\jquery-multidownload.js" />
     <Content Include="assets\custom\js\script.js" />
     <Content Include="assets\custom\php\form.php" />

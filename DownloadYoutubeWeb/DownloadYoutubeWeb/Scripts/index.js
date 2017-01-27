@@ -108,27 +108,15 @@ $(document).ready(function r() {
     var intervalCounter = 0;
     var interval = setInterval(function alignGoogle() {
         var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter']");
-        g.mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
-        g.mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
-        g.hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
+        g.off("mouseleave").mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
+        g.off("mouseout").mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
+        g.off("hover").hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.css("vertical-align", "bottom");
         intervalCounter++;
-        if (intervalCounter > 50) {
+        if (intervalCounter > 10) {
             clearInterval(interval);
         }
-        //if (g.length = 3)
-        //{
-        //    setTimeout(function f() {
-        //        debugger;
-        //        var social = $(".headerSocial");
-        //        if (social.is(":visible") == false) {
-        //            social
-        //                //.addClass("animated").addClass("fadeInLeft")
-        //                .show();
-        //        }
-        //    }, 3000);
-        //}
-    }, 200);
+    }, 500);
 });
 function GetCultureTwoLetterISOLanguageName() {
     var html = $("html").first();
