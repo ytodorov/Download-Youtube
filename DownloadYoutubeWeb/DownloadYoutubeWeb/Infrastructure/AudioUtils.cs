@@ -1,6 +1,4 @@
-﻿using MediaToolkit;
-using MediaToolkit.Model;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -62,42 +60,7 @@ namespace DownloadYoutubeWeb.Infrastructure
             return null;
         }
 
-        public static byte[] ConvertToMp3Bytes(HttpServerUtilityBase server, byte[] bytes, string extensionWithDot)
-        {
-            var folderPath = server.MapPath("~/tmp");
-
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-
-            var tempFileInput = Path.Combine(folderPath, "input" + Guid.NewGuid().ToString() + extensionWithDot);
-
-            File.WriteAllBytes(tempFileInput, bytes);
-
-            var tempFileOutput = Path.Combine(folderPath, "output" + Guid.NewGuid().ToString() + ".mp3");
-            File.WriteAllBytes(tempFileOutput, new byte[0]);
-            
-            var inputFile = new MediaFile { Filename = tempFileInput };
-            var outputFile = new MediaFile { Filename = tempFileOutput };
-
-            byte[] result = null;
-            using (var engine = new Engine())
-            {
-                engine.GetMetadata(inputFile);
-
-                engine.Convert(inputFile, outputFile);
-
-                result = File.ReadAllBytes(outputFile.Filename);
-
-            }
-              
-                File.Delete(tempFileInput);
-                File.Delete(tempFileOutput);
        
-
-            return result;
-        }
 
         
     }
