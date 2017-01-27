@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="5A564154852DFB8369325FF368886623.txt" />
+    <Content Include="assets\custom\css\animate.css" />
     <Content Include="assets\custom\css\preloader.css" />
     <Content Include="assets\custom\css\style.css" />
     <Content Include="assets\custom\images\01-jessica\backgrounds\01.png" />
@@ -530,7 +531,9 @@
       <DependentUpon>bundle.js</DependentUpon>
     </Content>
     <Content Include="sitemap.xml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

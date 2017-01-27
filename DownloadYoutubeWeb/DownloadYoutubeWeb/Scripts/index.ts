@@ -3,12 +3,10 @@
     $(".chooseLangugage").click(
         function setCookie() {
             var lang = $(this).attr("href");
-            if (lang == "/bg")
-            {
+            if (lang == "/bg") {
                 document.cookie = "userSetLangugaTo=bg";
             }
-            else
-            {
+            else {
                 document.cookie = "userSetLangugaTo=en";
             }
         }
@@ -35,14 +33,14 @@
                             type: 'POST',
                             data: { uri: valueOfElement },
                             success: function (resultArray: string[]) {
-                              
+
                                 $.each(resultArray, function f(indexInArray, uri: string) {
 
                                     var last = $(".audioFiles").last();
                                     last.append('<div class="col-xs-12 col-sm-6 col-md-4 text-center center-block  fa-spinner-toRemove"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span><p>' + valueOfElement + '</p></div>');
 
                                     $.ajax({
-                                        url: GetCultureTwoLetterISOLanguageName() +'/home/_audiopartial',
+                                        url: GetCultureTwoLetterISOLanguageName() + '/home/_audiopartial',
                                         type: 'POST',
                                         data: { uri: uri },
                                         success: function (result) {
@@ -61,7 +59,7 @@
                             }
                         });
                     }
-                     
+
                     else {
 
                         var last = $(".audioFiles").last();
@@ -122,7 +120,7 @@
     });
 
     $(".downloadInWebM").click(function () {
-        var aMp4 : any = $(".webm");
+        var aMp4: any = $(".webm");
         aMp4.multiDownload({ delay: 5000 });
         //aMp4.each((num, elem) => {
 
@@ -140,8 +138,8 @@
         //aMp4.click();
     });
 
-
-    var timeout = setTimeout(function alignGoogle() {
+    var intervalCounter = 0;
+    var interval = setInterval(function alignGoogle() {
 
         var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter']");
 
@@ -150,12 +148,25 @@
         g.hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
 
         g.css("vertical-align", "bottom");
-
-        if (g.length > 0) {
-            clearInterval(timeout);
+        intervalCounter++;
+        if (intervalCounter > 50) {
+            clearInterval(interval);
         }
+        //if (g.length = 3)
+        //{
+        //    setTimeout(function f() {
+        //        debugger;
+        //        var social = $(".headerSocial");
+        //        if (social.is(":visible") == false) {
+        //            social
+        //                //.addClass("animated").addClass("fadeInLeft")
+        //                .show();
+        //        }
+        //    }, 3000);
+        //}
 
-    }, 2000);
+
+    }, 200);
 
 
 });
@@ -163,8 +174,7 @@
 function GetCultureTwoLetterISOLanguageName() {
     var html = $("html").first();
     var lang = html.attr("lang");
-    if (lang == "bg") 
-    {
+    if (lang == "bg") {
         return "/bg";
     }
     return "";

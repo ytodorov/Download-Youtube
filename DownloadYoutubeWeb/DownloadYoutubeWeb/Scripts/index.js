@@ -105,16 +105,30 @@ $(document).ready(function r() {
         //var aMp4 = $(".mp4");
         //aMp4.click();
     });
-    var timeout = setTimeout(function alignGoogle() {
+    var intervalCounter = 0;
+    var interval = setInterval(function alignGoogle() {
         var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter']");
         g.mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.css("vertical-align", "bottom");
-        if (g.length > 0) {
-            clearInterval(timeout);
+        intervalCounter++;
+        if (intervalCounter > 50) {
+            clearInterval(interval);
         }
-    }, 2000);
+        //if (g.length = 3)
+        //{
+        //    setTimeout(function f() {
+        //        debugger;
+        //        var social = $(".headerSocial");
+        //        if (social.is(":visible") == false) {
+        //            social
+        //                //.addClass("animated").addClass("fadeInLeft")
+        //                .show();
+        //        }
+        //    }, 3000);
+        //}
+    }, 200);
 });
 function GetCultureTwoLetterISOLanguageName() {
     var html = $("html").first();

@@ -11,16 +11,7 @@ using VideoLibrary;
 namespace DownloadYoutubeWeb.Infrastructure
 {
     public static class YoutubeManager
-    {
-        //public string GetBestAudioCode(string format, string url)
-        //{
-        //    var youTube = YouTube.Default; // starting point for YouTube actions
-        //    var videosToShow = youTube.GetAllVideos(url).ToList(); // gets a Video object with info about the video
-
-        //    videosToShow = videosToShow.Where(f => f.AdaptiveKind == AdaptiveKind.Audio).ToList();
-        //    videosToShow.OrderByDescending(f => f.AudioBitrate).FirstOrDefault(a => a.AudioFormat == AudioFormat.)
-        //}
-
+    {       
         public static List<string> GetVideoUrlsFromPlaylistId(string playlistId)
         {
             var apiKey = ConfigurationManager.AppSettings["googleApiKey"];
