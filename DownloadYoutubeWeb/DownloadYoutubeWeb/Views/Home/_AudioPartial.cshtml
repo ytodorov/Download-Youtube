@@ -26,41 +26,48 @@
         }
         @foreach (var v in audios)
         {
+            guid = Guid.NewGuid().ToString();
             @*<span class="hovercolor"><i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i></span>*@
-            <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty)) hovercolor"
-               href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()">
+            <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty)) hovercolor"
+               href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid">
                 @v.Format.ToLowerInvariant() &nbsp;
             </a>
             <i class="pe-7s-refresh pe-spin" style="display:none"></i>
             if (audios.IndexOf(v) == audios.Count - 1)
             {
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=mp3">
+                guid = Guid.NewGuid().ToString();
+                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=mp3">
                     mp3
                 </a>
+                guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=aac">
+                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=aac">
                     aac
                 </a>
+                guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=vorbis">
+                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=vorbis">
                     vorbis
                 </a>
+                guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=m4a">
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=m4a">
                     m4a
                 </a>
+                guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=opus">
+                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=opus">
                     opus
                 </a>
+                guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()&convertto=wav">
+                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=wav">
                     wav
                 </a>
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
@@ -78,8 +85,9 @@
 
         @foreach (var v in videos)
         {
-            <a target="_blank" data-guid="@Guid.NewGuid().ToString()" title="@v.FormatCode"
-                href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()">
+            guid = Guid.NewGuid().ToString();
+            <a target="_blank" data-guid="@guid" title="@v.FormatCode"
+                href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid">
                 @v.Format-@(v.Resolution + "p") &nbsp;
             </a>
             <i class="pe-7s-refresh pe-spin" style="display:none"></i>
@@ -102,33 +110,74 @@
         $a.unbind("click").click(function f(e) {
             e.preventDefault();
         });
+
+
+
+        window.dy.pubnubHelper.subscribe({
+            channel: guid,
+            message: function (g) {
+                window.dy.pubnubHelper.unsubscribe({
+                    channel: g,
+                });
+
+                debugger;
+                console.log('this is from Yordan pubnub' + g);
+
+                var $a = $("a[data-guid=" + g + "]");
+                var iToShow = $a.next("i");
+                var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
+
+                //var url = "/home/downloadaudiostream?guid=" + g;
+                var url = "http://localhost:49722/home/dav?guid=" + g;
+                if ($("span." + g).length == 0) {
+                    var newGuid = new Date().getTime();
+                    $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+                    // Променяме и на цъкнатия линк url-а за да не се натисне пак
+
+                }
+                $a.attr("href", url);
+                $a.unbind("click");
+                iToShow.hide();
+
+                fileIsBeingProccessed.hide();
+
+            },
+            error: function (error) {
+                // Handle error here
+                console.log(JSON.stringify(error));
+            }
+        });
+
+
+
+
         $.ajax({
             url: href + "&leftclick=true",
             success: function (g) {
 
-                var interval = setInterval(function f() {
-                    $.ajax({
-                        url: '/home/isstreamready?guid=' + g,
-                        success: function (booleanResult) { 
+                //var interval = setInterval(function f() {
+                //    $.ajax({
+                //        url: '/home/isstreamready?guid=' + g,
+                //        success: function (booleanResult) { 
 
-                            if (booleanResult == true) {
-                                var url = "/home/downloadaudiostream?guid=" + g;
-                                if ($("span." + g).length == 0) {
-                                    var newGuid = new Date().getTime();
-                                    $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
-                                    // Променяме и на цъкнатия линк url-а за да не се натисне пак
+                //            if (booleanResult == true) {
+                //                var url = "/home/downloadaudiostream?guid=" + g;
+                //                if ($("span." + g).length == 0) {
+                //                    var newGuid = new Date().getTime();
+                //                    $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+                //                    // Променяме и на цъкнатия линк url-а за да не се натисне пак
 
-                                }
-                                $a.attr("href", url);
-                                $a.unbind("click");
-                                iToShow.hide();
-                                fileIsBeingProccessed.hide();
+                //                }
+                //                $a.attr("href", url);
+                //                $a.unbind("click");
+                //                iToShow.hide();
+                //                fileIsBeingProccessed.hide();
 
-                                clearInterval(interval);
-                            }
-                        }
-                    });
-                }, 1000);
+                //                clearInterval(interval);
+                //            }
+                //        }
+                //    });
+                //}, 1000);
 
 
 

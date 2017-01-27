@@ -22,8 +22,8 @@ namespace DownloadYoutubeWeb.Infrastructure
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
             if (ci.Name == CultureInfo.GetCultureInfo("bg-BG").Name)
             {
-                sb.AppendLine ($"<meta property='og:locale' content='bg_BG' />");
-                sb.AppendLine($"<meta property='og:locale:alternate' content='en_GB' />");
+                sb.AppendLine ($"<meta property=\"og:locale\" content=\"bg_BG\" />");
+                sb.AppendLine($"<meta property=\"og:locale:alternate\" content=\"en_GB\" />");
             }
             else
             {

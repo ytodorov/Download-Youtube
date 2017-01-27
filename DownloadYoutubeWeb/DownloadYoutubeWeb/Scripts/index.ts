@@ -1,4 +1,17 @@
-﻿$(document).ready(function r() {
+﻿declare var PUBNUB: any;
+
+module DY {
+    export class Common {
+        /// Тук следим кога за даден url за първи път се е извикал dataBound събитието на даден грид.
+        pubnubHelper: any = {};
+    }
+}
+
+interface Window { dy: DY.Common; }
+
+window.dy = new DY.Common();
+
+$(document).ready(function r() {
 
     $(".chooseLangugage").click(
         function setCookie() {
@@ -91,7 +104,7 @@
 
 
     $("#btnLoadExample1").click(function example1() {
-        var urlsForExample1 = 'https://www.youtube.com/watch?v=QPdWJeybMo8';
+        var urlsForExample1 = 'https://www.youtube.com/watch?v=xDMP3i36naA https://www.youtube.com/watch?v=QPdWJeybMo8';
         $("#tbUrls").text(urlsForExample1);
         $("#tbUrls").val(urlsForExample1);
         setTimeout(function () {
@@ -107,36 +120,16 @@
             $("#btnLoadUrls").click();
         }, 1);
     });
-
-
+    
     $("#clearAudioFiles").click(function () {
         $(".audioFiles").html("");
         $(".audioCompleted").hide();;
     });
-
-    $(".downloadInWebM").click(function () {
-        var aMp4: any = $(".webm");
-        aMp4.multiDownload({ delay: 5000 });
-        //aMp4.each((num, elem) => {
-
-        //    var a = $(elem);
-        //    var href = a.attr('href');
-        //    window.open(href, '_parent');
-        //})
-
-        //aMp4.click();
-    });
-    $(".downloadInMp4").click(function () {
-        var aMp4: any = $(".webm");
-        aMp4.multiDownload({ delay: 5000 });
-        //var aMp4 = $(".mp4");
-        //aMp4.click();
-    });
-
+       
     var intervalCounter = 0;
     var interval = setInterval(function alignGoogle() {
 
-        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter']");
+        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter']"); 
 
         g.off("mouseleave").mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.off("mouseout").mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
@@ -144,11 +137,60 @@
 
         g.css("vertical-align", "bottom");
         intervalCounter++;
-        if (intervalCounter > 10) {
+        if (intervalCounter > 30) {
             clearInterval(interval);
         } 
     }, 500);
 
+    
+     // глобална променлива. лошо :(
+     var pubnub = PUBNUB.init({
+        publish_key: 'pub-c-5bd3c97d-e760-4aa8-9b91-0746c78606f9',
+        subscribe_key: 'sub-c-406da20e-e48e-11e6-b325-02ee2ddab7fe',
+        ssl: true,
+        error: function (error) {
+            console.log('Error:', error);
+        }
+    })
+
+    pubnub.time(
+        function (time) {
+            console.log(time)
+        }
+     );
+
+    window.dy.pubnubHelper = pubnub;
+
+    //pubnub.subscribe({
+    //    channel: 'DY',
+    //    message: function (g) {
+    //        debugger;
+    //        console.log('this is from Yordan pubnub' + g);
+
+    //        var $a = $("a[data-guid=" + g + "]");
+    //        var iToShow = $a.next("i");
+    //        var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
+
+    //        //var url = "/home/downloadaudiostream?guid=" + g;
+    //        var url = "http://localhost:49722/home/dav?guid=" + g;
+    //        if ($("span." + g).length == 0) {
+    //            var newGuid = new Date().getTime();
+    //            $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+    //            // Променяме и на цъкнатия линк url-а за да не се натисне пак
+
+    //        }
+    //        $a.attr("href", url);
+    //        $a.unbind("click");
+    //        iToShow.hide();
+
+    //        fileIsBeingProccessed.hide();
+
+    //    },
+    //    error: function (error) {
+    //        // Handle error here
+    //        console.log(JSON.stringify(error));
+    //    }
+    //});
 
 });
 
