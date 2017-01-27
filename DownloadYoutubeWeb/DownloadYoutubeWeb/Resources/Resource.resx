@@ -126,8 +126,11 @@
   <data name="BtnClearText" xml:space="preserve">
     <value>Clear</value>
   </data>
-  <data name="BtnExampleText" xml:space="preserve">
-    <value>Click for example</value>
+  <data name="BtnExampleText1" xml:space="preserve">
+    <value>Example with video</value>
+  </data>
+  <data name="BtnExampleText2" xml:space="preserve">
+    <value>Example with playlist</value>
   </data>
   <data name="BtnLoadUrlsMetadataText" xml:space="preserve">
     <value>Load urls</value>

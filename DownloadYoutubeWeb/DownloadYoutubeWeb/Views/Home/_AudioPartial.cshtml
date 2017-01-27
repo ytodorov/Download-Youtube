@@ -26,8 +26,8 @@
         }
         @foreach (var v in audios)
         {
-            <span class="hovercolor"><i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i></span>
-            <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+            @*<span class="hovercolor"><i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i></span>*@
+            <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty)) hovercolor"
                href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@Guid.NewGuid().ToString()">
                 @v.Format.ToLowerInvariant() &nbsp;
             </a>

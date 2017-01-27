@@ -126,8 +126,11 @@
   <data name="BtnClearText" xml:space="preserve">
     <value>Изчисти</value>
   </data>
-  <data name="BtnExampleText" xml:space="preserve">
-    <value>Натисни за пример</value>
+  <data name="BtnExampleText1" xml:space="preserve">
+    <value>Пример с видео</value>
+  </data>
+  <data name="BtnExampleText2" xml:space="preserve">
+    <value>Пример с плейлист</value>
   </data>
   <data name="BtnLoadUrlsMetadataText" xml:space="preserve">
     <value>Зареди адресите</value>

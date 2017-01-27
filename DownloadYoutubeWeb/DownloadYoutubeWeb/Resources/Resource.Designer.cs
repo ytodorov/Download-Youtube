@@ -88,11 +88,20 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click for example.
+        ///   Looks up a localized string similar to Example with video.
         /// </summary>
-        public static string BtnExampleText {
+        public static string BtnExampleText1 {
             get {
-                return ResourceManager.GetString("BtnExampleText", resourceCulture);
+                return ResourceManager.GetString("BtnExampleText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Example with playlist.
+        /// </summary>
+        public static string BtnExampleText2 {
+            get {
+                return ResourceManager.GetString("BtnExampleText2", resourceCulture);
             }
         }
         
