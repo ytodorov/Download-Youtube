@@ -7,8 +7,8 @@
 <head>
     <title>@Resource.SiteTitle</title>
 
-    <link rel="alternate" href="http://download-youtube.org/bg" hreflang="bg-BG" />
-    <link rel="alternate" href="http://download-youtube.org" hreflang="x-default" />
+    <link rel="alternate" href="http://download-youtube.org/bg" hreflang="bg" />
+    <link rel="alternate" href="http://download-youtube.org" hreflang="en" />
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,14 +19,17 @@
 
     <meta name="keywords" content="download, youtube, audio, video, convert, HD, 4k, 8k, mp3, webm, mp4">
 
-    <meta property="og:url" content="http://download-youtube.org/@(Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName.Replace("en", string.Empty))" />
-    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
     <meta property="og:title" content="@Resource.SiteTitle" />
     <meta property="og:description" content="@Resource.SiteDescription" />
     <meta property="og:image" content="http://download-youtube.org/assets/img/downloadyoutube.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="@Resource.SiteTitle" />
     @(Html.Raw(Html.GetOgMetaLocale()))
 
-    <link rel="canonical" href="http://download-youtube.org" />
+    <link rel="home" href="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
+
+    <link rel="canonical" href="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
     <link rel=icon href=favicon.ico sizes="16x16" type="image/png">
     <link href="~/assets/custom/css/preloader.css" rel="stylesheet" />
     <script>
