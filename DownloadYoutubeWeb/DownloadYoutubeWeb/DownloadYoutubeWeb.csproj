@@ -345,6 +345,7 @@
     </Compile>
     <Compile Include="Infrastructure\AudioUtils.cs" />
     <Compile Include="Infrastructure\CacheManager.cs" />
+    <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\HtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\LocalizedControllerActivator.cs" />
     <Compile Include="Infrastructure\LoggingManager.cs" />

@@ -128,7 +128,7 @@
                 var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
 
                 //var url = "/home/downloadaudiostream?guid=" + g;
-                var url = "http://localhost:49722/home/dav?guid=" + g;
+                var url = "@(Constants.VmSiteOneForDownloadYouTubeStream)home/dav?guid=" + g;
                 if ($("span." + g).length == 0) {
                     var newGuid = new Date().getTime();
                     $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
