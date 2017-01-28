@@ -109,7 +109,7 @@ $(document).ready(function r() {
         if (intervalCounter > 30) {
             clearInterval(interval);
         }
-    }, 500);
+    }, 1000);
     // глобална променлива. лошо :(
     var pubnub = PUBNUB.init({
         publish_key: 'pub-c-5bd3c97d-e760-4aa8-9b91-0746c78606f9',

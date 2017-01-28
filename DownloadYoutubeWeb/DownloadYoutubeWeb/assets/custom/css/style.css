@@ -4223,6 +4223,7 @@ Vertical Timeline
         line-height: 1.6;
     }
 
+
 @media only screen and (min-width: 768px) {
     .cd-horizontal-timeline .events-content h2 {
         font-size: 7rem;

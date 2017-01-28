@@ -328,11 +328,7 @@
     <Content Include="Libs\Telerik.Windows.Zip.dll" />
     <Content Include="Libs\Telerik.Windows.Zip.Extensions.dll" />
     <Content Include="robots.txt" />
-    <Content Include="Scripts\bundle.css" />
     <Content Include="Scripts\bundle.js" />
-    <Content Include="Scripts\bundle.min.css">
-      <DependentUpon>bundle.css</DependentUpon>
-    </Content>
     <Content Include="Scripts\bundle.min.js">
       <DependentUpon>bundle.js</DependentUpon>
     </Content>

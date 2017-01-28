@@ -139,10 +139,10 @@
     <value>Контакти</value>
   </data>
   <data name="DownloadAudioIn" xml:space="preserve">
-    <value>Зареждане на звука във формат:</value>
+    <value>Изтегляне на аудио файл във формат:</value>
   </data>
   <data name="DownloadVideoIn" xml:space="preserve">
-    <value>Зареждане на видеото във формат:</value>
+    <value>Изтегляне на видео файл във формат:</value>
   </data>
   <data name="ExtractionInTheCloudDescription" xml:space="preserve">
     <value>Извличането на аудио и видео данни от YouTube адреси става в облака, т.е. ресурсите на вашия компютър не се използват и той не се натоварва допълнително.</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Език</value>
+  </data>
+  <data name="ProcessedPercentage" xml:space="preserve">
+    <value>Обработени</value>
   </data>
   <data name="Recommended" xml:space="preserve">
     <value>Препоръчително</value>

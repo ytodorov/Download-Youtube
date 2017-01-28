@@ -184,7 +184,7 @@ namespace DownloadYoutubeWeb.Controllers
                                 postData.Add(new StringContent(args), "args");
                                 postData.Add(new StringContent("youtube-dl"), "program");
                                 postData.Add(new StringContent(guid), "guid");
-                                postData.Add(new StringContent(video.FullName), "fileName");
+                                postData.Add(new StringContent(video.FullName.Replace(" - YouTube", string.Empty)), "fileName");
 
                                 var address = $"home/youtubedownload";
                                 var request = new HttpRequestMessage(HttpMethod.Post, address);

@@ -124,7 +124,7 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download audio in:.
+        ///   Looks up a localized string similar to Download audio file in format:.
         /// </summary>
         public static string DownloadAudioIn {
             get {
@@ -133,7 +133,7 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download video in:.
+        ///   Looks up a localized string similar to Download video file in format:.
         /// </summary>
         public static string DownloadVideoIn {
             get {
@@ -201,6 +201,15 @@ namespace DownloadYoutubeWeb.Resources {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processed.
+        /// </summary>
+        public static string ProcessedPercentage {
+            get {
+                return ResourceManager.GetString("ProcessedPercentage", resourceCulture);
             }
         }
         

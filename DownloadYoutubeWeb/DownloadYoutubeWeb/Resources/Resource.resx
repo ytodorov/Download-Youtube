@@ -139,10 +139,10 @@
     <value>Contacts</value>
   </data>
   <data name="DownloadAudioIn" xml:space="preserve">
-    <value>Download audio in:</value>
+    <value>Download audio file in format:</value>
   </data>
   <data name="DownloadVideoIn" xml:space="preserve">
-    <value>Download video in:</value>
+    <value>Download video file in format:</value>
   </data>
   <data name="ExtractionInTheCloudDescription" xml:space="preserve">
     <value>The extraction process of audio and video data of YouTube urls happens in the cloud, so it won’t drain any capacity from your computer.</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="ProcessedPercentage" xml:space="preserve">
+    <value>Processed</value>
   </data>
   <data name="Recommended" xml:space="preserve">
     <value>Recommended</value>

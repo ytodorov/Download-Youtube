@@ -10,7 +10,7 @@
   },
   {
     "outputFileName": "assets/bundle.css",
-    "inputFiles": [
+    "inputFiles": [ 
       "assets/vendor/fontawesome/css/font-awesome.min.css",
       "assets/vendor/fontawesome/css/font-awesome-animation.min.css",
       "assets/vendor/flaticon/flaticon.css",

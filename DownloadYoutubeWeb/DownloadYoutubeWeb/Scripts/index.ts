@@ -140,7 +140,7 @@ $(document).ready(function r() {
         if (intervalCounter > 30) {
             clearInterval(interval);
         } 
-    }, 500);
+    }, 1000);
 
     
      // глобална променлива. лошо :(
