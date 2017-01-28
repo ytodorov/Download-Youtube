@@ -15,7 +15,7 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
 
     <meta name="title" content="@Resource.SiteTitle">
-    <meta name="description" content="@Resource.SiteDescription">   
+    <meta name="description" content="@Resource.SiteDescription">
     <meta name="keywords" content="download, youtube, audio, video, convert, HD, 4k, 8k, mp3, webm, mp4" />
 
     <link rel="canonical" href="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
@@ -32,8 +32,9 @@
     <meta property="og:image" content="http://download-youtube.org/assets/img/downloadyoutube.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="@Resource.SiteTitle" />
-    <meta property="fb:admins" content="1039783075" /> 
+    <meta property="fb:admins" content="1039783075" />
     <meta property="fb:app_id" content="722393407941437" />
+    @(Html.Raw(Html.GetOgMetaLocale()))
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@("@DownloadYouT")">
@@ -42,11 +43,10 @@
     <meta name="twitter:description" content="@Resource.SiteDescription">
     <meta name="twitter:image:src" content="http://download-youtube.org/assets/img/downloadyoutube.png">
 
-    @(Html.Raw(Html.GetOgMetaLocale()))
 
     <link rel="home" href="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
 
-    
+
     <link rel=icon href=favicon.ico sizes="16x16" type="image/x-icon">
     <link href="~/assets/custom/css/preloader.css" rel="stylesheet" />
     <script>
@@ -55,15 +55,19 @@
 
     <!-- Facebook Pixel Code -->
     <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '697967597029717', {
-em: 'insert_email_variable,'
-});
-fbq('track', 'PageView');
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+        document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '697967597029717', {
+            em: 'insert_email_variable,'
+        });
+        fbq('track', 'PageView');
     </script>
     <noscript>
         <img height="1" width="1" style="display:none"
@@ -168,6 +172,7 @@ fbq('track', 'PageView');
                         </a>
                         <div class="g-follow" data-size="medium" data-annotation="inline" data-width="200" data-href="https://plus.google.com/116818711365591733192" data-rel="author"></div>
                         <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="200"></div>
+                        <a data-pin-do="buttonPin" data-pin-count="beside" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest"></a>
                     </div>
                 </div>
             </div>
@@ -278,7 +283,9 @@ fbq('track', 'PageView');
                                         <div class="g-follow" data-size="medium" data-href="https://plus.google.com/116818711365591733192" data-rel="author"></div>
                                         <div class="g-plusone" data-size="medium"></div>
                                     </div>
-
+                                    <div class="inline-block">
+                                        <a data-pin-do="buttonPin" data-pin-count="beside" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest"></a>
+                                    </div>
                                 </div>
                                 <div class="dividewhite4"></div>
                             </div>
@@ -306,27 +313,27 @@ fbq('track', 'PageView');
     <div id="image-cache" class="hidden"></div>
 
     @*<link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1118/styles/kendo.common-nova.min.css" />
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1118/styles/kendo.nova.min.css" />*@
+        <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.1118/styles/kendo.nova.min.css" />*@
     @*<link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />
-    <link href="assets/vendor/fontawesome/css/font-awesome.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/vendor/fontawesome/css/font-awesome-animation.min.css" rel="stylesheet" />
-    <link href="assets/vendor/flaticon/flaticon.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/vendor/rs-plugin/css/settings.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/vendor/rs-plugin/css/layers.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/vendor/rs-plugin/css/navigation.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/vendor/mfp/css/magnific-popup.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/vendor/progresstracker/css/jquery.progresstracker.min.css" property='stylesheet' rel="stylesheet">
-    <link href="assets/vendor/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" />
-    <link href="assets/vendor/pe-icon-7-stroke/css/helper.css" rel="stylesheet" />*@
+        <link href="assets/vendor/fontawesome/css/font-awesome.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+        <link href="assets/vendor/fontawesome/css/font-awesome-animation.min.css" rel="stylesheet" />
+        <link href="assets/vendor/flaticon/flaticon.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+        <link href="assets/vendor/rs-plugin/css/settings.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+        <link href="assets/vendor/rs-plugin/css/layers.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+        <link href="assets/vendor/rs-plugin/css/navigation.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+        <link href="assets/vendor/mfp/css/magnific-popup.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+        <link href="assets/vendor/progresstracker/css/jquery.progresstracker.min.css" property='stylesheet' rel="stylesheet">
+        <link href="assets/vendor/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="assets/vendor/pe-icon-7-stroke/css/helper.css" rel="stylesheet" />*@
     @*<link href="assets/vendor/audioplayer/css/audioplayer.css" rel="stylesheet" />*@
     @*<link href="assets/custom/css/animate.css" rel="stylesheet" />*@
     @*<link href="assets/custom/css/style.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />*@
     <link rel="stylesheet" href="//bootswatch.com/yeti/bootstrap.min.css" />
     <link href="@(WebUtils.Tag("/assets/bundle.css"))" rel="stylesheet" />
     @*<script type="text/javascript" src="assets/vendor/sticky/js/jquery.sticky.min.js"></script>
-    <script type="text/javascript" src="assets/vendor/progresstracker/js/jquery.progresstracker.min.js"></script>
-    <script src="scripts/pubnub-3.16.5.min.js"></script>
-    <script type="text/javascript" src="assets/custom/js/script.js"></script>*@
+        <script type="text/javascript" src="assets/vendor/progresstracker/js/jquery.progresstracker.min.js"></script>
+        <script src="scripts/pubnub-3.16.5.min.js"></script>
+        <script type="text/javascript" src="assets/custom/js/script.js"></script>*@
     @*<script src="scripts/bundle.min.js"></script>*@
     <script src="@(WebUtils.Tag("/scripts/bundle.min.js"))"></script>
     <script>
@@ -337,19 +344,20 @@ fbq('track', 'PageView');
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     @if (!Request.IsLocal)
-    {        
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    {
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-43988280-5', 'auto');
-        ga('send', 'pageview');
+            ga('create', 'UA-43988280-5', 'auto');
+            ga('send', 'pageview');
 
-    </script>
+        </script>
     }
+    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 </body>
 </html>
