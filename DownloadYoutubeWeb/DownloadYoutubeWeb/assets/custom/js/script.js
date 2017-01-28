@@ -16,7 +16,7 @@
 
     $(document).ready(function () {
 
-        /* Sticky Header */
+        /* Sticky Header */ 
         $(".sticky-header").sticky({topSpacing: 0});
 
         /* Slider Revolution */

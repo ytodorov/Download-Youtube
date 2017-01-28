@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="5A564154852DFB8369325FF368886623.txt" />
+    <Content Include="assets\bundle.css" />
     <Content Include="assets\custom\css\animate.css" />
     <Content Include="assets\custom\css\preloader.css" />
     <Content Include="assets\custom\css\style.css" />
@@ -310,6 +311,7 @@
     <Content Include="assets\vendor\sticky\js\jquery.sticky.js" />
     <Content Include="assets\vendor\sticky\js\jquery.sticky.min.js" />
     <Content Include="assets\vendor\waypoints\waypoints.min.js" />
+    <Content Include="bundle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Libs\bg-BG\Kendo.Mvc.resources.dll" />
@@ -326,7 +328,11 @@
     <Content Include="Libs\Telerik.Windows.Zip.dll" />
     <Content Include="Libs\Telerik.Windows.Zip.Extensions.dll" />
     <Content Include="robots.txt" />
+    <Content Include="Scripts\bundle.css" />
     <Content Include="Scripts\bundle.js" />
+    <Content Include="Scripts\bundle.min.css">
+      <DependentUpon>bundle.css</DependentUpon>
+    </Content>
     <Content Include="Scripts\bundle.min.js">
       <DependentUpon>bundle.js</DependentUpon>
     </Content>
@@ -351,6 +357,7 @@
     <Compile Include="Infrastructure\LoggingManager.cs" />
     <Compile Include="Infrastructure\PubnubManager.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
+    <Compile Include="Infrastructure\WebUtils.cs" />
     <Compile Include="Infrastructure\YoutubeManager.cs" />
     <Compile Include="Models\VideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

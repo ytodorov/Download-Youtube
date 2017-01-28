@@ -4,7 +4,23 @@
     "inputFiles": [
       "assets/vendor/sticky/js/jquery.sticky.js",
       "assets/vendor/progresstracker/js/jquery.progresstracker.min.js",
+      "scripts/pubnub-3.16.5.min.js",
       "assets/custom/js/script.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundle.css",
+    "inputFiles": [
+      "assets/vendor/fontawesome/css/font-awesome.min.css",
+      "assets/vendor/fontawesome/css/font-awesome-animation.min.css",
+      "assets/vendor/flaticon/flaticon.css",
+      "assets/vendor/rs-plugin/css/settings.css",
+      "assets/vendor/rs-plugin/css/layers.css",
+      "assets/vendor/rs-plugin/css/navigation.css",
+      "assets/vendor/progresstracker/css/jquery.progresstracker.min.css",
+      "assets/vendor/pe-icon-7-stroke/css/pe-icon-7-stroke.css",
+      "assets/vendor/pe-icon-7-stroke/css/helper.css",
+      "assets/custom/css/style.css"
     ]
   }
 ]

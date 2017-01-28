@@ -197,47 +197,47 @@ namespace DownloadYoutubeWeb.Controllers
                                 // важно, за да се позволи да се осъществи връзката.
                                 sendAsync.Wait(5000);
                                 return;
-                                var response = sendAsync.Result;
-                                var stream = response.Content.ReadAsStreamAsync().Result;
+                                //var response = sendAsync.Result;
+                                //var stream = response.Content.ReadAsStreamAsync().Result;
 
-                                LoggingManager.Logger.Info($"Content return from '{args}'");
+                                //LoggingManager.Logger.Info($"Content return from '{args}'");
 
-                                string baseDir = HostingEnvironment.ApplicationPhysicalPath;
-                                string tempFolderName = "tmp";
-                                string fullDirPath = Path.Combine(baseDir, tempFolderName);
-                                if (!Directory.Exists(fullDirPath))
-                                {
-                                    Directory.CreateDirectory(fullDirPath);
-                                }
+                                //string baseDir = HostingEnvironment.ApplicationPhysicalPath;
+                                //string tempFolderName = "tmp";
+                                //string fullDirPath = Path.Combine(baseDir, tempFolderName);
+                                //if (!Directory.Exists(fullDirPath))
+                                //{
+                                //    Directory.CreateDirectory(fullDirPath);
+                                //}
 
-                                string fileToWriteTo = Path.Combine(fullDirPath, guid + ".tmp");
+                                //string fileToWriteTo = Path.Combine(fullDirPath, guid + ".tmp");
 
-                                byte[] buffer = new byte[16 * 1024];
-                                using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
-                                {
-                                    int read;
-                                    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                                    {
-                                        ms.Write(buffer, 0, read);
-                                    }
-                                }
+                                //byte[] buffer = new byte[16 * 1024];
+                                //using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
+                                //{
+                                //    int read;
+                                //    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                                //    {
+                                //        ms.Write(buffer, 0, read);
+                                //    }
+                                //}
 
                                 //PubnubManager.Publish($"{guid}");
 
-                                string fn = video.FullName.Replace("- YouTube", string.Empty);
-                                if (!string.IsNullOrEmpty(convertto))
-                                {
-                                    fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
-                                }
+                                //string fn = video.FullName.Replace("- YouTube", string.Empty);
+                                //if (!string.IsNullOrEmpty(convertto))
+                                //{
+                                //    fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
+                                //}
 
-                                string ct = MimeMapping.GetMimeMapping(fn);
-                                var r = File(fileToWriteTo, ct, fn);
+                                //string ct = MimeMapping.GetMimeMapping(fn);
+                                //var r = File(fileToWriteTo, ct, fn);
                              
-                                MemoryCacheManager.Set(guid, r);
+                                //MemoryCacheManager.Set(guid, r);
 
-                                LoggingManager.Logger.Info($"file {guid} {fn} downloaded OK");
+                                //LoggingManager.Logger.Info($"file {guid} {fn} downloaded OK");
 
-                                return;
+                                //return;
                                
                             }
 
