@@ -111,17 +111,8 @@ namespace DownloadYoutubeWeb.Controllers
 
                     for (int i = 0; i < MAX_RETRY_COUNT; i++)
                     {
-
-
                         try
                         {
-
-                            //if (MemoryCacheManager.Get(guid) != null)
-                            //{                               
-                            //    return;
-                            //}
-
-
                             YouTubeVideo video = GetVideo(uri, format, formatcode, resolution);
                             string unencodedUri = HttpUtility.UrlDecode(uri).DecodeBase64();
 
@@ -132,24 +123,8 @@ namespace DownloadYoutubeWeb.Controllers
                             // Това е важно за да премахнем всякакви други querystring параметри - те създават проблеми
                             unencodedUri = $"{unencodedUri}?v={v}";
 
-                            //if (video?.AdaptiveKind.ToString().IsCaseInsensitiveEqual("audio") == true && string.IsNullOrEmpty(convertto))
-                            //{
-                            //    // Тук сме в случая само когато имаме звук в WebM или mp4 формат
-                            //    var bytes = video.GetBytes();
-
-                            //    string contentType = MimeMapping.GetMimeMapping(video.FullName);
-                            //    var result = File(bytes, contentType, video.FullName.Replace("- YouTube", string.Empty));
-                           
-                            //    MemoryCacheManager.Set(guid, result, 1);
-                            //    return;
-                            //}
-
-
-
-
                             using (HttpClient client = new HttpClient())
                             {
-                                //client.BaseAddress = new Uri("http://localhost:49722/");
                                 client.BaseAddress = new Uri(Constants.VmSiteOneForDownloadYouTubeStream);
 
                                 client.Timeout = TimeSpan.FromHours(1);
@@ -196,51 +171,8 @@ namespace DownloadYoutubeWeb.Controllers
                               
                                 // важно, за да се позволи да се осъществи връзката.
                                 sendAsync.Wait(5000);
-                                return;
-                                //var response = sendAsync.Result;
-                                //var stream = response.Content.ReadAsStreamAsync().Result;
-
-                                //LoggingManager.Logger.Info($"Content return from '{args}'");
-
-                                //string baseDir = HostingEnvironment.ApplicationPhysicalPath;
-                                //string tempFolderName = "tmp";
-                                //string fullDirPath = Path.Combine(baseDir, tempFolderName);
-                                //if (!Directory.Exists(fullDirPath))
-                                //{
-                                //    Directory.CreateDirectory(fullDirPath);
-                                //}
-
-                                //string fileToWriteTo = Path.Combine(fullDirPath, guid + ".tmp");
-
-                                //byte[] buffer = new byte[16 * 1024];
-                                //using (FileStream ms = System.IO.File.OpenWrite(fileToWriteTo))
-                                //{
-                                //    int read;
-                                //    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                                //    {
-                                //        ms.Write(buffer, 0, read);
-                                //    }
-                                //}
-
-                                //PubnubManager.Publish($"{guid}");
-
-                                //string fn = video.FullName.Replace("- YouTube", string.Empty);
-                                //if (!string.IsNullOrEmpty(convertto))
-                                //{
-                                //    fn = Path.GetFileNameWithoutExtension(video.FullName.Replace("- YouTube", string.Empty)) + "." + convertto;
-                                //}
-
-                                //string ct = MimeMapping.GetMimeMapping(fn);
-                                //var r = File(fileToWriteTo, ct, fn);
-                             
-                                //MemoryCacheManager.Set(guid, r);
-
-                                //LoggingManager.Logger.Info($"file {guid} {fn} downloaded OK");
-
-                                //return;
-                               
+                                return;                               
                             }
-
                         }
                         catch (Exception ex)
                         {
@@ -270,8 +202,6 @@ namespace DownloadYoutubeWeb.Controllers
 
             return video;
         }
-
-
 
         public ActionResult GetVideoUrlsFromPlaylistId(string uri)
         {

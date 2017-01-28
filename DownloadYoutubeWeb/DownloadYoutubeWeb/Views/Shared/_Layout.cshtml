@@ -16,8 +16,15 @@
 
     <meta name="title" content="@Resource.SiteTitle">
     <meta name="description" content="@Resource.SiteDescription">   
+    <meta name="keywords" content="Scott, Computer, Zen, .NET, C#, Hanselman, Microsoft, Scott, Weblog, Diabetes, Portland, Zimbabwe, ASP.NET, Azure, Cloud, Productivity, Hanselman" />
 
-    <meta name="keywords" content="download, youtube, audio, video, convert, HD, 4k, 8k, mp3, webm, mp4">
+    <link rel="canonical" href="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
+
+
+    <meta itemprop="applicationCategory" content="BusinessApplication" />
+    <meta itemprop="applicationSuite" content="smallpdf" />
+    <meta itemprop="datePublished" content="2017-01-01">
+    <meta itemprop="image" content="http://download-youtube.org/favicon.ico">
 
     <meta property="og:url" content="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
     <meta property="og:title" content="@Resource.SiteTitle" />
@@ -28,12 +35,19 @@
     <meta property="fb:admins" content="1039783075" /> 
     <meta property="fb:app_id" content="722393407941437" />
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@("@DownloadYouT")">
+    <meta name="twitter:creator" content="@("@DownloadYouT")">
+    <meta name="twitter:title" content="@Resource.SiteTitle">
+    <meta name="twitter:description" content="@Resource.SiteDescription">
+    <meta name="twitter:image:src" content="http://download-youtube.org/assets/img/downloadyoutube.png">
+
     @(Html.Raw(Html.GetOgMetaLocale()))
 
     <link rel="home" href="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
 
-    <link rel="canonical" href="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
-    <link rel=icon href=favicon.ico sizes="16x16" type="image/png">
+    
+    <link rel=icon href=favicon.ico sizes="16x16" type="image/x-icon">
     <link href="~/assets/custom/css/preloader.css" rel="stylesheet" />
     <script>
         (function (doc) { var addEvent = 'addEventListener', type = 'gesturestart', qsa = 'querySelectorAll', scales = [1, 1], meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : []; function fix() { meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1]; doc.removeEventListener(type, fix, true); } if ((meta = meta[meta.length - 1]) && addEvent in doc) { fix(); scales = [.25, 1.6]; doc[addEvent](type, fix, true); } }(document));
