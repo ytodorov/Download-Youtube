@@ -30,7 +30,7 @@
             @*<span class="hovercolor"><i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i></span>*@
             <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid">
-                @v.Format.ToLowerInvariant() &nbsp;
+                @v.Format.ToLowerInvariant().ToLowerInvariant().Replace("mp4", "m4a") &nbsp;
             </a>
             <i class="pe-7s-refresh pe-spin" style="display:none"></i>
             <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
@@ -57,13 +57,14 @@
                 </a>
                 guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
-                <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                @*<div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
+                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=m4a">
                     m4a
                 </a>
+
+                <i class="pe-7s-refresh pe-spin" style="display:none"></i>*@
                 guid = Guid.NewGuid().ToString();
-                <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
                 <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=opus">
@@ -72,7 +73,7 @@
                 guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
-                <a target="_blank" data-guid="@Guid.NewGuid().ToString()" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=wav">
                     wav
                 </a>

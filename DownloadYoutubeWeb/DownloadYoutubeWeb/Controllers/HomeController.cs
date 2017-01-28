@@ -154,6 +154,10 @@ namespace DownloadYoutubeWeb.Controllers
                                     // за аудио конвертиране
                                     //youtube-dl.exe -f bestaudio https://www.youtube.com/watch?v=-1cyCmUdDNQ -x --audio-format mp3,
                                     args = $" -f bestaudio {unencodedUri} -x --audio-format {convertto}";
+                                    if (string.IsNullOrEmpty(convertto))
+                                    {
+                                        args = $" -f {formatcode} {unencodedUri}";
+                                    }
                                 }
 
                                 postData.Add(new StringContent(args), "args");
@@ -226,7 +230,7 @@ namespace DownloadYoutubeWeb.Controllers
             }
 
 
-            int maxTryAttempts = 5;
+            int maxTryAttempts = 2;
             for (int i = 0; i < maxTryAttempts; i++)
             {
 
