@@ -131,15 +131,10 @@
                     window.dy.pubnubHelper.unsubscribe({
                         channel: dyMessage.guid,
                     });
-
-
-                    console.log('this is from Yordan pubnub' + dyMessage.guid);
-
                     var $a = $("a[data-guid=" + dyMessage.guid + "]");
                     var iToShow = $a.next("i");
                     var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
 
-                    //var url = "/home/downloadaudiostream?guid=" + g;
                     var url = "@(Constants.VmSiteOneForDownloadYouTubeStream)home/dav?guid=" + dyMessage.guid;
                     if ($("span." + dyMessage.guid).length == 0) {
                         var newGuid = new Date().getTime();
@@ -155,7 +150,6 @@
                 }
                 else
                 {
-                    debugger;
                     var $a = $("a[data-guid=" + dyMessage.guid + "]");
                     var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
                     fileIsBeingProccessed.html('<i class="hovercolor fa faa-float animated faa-slow">@(Resource.ProcessedPercentage) ' + dyMessage.percentage + '%</i>');

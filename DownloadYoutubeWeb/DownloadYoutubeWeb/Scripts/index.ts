@@ -129,12 +129,12 @@ $(document).ready(function r() {
     var intervalCounter = 0;
     var interval = setInterval(function alignGoogle() {
 
-        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter']"); 
+        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter'],.IN-widget");  
 
         g.off("mouseleave").mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.off("mouseout").mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.off("hover").hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
-
+         
         g.css("vertical-align", "bottom");
         intervalCounter++;
         if (intervalCounter > 30) {
@@ -160,37 +160,7 @@ $(document).ready(function r() {
      );
 
     window.dy.pubnubHelper = pubnub;
-
-    //pubnub.subscribe({
-    //    channel: 'DY',
-    //    message: function (g) {
-    //        debugger;
-    //        console.log('this is from Yordan pubnub' + g);
-
-    //        var $a = $("a[data-guid=" + g + "]");
-    //        var iToShow = $a.next("i");
-    //        var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
-
-    //        //var url = "/home/downloadaudiostream?guid=" + g;
-    //        var url = "http://localhost:49722/home/dav?guid=" + g;
-    //        if ($("span." + g).length == 0) {
-    //            var newGuid = new Date().getTime();
-    //            $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + g + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
-    //            // Променяме и на цъкнатия линк url-а за да не се натисне пак
-
-    //        }
-    //        $a.attr("href", url);
-    //        $a.unbind("click");
-    //        iToShow.hide();
-
-    //        fileIsBeingProccessed.hide();
-
-    //    },
-    //    error: function (error) {
-    //        // Handle error here
-    //        console.log(JSON.stringify(error));
-    //    }
-    //});
+      
 
 });
 
