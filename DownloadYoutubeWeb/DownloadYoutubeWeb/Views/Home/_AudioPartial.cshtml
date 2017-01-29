@@ -28,7 +28,8 @@
         {
             guid = Guid.NewGuid().ToString();
             @*<span class="hovercolor"><i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i></span>*@
-            <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+            <a target="_blank" data-guid="@guid" class="k-button @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                title="@($"{Resource.Download} {v.title}")" 
                href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid">
                 @v.Format.ToLowerInvariant().ToLowerInvariant() &nbsp;
             </a>
@@ -37,43 +38,48 @@
             if (audios.IndexOf(v) == audios.Count - 1)
             {
                 guid = Guid.NewGuid().ToString();
-                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                <a target="_blank" data-guid="@guid" class="k-button @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                    title="@($"{Resource.Download} {v.title}")" 
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=mp3">
                     mp3
                 </a>
                 guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
-                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                <a target="_blank" data-guid="@guid" class="k-button @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                    title="@($"{Resource.Download} {v.title}")" 
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=aac">
                     aac
                 </a>
                 guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
-                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                <a target="_blank" data-guid="@guid" class="k-button @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                    title="@($"{Resource.Download} {v.title}")" 
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=vorbis">
                     vorbis
                 </a>
                 guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 @*<div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
-                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
-                   href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=m4a">
-                    m4a
-                </a>
+    <a target="_blank" data-guid="@guid" class="k-button @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+       href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=m4a">
+        m4a
+    </a>
 
-                <i class="pe-7s-refresh pe-spin" style="display:none"></i>*@
+    <i class="pe-7s-refresh pe-spin" style="display:none"></i>*@
                 guid = Guid.NewGuid().ToString();
                 <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
-                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                <a target="_blank" data-guid="@guid" class="k-button @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                    title="@($"{Resource.Download} {v.title}")" 
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=opus">
                     opus
                 </a>
                 guid = Guid.NewGuid().ToString();
                 <i class="pe-7s-refresh pe-spin" style="display:none"></i>
                 <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
-                <a target="_blank" data-guid="@guid" class="@(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                <a target="_blank" data-guid="@guid" class="k-button @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+                    title="@($"{Resource.Download} {v.title}")" 
                    href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid&convertto=wav">
                     wav
                 </a>
@@ -95,7 +101,7 @@
         @foreach (var v in videos)
         {
             guid = Guid.NewGuid().ToString();
-            <a target="_blank" data-guid="@guid" title="@v.FormatCode"
+            <a target="_blank" data-guid="@guid" title="@($"{Resource.Download} {v.title}")" class="k-button"
                 href="/home/downloadaudio?format=@v.Format&formatCode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid">
                 @v.Format-@(v.Resolution + "p") &nbsp;
             </a>
@@ -145,6 +151,11 @@
                     $a.attr("href", url);
                     $a.unbind("click");
                     iToShow.hide();
+
+                    // Променяме текста
+                    var oldText = $a.text();
+                    $a.text("@(Resource.ClickToDownload)" + oldText);
+                    $a.addClass("hovercolor").removeClass("k-button");
 
                     fileIsBeingProccessed.hide();
                 }

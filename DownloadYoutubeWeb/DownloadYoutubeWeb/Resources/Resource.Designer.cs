@@ -115,11 +115,29 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to download.
+        /// </summary>
+        public static string ClickToDownload {
+            get {
+                return ResourceManager.GetString("ClickToDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contacts.
         /// </summary>
         public static string Contacts {
             get {
                 return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
             }
         }
         

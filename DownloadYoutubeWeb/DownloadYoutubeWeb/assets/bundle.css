@@ -14961,3 +14961,8 @@ body {
     font-family: Source Sans Pro,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing: antialiased;
 }*/
+
+a.k-button{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
