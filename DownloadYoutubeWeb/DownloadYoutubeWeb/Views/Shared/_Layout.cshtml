@@ -42,20 +42,7 @@
     <meta name="twitter:title" content="@Resource.SiteTitle">
     <meta name="twitter:description" content="@Resource.SiteDescription">
     <meta name="twitter:image:src" content="http://download-youtube.org/assets/img/downloadyoutube.png">
-
-    <script type="application/ld+json">
-        {
-        "@("@context")": "http://schema.org",
-        "@("@type")": "WebSite",
-        "url": "http://download-youtube.org",       
-        "datePublished": "2017-01-01", 
-        "headline" : "@Resource.SiteTitle",
-        "description" : (@Resource.SiteDescription),
-        "image": "http://download-youtube.org/assets/img/downloadyoutube.png"
-        }
-    </script>
-
-
+         
     <link rel="home" href="http://download-youtube.org@(("/"+Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName).Replace("/en", string.Empty))" />
 
 
@@ -90,6 +77,25 @@
 
 </head>
 <body class="">
+    @*<script type="application/ld+json">
+        {
+        "@("@context")": "http://schema.org",
+        "@("@type")": "WebSite",
+        "url": "http://download-youtube.org",
+        "datePublished": "2017-01-01",
+        "headline" : "@Resource.SiteTitle",
+        "description" : (@Resource.SiteDescription),
+        "image": "http://download-youtube.org/assets/img/downloadyoutube.png"
+        }
+    </script>*@
+
+    <div itemscope itemtype="http://schema.org/WebSite">
+        <link itemprop="url" href="http://download-youtube.org" />    
+        <link itemprop="headline" href="@Resource.SiteTitle" />     
+        <link itemprop="description" href="@Resource.SiteDescription" />    
+        <link itemprop="image" href="http://download-youtube.org/assets/img/downloadyoutube.png" />               
+    </div>
+
     <script>
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
