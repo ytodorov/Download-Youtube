@@ -78,7 +78,7 @@ $(document).ready(function r() {
         });
     });
     $("#btnLoadExample1").click(function example1() {
-        var urlsForExample1 = 'https://www.youtube.com/watch?v=xDMP3i36naA https://www.youtube.com/watch?v=QPdWJeybMo8';
+        var urlsForExample1 = 'https://www.youtube.com/watch?v=A8H151pEoio https://www.youtube.com/watch?v=xDMP3i36naA https://www.youtube.com/watch?v=QPdWJeybMo8';
         $("#tbUrls").text(urlsForExample1);
         $("#tbUrls").val(urlsForExample1);
         setTimeout(function () {

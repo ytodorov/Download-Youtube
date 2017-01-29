@@ -10162,7 +10162,7 @@ opacity:1
 
 /* Headings */
 h2 {
-    font-size: 30px;
+    font-size: 26px;
 }
 
 h3 {
@@ -11065,7 +11065,7 @@ button, input, select, textarea {
 [Misc Styles]
 */
 .initial h1 {
-    font-size: 38px;
+    font-size: 30px;
 }
 
 .initial h4, .initial p {

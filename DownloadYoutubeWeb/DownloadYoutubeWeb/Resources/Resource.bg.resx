@@ -172,13 +172,16 @@
     <value>Препоръчително</value>
   </data>
   <data name="SiteDescription" xml:space="preserve">
-    <value>Бързо и безплатно изтегляне на YouTube аудио и видео файлове.</value>
+    <value>Бързо и безплатно изтегляне на YouTube аудио и видео файлове. Изтегляне в mp3, mp4, webm, wav, aac, .ogg, .opus и др.</value>
   </data>
   <data name="SiteTitle" xml:space="preserve">
-    <value>Изтегляне на YouTube аудио и видео файлове.</value>
+    <value>Изтегляне на любимите ви YouTube аудио и видео файлове. Напълно безплатно, без регистрация.</value>
+  </data>
+  <data name="SiteTitleShort" xml:space="preserve">
+    <value>Бързо и безплатно изтегляне на YouTube аудио и видео файлове</value>
   </data>
   <data name="SupportMultipleFormatsDescription" xml:space="preserve">
-    <value>Приложението DownloadYouTube.org поддържа следните формати: mp4, webm, mp3, m4a, wma, flac, wav, aac и ogg.</value>
+    <value>Приложението DownloadYouTube.org поддържа следните формати:  mp3, mp4, webm, wav, aac, .ogg, .opus.</value>
   </data>
   <data name="SupportMultipleFormatsTitle" xml:space="preserve">
     <value>Различни формати</value>

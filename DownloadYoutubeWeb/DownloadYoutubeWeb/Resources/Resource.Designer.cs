@@ -223,7 +223,7 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fast and free download of YouTube audio and video files..
+        ///   Looks up a localized string similar to Fast and free download of YouTube audio and video files. Download in mp3, mp4, webm, wav, aac, .ogg, .opus and many more..
         /// </summary>
         public static string SiteDescription {
             get {
@@ -232,7 +232,7 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download YouTube audio and video files..
+        ///   Looks up a localized string similar to Download your favourite YouTube audio and video files. It&apos;s 100% free, no registration required..
         /// </summary>
         public static string SiteTitle {
             get {
@@ -241,7 +241,16 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DownloadYouTube.org app supports the following formats: mp4, webm, mp3, m4a, wma, flac, wav, aac and ogg..
+        ///   Looks up a localized string similar to Fast and free download of YouTube audio and video files.
+        /// </summary>
+        public static string SiteTitleShort {
+            get {
+                return ResourceManager.GetString("SiteTitleShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DownloadYouTube.org app supports the following formats: mp3, mp4, webm, wav, aac, .ogg, .opus..
         /// </summary>
         public static string SupportMultipleFormatsDescription {
             get {

@@ -172,13 +172,16 @@
     <value>Recommended</value>
   </data>
   <data name="SiteDescription" xml:space="preserve">
-    <value>Fast and free download of YouTube audio and video files.</value>
+    <value>Fast and free download of YouTube audio and video files. Download in mp3, mp4, webm, wav, aac, .ogg, .opus and many more.</value>
   </data>
   <data name="SiteTitle" xml:space="preserve">
-    <value>Download YouTube audio and video files.</value>
+    <value>Download your favourite YouTube audio and video files. It's 100% free, no registration required.</value>
+  </data>
+  <data name="SiteTitleShort" xml:space="preserve">
+    <value>Fast and free download of YouTube audio and video files</value>
   </data>
   <data name="SupportMultipleFormatsDescription" xml:space="preserve">
-    <value>DownloadYouTube.org app supports the following formats: mp4, webm, mp3, m4a, wma, flac, wav, aac and ogg.</value>
+    <value>DownloadYouTube.org app supports the following formats: mp3, mp4, webm, wav, aac, .ogg, .opus.</value>
   </data>
   <data name="SupportMultipleFormatsTitle" xml:space="preserve">
     <value>Support multiple formats</value>
