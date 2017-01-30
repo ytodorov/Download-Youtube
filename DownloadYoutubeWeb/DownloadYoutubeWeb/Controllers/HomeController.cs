@@ -94,6 +94,7 @@ namespace DownloadYoutubeWeb.Controllers
             {
                 var ind = qs.IndexOf("q=");
                 val = qs.Substring(3);
+                val = Server.UrlDecode(val);
             }
    
             hvm.DefaultUrls = val;
