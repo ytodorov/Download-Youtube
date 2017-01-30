@@ -77,18 +77,6 @@
 
 </head>
 <body class="">
-    @*<script type="application/ld+json">
-        {
-        "@("@context")": "http://schema.org",
-        "@("@type")": "WebSite",
-        "url": "http://download-youtube.org",
-        "datePublished": "2017-01-01",
-        "headline" : "@Resource.SiteTitle",
-        "description" : (@Resource.SiteDescription),
-        "image": "http://download-youtube.org/assets/img/downloadyoutube.png"
-        }
-    </script>*@
-
     <div itemscope itemtype="http://schema.org/WebSite">
         <link itemprop="url" href="http://download-youtube.org" />    
         <link itemprop="headline" href="@Resource.SiteTitle" />     
@@ -166,7 +154,7 @@
             @*<h4 style="display:none">@Resource.FollowUs</h4>*@
 
             <div class="container">
-                <div class="row">
+                <div class="row text-center center-block">
                     @*<div class="col-sm-2"></div>*@
                     <div class="social-share col-sm-12 headerSocial">
                         <div class="fb-like"
@@ -181,16 +169,17 @@
                         <a class="twitter-follow-button"
                            style="vertical-align:bottom"
                            href="https://twitter.com/DownloadYouT"
-                           data-show-screen-name="false">
+                           data-show-screen-name="false"
+                           data-show-count="false">
                         </a>
                         <a class="twitter-share-button"
                            href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fdownload-youtube.org"
                            data-show-screen-name="false">
                             Tweet
                         </a>
-                        <div class="g-follow" data-size="medium" data-annotation="inline" data-width="200" data-href="https://plus.google.com/116818711365591733192" data-rel="author"></div>
-                        <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="200"></div>
-                        <a data-pin-do="buttonPin" data-pin-count="beside" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest"></a>
+                        <div class="g-follow" data-size="medium" data-annotation="none" data-width="200" data-href="https://plus.google.com/116818711365591733192" data-rel="author"></div>
+                        <div class="g-plusone" data-size="medium" data-annotation="none" data-width="200"></div>
+                        <a data-pin-do="buttonBookmark" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
                         <script src="https://platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
                         <script type="IN/Share" data-url="http://download-youtube.org" data-counter="right"></script>
                     </div>
@@ -278,6 +267,33 @@
                                 <h4>@Resource.FollowUs</h4>
                                 <div class="follow dark">
                                     <div class="inline-block">
+                                        <a target="_blank" href="https://www.facebook.com/DownloadYouTubeOrg/">
+                                            <i class="fa fa-facebook" title="Facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="inline-block">
+                                        <a target="_blank" href="https://twitter.com/DownloadYouT">
+                                            <i class="fa fa-twitter" title="Twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="inline-block">
+                                        <a target="_blank" href="https://plus.google.com/116818711365591733192">
+                                            <i class="fa fa-google-plus" title="GooglePlus" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    @*<div class="inline-block">
+                                        <a target="_blank" href="">
+                                            <i class="fa fa-pinterest" title="Pinterest" aria-hidden="true"></i>
+                                        </a>
+                                    </div>*@
+                                    <div class="inline-block">
+                                        <a target="_blank" href="https://www.instagram.com/downloadyoutubeorg/">
+                                            <i class="fa fa-instagram" title="Instagram" aria-hidden="true"></i>
+                                        </a>
+                                    </div>                                  
+                                </div>
+                                @*<div class="follow dark">
+                                    <div class="inline-block">
                                         <div class="fb-like"
                                              data-href="https://www.facebook.com/DownloadYouTubeOrg"
                                              data-colorscheme="light"
@@ -311,7 +327,7 @@
                                         <script type="IN/Share" data-url="http://download-youtube.org" data-counter="right">
                                         </script>
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="dividewhite4"></div>
                             </div>
                         </div>

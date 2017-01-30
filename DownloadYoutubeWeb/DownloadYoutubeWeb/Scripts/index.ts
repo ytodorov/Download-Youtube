@@ -129,7 +129,7 @@ $(document).ready(function r() {
     var intervalCounter = 0;
     var interval = setInterval(function alignGoogle() {
 
-        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter'],.IN-widget");  
+        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter'],.IN-widget,.IN-widget > span");  
 
         g.off("mouseleave").mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.off("mouseout").mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
