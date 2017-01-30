@@ -7,6 +7,7 @@
     <div>
         @*<input type="checkbox" id="@video.Guid" class="k-checkbox" checked="checked">
             <label class="k-checkbox-label team-member-title" for="@video.Guid">@video.title</label>*@
+        @*<div class="team-member-title">@video.title.Substring(0, video.title?.Length > 45 ? 45 : video.title.Length)</div>*@
         <div class="team-member-title">@video.title</div>
     </div>
 

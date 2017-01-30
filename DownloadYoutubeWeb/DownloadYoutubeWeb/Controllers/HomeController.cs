@@ -29,6 +29,13 @@ namespace DownloadYoutubeWeb.Controllers
         {
             try
             {
+                string queryString = Request.QueryString.ToString();
+                string queryToAppend = string.Empty;
+                if (!string.IsNullOrEmpty(queryString))
+                {
+                    queryString = $"?{queryString}";
+                }
+                                    
                 if (Request.Url.ToString().IndexOf("/bg", StringComparison.InvariantCultureIgnoreCase) == -1)
                 {
                     if (Request.Cookies["userSetLangugaTo"] == null)
@@ -43,7 +50,9 @@ namespace DownloadYoutubeWeb.Controllers
                                 var twoLetterCountry = client.GetStringAsync(uriToGet).Result?.ToLowerInvariant();
                                 if ("bg".Equals(twoLetterCountry, StringComparison.InvariantCultureIgnoreCase))
                                 {
-                                    Response.Redirect("/bg");
+                                   
+
+                                    Response.Redirect($"/bg{queryString}");
                                 }
                             }
                         }
@@ -57,7 +66,7 @@ namespace DownloadYoutubeWeb.Controllers
                                 var twoLetterCountry = client.GetStringAsync(uriToGet).Result?.ToLowerInvariant();
                                 if ("bg".Equals(twoLetterCountry, StringComparison.InvariantCultureIgnoreCase))
                                 {
-                                    Response.Redirect("/bg");
+                                    Response.Redirect($"/bg{queryString}");
                                 }
                             }
                         }
@@ -77,8 +86,18 @@ namespace DownloadYoutubeWeb.Controllers
                 LoggingManager.Logger.Error(ex, ex.Message);
             }
 
+            HomeViewModel hvm = new HomeViewModel();
 
-            return View();
+            var qs = Request.Url.Query.ToString();
+            string val = string.Empty;
+            if (!string.IsNullOrEmpty(qs))
+            {
+                var ind = qs.IndexOf("q=");
+                val = qs.Substring(3);
+            }
+   
+            hvm.DefaultUrls = val;
+            return View(hvm);
         }
             
 

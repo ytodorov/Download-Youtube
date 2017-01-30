@@ -355,6 +355,7 @@
     <Compile Include="Infrastructure\StringExtensions.cs" />
     <Compile Include="Infrastructure\WebUtils.cs" />
     <Compile Include="Infrastructure\YoutubeManager.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\VideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.bg.Designer.cs">

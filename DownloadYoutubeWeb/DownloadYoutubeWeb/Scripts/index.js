@@ -98,12 +98,21 @@ $(document).ready(function r() {
         $(".audioCompleted").hide();
         ;
     });
+    var defaultUrls = $("#tbUrls").text();
+    if (defaultUrls.length > 0) {
+        $("#btnLoadUrls").click();
+    }
     var intervalCounter = 0;
     var interval = setInterval(function alignGoogle() {
-        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter'],.IN-widget,.IN-widget > span");
+        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter'],.IN-widget>span,span.IN-widget,iframe[seamless=seamless]");
         g.off("mouseleave").mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
         g.off("mouseout").mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
-        g.off("hover").hover(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
+        g.off("hover").hover(function () {
+            setTimeout(function f() {
+                var g = $("div[id*='plusone']");
+                g.css("vertical-align", "bottom");
+            }, 1);
+        });
         g.css("vertical-align", "bottom");
         intervalCounter++;
         if (intervalCounter > 30) {

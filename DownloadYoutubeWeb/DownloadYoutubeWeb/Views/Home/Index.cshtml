@@ -1,11 +1,12 @@
-﻿<div id="audio" class="pt-section" data-name="@Resource.Audio">
+﻿@model HomeViewModel
+<div id="audio" class="pt-section" data-name="@Resource.Audio">
     <div class="container dark">
         <div class="text-center">
             <p>
                 <a href="javascript:void(0)" class="k-button" id="btnLoadExample1">@Resource.BtnExampleText1</a>
                 <a href="javascript:void(0)" class="k-button" id="btnLoadExample2">@Resource.BtnExampleText2</a>
             </p>
-            <textarea class="k-textbox bg-color00" id="tbUrls" style="width:95%;height:200px" placeholder="@Resource.TbUrlsPlaceholder"></textarea>
+            <textarea class="k-textbox bg-color00" id="tbUrls" style="width:95%;height:200px" placeholder="@Resource.TbUrlsPlaceholder">@Model.DefaultUrls</textarea>
             <br />
 
             <p><a href="javascript:void(0)" class="k-button" id="btnLoadUrls">@Resource.BtnLoadUrlsMetadataText</a></p>
