@@ -160,6 +160,15 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred. Please try again later..
+        /// </summary>
+        public static string ErrorInProcessing {
+            get {
+                return ResourceManager.GetString("ErrorInProcessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The extraction process of audio and video data of YouTube urls happens in the cloud, so it won’t drain any capacity from your computer..
         /// </summary>
         public static string ExtractionInTheCloudDescription {

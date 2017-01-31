@@ -150,6 +150,9 @@
   <data name="DownloadVideoIn" xml:space="preserve">
     <value>Изтегляне на видео файл във формат:</value>
   </data>
+  <data name="ErrorInProcessing" xml:space="preserve">
+    <value>Възникна грешка. Моля опитайте по-късно.</value>
+  </data>
   <data name="ExtractionInTheCloudDescription" xml:space="preserve">
     <value>Извличането на аудио и видео данни от YouTube адреси става в облака, т.е. ресурсите на вашия компютър не се използват и той не се натоварва допълнително.</value>
   </data>

@@ -150,6 +150,9 @@
   <data name="DownloadVideoIn" xml:space="preserve">
     <value>Download video file in format:</value>
   </data>
+  <data name="ErrorInProcessing" xml:space="preserve">
+    <value>An error occurred. Please try again later.</value>
+  </data>
   <data name="ExtractionInTheCloudDescription" xml:space="preserve">
     <value>The extraction process of audio and video data of YouTube urls happens in the cloud, so it won’t drain any capacity from your computer.</value>
   </data>

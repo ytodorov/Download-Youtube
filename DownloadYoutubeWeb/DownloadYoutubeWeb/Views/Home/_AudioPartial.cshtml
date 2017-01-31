@@ -145,7 +145,9 @@
                     var url = "@(Constants.VmSiteOneForDownloadYouTubeStream)home/dav?guid=" + dyMessage.guid;
                     if ($("span." + dyMessage.guid).length == 0) {
                         var newGuid = new Date().getTime();
-                        $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + dyMessage.guid + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>').insertAfter(iToShow);
+                        $('<a target="_blank" class="' + newGuid + '" href="' + url + '"><span class="' + dyMessage.guid + '"><i class="pe-7s-cloud-download hovercolor"></i></span></a>')
+                            .insertAfter(iToShow);
+                            //.wrap("<div></div>");
                         // Променяме и на цъкнатия линк url-а за да не се натисне пак
 
                     }
@@ -156,15 +158,24 @@
                     // Променяме текста
                     var oldText = $a.text();
                     $a.text("@(Resource.ClickToDownload)" + oldText);
+                    //$a.wrap("<div></div>");
                     $a.addClass("hovercolor").removeClass("k-button");
 
                     fileIsBeingProccessed.hide();
                 }
-                else
+                else if (dyMessage.message == "progress")
                 {
                     var $a = $("a[data-guid=" + dyMessage.guid + "]");
                     var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
                     fileIsBeingProccessed.html('<i class="hovercolor fa faa-float animated faa-slow">@(Resource.ProcessedPercentage) ' + dyMessage.percentage + '%</i>');
+                }
+                else if (dyMessage.message == "error")
+                {
+                    var $a = $("a[data-guid=" + dyMessage.guid + "]");
+                    var iToShow = $a.next("i");
+                    iToShow.hide();
+                    var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
+                    fileIsBeingProccessed.html('<i class="hovercolor fa faa-horizontal animated faa-slow">@(Resource.ErrorInProcessing)</i>');
                 }
 
             },
