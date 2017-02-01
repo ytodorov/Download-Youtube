@@ -53,5 +53,47 @@ namespace DownloadYoutubeWeb.Infrastructure
             var bytes = Convert.FromBase64String(encodedValue);
             return encoding.GetString(bytes);
         }
+
+        public static string PadLeftYordan(this string valueToPad, int totalLength, string paddingChar)
+        {
+            if (valueToPad.Length <= 40)
+            {
+                return valueToPad;
+            }
+            else
+            {
+                return valueToPad.Substring(0, 40);
+            }
+                
+            //if (valueToPad.Length <= 45)
+            //{
+            //    return "<br />" + valueToPad;
+            //}
+            //else if (valueToPad.Length <= 90)
+            //{
+            //    return valueToPad;
+            //}
+            //else
+            //{
+            //    return valueToPad.Substring(0, 90);
+            //}
+
+
+            //int actualLength = valueToPad.Length;
+            //if (actualLength >= totalLength)
+            //{
+            //    return valueToPad;
+            //}
+            //int diffLength = totalLength - actualLength;
+
+            //StringBuilder sb = new StringBuilder();
+            //for (int i = 0; i < diffLength; i++)
+            //{
+            //    sb.Append(paddingChar);
+            //}
+
+            //string result = sb.ToString() + valueToPad;
+            //return result;
+        }
     }
 }

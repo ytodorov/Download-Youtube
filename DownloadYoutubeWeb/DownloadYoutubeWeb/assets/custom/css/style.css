@@ -5162,3 +5162,29 @@ a.k-button{
     margin-bottom: 1px;
 }
 
+::-webkit-input-placeholder {
+   color: #E84855;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #E84855;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #E84855;  
+}
+
+:-ms-input-placeholder {  
+   color: #E84855;  
+} 
+
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}

@@ -27,9 +27,10 @@ $(document).ready(function r() {
         if (urlsArray.length > 0) {
             $(".audioFiles").html('');
         }
+        var counter = 0;
         $.each(urlsArray, function f(indexInArray, valueOfElement) {
             if (valueOfElement.indexOf('youtube.com/') > 0 || valueOfElement.indexOf('youtu.be/') > 0) {
-                if (valueOfElement.lastIndexOf('list=') > 0) {
+                if (valueOfElement.lastIndexOf('list=') > 0 || valueOfElement.lastIndexOf('/channel/') > 0) {
                     $.ajax({
                         url: GetCultureTwoLetterISOLanguageName() + '/home/getvideourlsfromplaylistid',
                         type: 'POST',

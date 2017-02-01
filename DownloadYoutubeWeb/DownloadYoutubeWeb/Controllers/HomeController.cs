@@ -229,7 +229,7 @@ namespace DownloadYoutubeWeb.Controllers
 
         public ActionResult GetVideoUrlsFromPlaylistId(string uri)
         {
-            if (uri.ToLowerInvariant().Contains("list=".ToLowerInvariant()))
+            if (uri.ToLowerInvariant().Contains("list=".ToLowerInvariant()) || uri.ToLowerInvariant().Contains("/channel/".ToLowerInvariant()))
             {
                 Uri myUri = new Uri(uri);
                 string listId = HttpUtility.ParseQueryString(myUri.Query).Get("list");
@@ -237,6 +237,33 @@ namespace DownloadYoutubeWeb.Controllers
                 {
                     var result = YoutubeManager.GetVideoUrlsFromPlaylistId(listId);
                     return Json(result);
+                }
+                else if (uri.ToLowerInvariant().Contains("/channel/"))
+                {
+                    string channelId = string.Empty;
+                    for (int i = 0; i < myUri.Segments.Length; i++)
+                    {
+                        if (myUri.Segments[i].ToLowerInvariant() == "channel/".ToLowerInvariant())
+                        {
+                            if (myUri.Segments.Length >= i + 1)
+                            {
+                                if (myUri.Segments[i + 1].EndsWith("/"))
+                                {
+                                    channelId = myUri.Segments[i + 1].Substring(0, myUri.Segments[i + 1].Length - 1);
+                                }
+                                else
+                                {
+                                    channelId = myUri.Segments[i + 1];
+                                }
+                            }
+                        }
+                    }
+                     //HttpUtility.ParseQueryString(myUri.Query).Get("list");
+                    if (!string.IsNullOrEmpty(channelId))
+                    {
+                        var result = YoutubeManager.GetVideoUrlsFromChannelId(channelId);
+                        return Json(result);
+                    }
                 }
             }
             return Json(new List<string>());
