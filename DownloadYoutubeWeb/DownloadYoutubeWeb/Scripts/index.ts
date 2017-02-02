@@ -135,18 +135,40 @@ $(document).ready(function r() {
     var intervalCounter = 0;
     var interval = setInterval(function alignGoogle() {
 
-        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter'],.IN-widget>span,span.IN-widget,iframe[seamless=seamless]");  
-
-        g.off("mouseleave").mouseleave(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
-        g.off("mouseout").mouseout(function () { var g = $("div[id*='plusone']"); g.css("vertical-align", "bottom"); });
+        var g = $("div[id*='follow'],div[id*='plusone'],iframe[id*='twitter'],.IN-widget > span,iframe[seamless=seamless],span[style*='vertical-align: baseline']");  
+         
+        g.off("mouseleave").mouseleave(function () {
+            var g = $("div[id*='plusone']");
+            //g.css("vertical-align", "bottom");
+            g.each(function () {
+                this.style.setProperty('vertical-align', 'bottom', 'important');
+            }); 
+        });
+        g.off("mouseout").mouseout(function () {
+            var g = $("div[id*='plusone']");
+            //g.css("vertical-align", "bottom");
+            g.each(function () {
+                this.style.setProperty('vertical-align', 'bottom', 'important');
+            }); 
+        });
         g.off("hover").hover(function () {
             setTimeout(function f() {
                 var g = $("div[id*='plusone']");
-                g.css("vertical-align", "bottom");
+                //g.css("vertical-align", "bottom");
+                g.each(function () {
+                    this.style.setProperty('vertical-align', 'bottom', 'important');
+                }); 
             }, 1);
         });
          
-        g.css("vertical-align", "bottom");
+        //g.css("vertical-align", "bottom");
+
+        g.each(function () {
+            this.style.setProperty('vertical-align', 'bottom', 'important');
+        }); 
+
+        //style.setProperty('border', 'none', 'important');
+        //g.attr('style', 'vertical-align: bottom !important;')
         intervalCounter++;
         if (intervalCounter > 30) {
             clearInterval(interval);
