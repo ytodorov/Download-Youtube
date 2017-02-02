@@ -196,7 +196,7 @@
     <value>Support multiple formats</value>
   </data>
   <data name="TbUrlsPlaceholder" xml:space="preserve">
-    <value>Paste YouTube video or playlist urls here.</value>
+    <value>Paste YouTube video, channel or playlist urls here.</value>
   </data>
   <data name="Video" xml:space="preserve">
     <value>Video</value>

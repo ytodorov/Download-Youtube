@@ -295,7 +295,7 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paste YouTube video or playlist urls here..
+        ///   Looks up a localized string similar to Paste YouTube video, channel or playlist urls here..
         /// </summary>
         public static string TbUrlsPlaceholder {
             get {

@@ -114,6 +114,12 @@
     $("[data-guid]").unbind("click").click(function f(e) {
 
         var $a = $(this);
+        if ($a.attr("data-inprocess") == "true")
+        {
+            e.preventDefault();
+            return;
+        }
+        $a.attr("data-inprocess", "true");
         var guid = $a.attr("data-guid");
         var href = $a.attr("href");
         //$a.append('<i class="fa-li fa fa-spinner fa-spin ' + guid + '"></i>');
@@ -122,9 +128,27 @@
         var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
         fileIsBeingProccessed.show();
         iToShow.show();
-        $a.unbind("click").click(function f(e) {
-            e.preventDefault();
-        });
+        iToShow.unbind("click").click({ guid: guid, message: "stop" }, function fi() {
+            var obj = {};
+            obj.guid = guid;//event.data.guid;
+            obj.message = "stop"; //event.data.message;
+
+            var fileIsBeingProccessed = $a.nextAll(".fileIsBeingProccessed").first();
+            $(this).hide();
+            $a.removeAttr("data-inprocess");
+            fileIsBeingProccessed.hide();
+            var mes = JSON.stringify(obj);
+            window.dy.pubnubHelper.publish({
+                channel: guid,
+                message: mes,
+                callback: function (m) {
+                    console.log(m)
+                }
+            })
+        })
+        //$a.unbind("click").click(function f(e) {
+        //    e.preventDefault();
+        //});
 
 
 
