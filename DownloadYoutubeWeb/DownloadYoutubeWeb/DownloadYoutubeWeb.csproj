@@ -154,6 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="06b12c3917068045d29f56247a7e2062.html" />
     <Content Include="5A564154852DFB8369325FF368886623.txt" />
     <Content Include="assets\bundle.css" />
     <Content Include="assets\custom\css\animate.css" />
