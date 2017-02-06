@@ -94,7 +94,15 @@ $(document).ready(function r() {
             $("#btnLoadUrls").click();
         }, 1);
     });
-    $("#clearAudioFiles").click(function () {
+    $("#btnLoadExample3").click(function example1() {
+        var urlsForExample1 = 'https://www.youtube.com/channel/UCbZS7Kw0Vs9U651vUrXrtFA';
+        $("#tbUrls").text(urlsForExample1);
+        $("#tbUrls").val(urlsForExample1);
+        setTimeout(function () {
+            $("#btnLoadUrls").click();
+        }, 1);
+    });
+    $(".clearAudioFiles").click(function () {
         $(".audioFiles").html("");
         $(".audioCompleted").hide();
         ;

@@ -14,11 +14,11 @@
             src="https://www.youtube.com/embed/@(video.VideoId)?autoplay=0&origin=http://download-youtube.org"
             frameborder="0"></iframe>
     <div>
-    <div class="team-member-title" title="@video.title">@video.title</div>
+    <h5 class="color-youtube-title font-regular-bold" title="@video.title">@video.title</h5>
 </div>
 
     @*Ако няма target="_blank" то тогава не се свалят паралелно файловете, защото всеки следващ прекъсва предишния*@
-    <div class="team-member-title">@Resource.DownloadAudioIn</div>
+    <div class="team-member-title font-regular-bold">@Resource.DownloadAudioIn</div>
     <div>
         @{
             var audios = Model.Where(a => a.AdaptiveKind == AdaptiveKind.Audio.ToString()).ToList();
@@ -27,10 +27,10 @@
         {
             guid = Guid.NewGuid().ToString();
             @*<span class="hovercolor"><i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i></span>*@
-            <a target="_blank" data-guid="@guid" class="k-button @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
+            <a target="_blank" data-guid="@guid" class="k-button hovercolor @(v.Format.ToLowerInvariant().Replace(".", string.Empty))"
                 title="@($"{Resource.Download} {v.title}")" 
                href="/home/downloadaudio?format=@v.Format&formatcode=@v.FormatCode&resolution=@v.Resolution&uri=@v.AudioUrlMp4&guid=@guid">
-                @v.Format.ToLowerInvariant().ToLowerInvariant() &nbsp;
+                @v.Format.ToLowerInvariant().ToLowerInvariant() &nbsp;<i class="pe-7s-star hovercolor" title="@Resource.Recommended"></i>
             </a>
             <i class="pe-7s-refresh pe-spin" style="display:none"></i>
             <div class="fileIsBeingProccessed" style="display:none"><i class="hovercolor fa faa-float animated faa-slow">@Resource.FileIsBeingProccessed</i></div>
@@ -91,7 +91,7 @@
         
         
     </div>
-    <div class="team-member-title">@Resource.DownloadVideoIn</div>
+    <div class="team-member-title font-regular-bold">@Resource.DownloadVideoIn</div>
     <div>
         @{
             var videos = Model.Where(a => a.AdaptiveKind == AdaptiveKind.Video.ToString()).ToList();

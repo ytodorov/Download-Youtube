@@ -132,6 +132,9 @@
   <data name="BtnExampleText2" xml:space="preserve">
     <value>Пример с плейлист</value>
   </data>
+  <data name="BtnExampleText3" xml:space="preserve">
+    <value>Пример с канал</value>
+  </data>
   <data name="BtnLoadUrlsMetadataText" xml:space="preserve">
     <value>Зареди адресите</value>
   </data>

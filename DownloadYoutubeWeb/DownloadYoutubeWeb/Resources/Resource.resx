@@ -132,6 +132,9 @@
   <data name="BtnExampleText2" xml:space="preserve">
     <value>Example with playlist</value>
   </data>
+  <data name="BtnExampleText3" xml:space="preserve">
+    <value>Example with channel</value>
+  </data>
   <data name="BtnLoadUrlsMetadataText" xml:space="preserve">
     <value>Load urls</value>
   </data>

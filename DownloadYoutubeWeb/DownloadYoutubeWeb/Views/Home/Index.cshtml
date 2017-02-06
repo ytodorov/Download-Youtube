@@ -1,23 +1,27 @@
 ﻿@model HomeViewModel
 <div id="audio" class="pt-section" data-name="@Resource.Audio">
     <div class="container dark">
-        <div class="text-center">
+        <div class="text-center">       
+            <p></p>
+            <textarea class="k-textbox bg-color00" id="tbUrls" style="width:95%;height:200px" placeholder="@Resource.TbUrlsPlaceholder">@Model.DefaultUrls</textarea>
+         
+            
+            <p><a href="javascript:void(0)" class="k-button" id="btnLoadUrls">@Resource.BtnLoadUrlsMetadataText</a></p>
             <p>
                 <a href="javascript:void(0)" class="k-button" id="btnLoadExample1">@Resource.BtnExampleText1</a>
+                <a href="javascript:void(0)" class="k-button" id="btnLoadExample3">@Resource.BtnExampleText3</a>
                 <a href="javascript:void(0)" class="k-button" id="btnLoadExample2">@Resource.BtnExampleText2</a>
             </p>
-            <textarea class="k-textbox bg-color00" id="tbUrls" style="width:95%;height:200px" placeholder="@Resource.TbUrlsPlaceholder">@Model.DefaultUrls</textarea>
-            <br />
-
-            <p><a href="javascript:void(0)" class="k-button" id="btnLoadUrls">@Resource.BtnLoadUrlsMetadataText</a></p>
-
 
         </div>
         <p class="small text-center center-block  audioCompleted" style="display:none">
-            <a href="javascript:void(0)" class="k-button" id="clearAudioFiles">@Resource.BtnClearText</a>
+            <a href="javascript:void(0)" class="k-button clearAudioFiles" id="clearAudioFiles">@Resource.BtnClearText</a>
         </p>
         <div class="row audioFiles">
         </div>
+        <p class="small text-center center-block  audioCompleted" style="display:none">
+            <a href="javascript:void(0)" class="k-button clearAudioFiles" id="clearAudioFiles1">@Resource.BtnClearText</a>
+        </p>
     </div>
 </div>
 @section scripts {

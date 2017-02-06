@@ -106,6 +106,15 @@ namespace DownloadYoutubeWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Example with channel.
+        /// </summary>
+        public static string BtnExampleText3 {
+            get {
+                return ResourceManager.GetString("BtnExampleText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Load urls.
         /// </summary>
         public static string BtnLoadUrlsMetadataText {

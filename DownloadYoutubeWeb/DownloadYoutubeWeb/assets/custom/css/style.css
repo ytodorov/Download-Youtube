@@ -29,7 +29,7 @@
 }
 
 .bg-john-07 {
-    background: url("../images/02-john/backgrounds/07.jpg");
+    background: url("../images/02-john/backgrounds/07.jpg"); 
 }
 
 
@@ -5164,18 +5164,22 @@ a.k-button{
 
 ::-webkit-input-placeholder {
    color: #E84855;
+   opacity: 0.7;
 }
 
 :-moz-placeholder { /* Firefox 18- */
    color: #E84855;  
+   opacity: 0.7;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
    color: #E84855;  
+   opacity: 0.7;
 }
 
 :-ms-input-placeholder {  
    color: #E84855;  
+   opacity: 0.7;
 } 
 
 /*
@@ -5187,4 +5191,33 @@ a.k-button{
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+}
+
+.color-youtube-title
+{
+     color: #167ac6;
+}
+
+@media only screen and (max-device-width: 480px) {
+   h1   
+   {
+       font-size:20px;
+   }
+   h2
+   {
+       font-size:16px;
+   }
+   /*Това е от bootstrap*/
+   /*.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}*/
+   .h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+   p {
+    margin: 0 0 0.5em 0;
+}
+
 }
